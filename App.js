@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet} from 'react-native';
-import Navigationbar from './nav';
+import Navigationbar from './navigation/nav';
 
 
 export default function App() {

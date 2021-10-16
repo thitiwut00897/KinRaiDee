@@ -1,13 +1,13 @@
 import { createBottomTabNavigator} from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
-import Main from './screen/main';
-import Signup from './auth/signup';
-import Login from './auth/signin';
-import Vagetable from "./screen/Vagetable";
-import Deeppage from "./screen/deeppage";
-import Notification from "./screen/notification";
-import Profile from "./screen/profile";
+import Main from '../screen/main';
+import Signup from '../auth/signup';
+import Login from '../auth/signin';
+import Vagetable from "../screen/Vagetable";
+import Deeppage from "../screen/deeppage";
+import Notification from "../screen/notification";
+import Profile from "../screen/profile";
 
 
     const Tab = createBottomTabNavigator(
