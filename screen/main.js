@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 const Main = (props) => {
 return (
     <View style={styles.container}>
-    <Text>Welcome to Tab-1 {props.navigation.getParam("Token")}</Text>
+    <Text>Welcome to Tabasasaaa {props.navigation.getParam("Token")}</Text>
     </View>
 );
 };
