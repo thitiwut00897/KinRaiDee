@@ -1,15 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image} from "react-native";
 
 const Main = (props) => {
 return (
     <View style={styles.container}>
-      <View style={styles.header, {flex:1, flexDirection:'row'}}>
-        <Text style={{fontSize:20, color:'white', flex:1}}>KinRaiDee</Text>
-        <Image source={require('../assets/home.png')}style={{width:35,height:35,tintColor:'white', right:10}}/>
+      <View style={styles.header}>
+        <Image source={require('../assets/user.png')}style={styles.logo}></Image>
+        <Text style={{fontSize:16, color:'white', flex:1, paddingLeft:6}}>KIN RAI DEE</Text>
+          <Image source={require('../assets/user.png')}style={styles.profile}/>
       </View>
       <View style={styles.page}>
-        <Text>Welcome to Tabasasaaa {props.navigation.getParam("Token")}</Text>
+        <Text>Welcome to Test {props.navigation.getParam("Token")}</Text>
       </View>
     </View>
 );
@@ -24,6 +25,25 @@ const styles = StyleSheet.create({
     },
     header:{
       justifyContent: 'center',
+      flex:0, 
+      flexDirection:'row',
+      top:12,
+      padding:10,
+      height:60,
+    },
+    profile:{
+      width:30,
+      height:30,
+      tintColor:'black', 
+      borderRadius:30, 
+      backgroundColor:'white'
+    },
+    logo:{
+      width:30,
+      height:30,
+      tintColor:'white', 
+      borderRadius:30, 
+      backgroundColor:'black'
     },
     page:{
       flex:10,

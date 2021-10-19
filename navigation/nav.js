@@ -23,11 +23,7 @@ import Profile from "../screen/profile";
                             <Image 
                                 source={require('../assets/home.png')}
                                 resizeMode='contain'
-                                style={{
-                                    width:35,
-                                    height:35,
-                                    tintColor:focused?'white':'gray',
-                                }}
+                                style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
                             {/* {focused?<Text style={{color:'white', fontSize:12}}>Home</Text>:null} */}
                         </View>
@@ -41,11 +37,7 @@ import Profile from "../screen/profile";
                             <Image 
                                 source={require('../assets/carrot.png')}
                                 resizeMode='contain'
-                                style={{
-                                    width:35,
-                                    height:35,
-                                    tintColor:focused?'white':'gray',
-                                }}
+                                style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
                             {/* {focused?<Text style={{color: 'white', fontSize:12}}>Vagetable</Text>:null} */}
                         </View>
@@ -83,11 +75,7 @@ import Profile from "../screen/profile";
                             <Image 
                                 source={require('../assets/notification.png')}
                                 resizeMode='contain'
-                                style={{
-                                    width:35,
-                                    height:35,
-                                    tintColor:focused?'white':'gray',
-                                }}
+                                style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
                             {/* {focused?<Text style={{color:'white', fontSize:12}}>Notification</Text>:null} */}
                         </View>
@@ -101,11 +89,7 @@ import Profile from "../screen/profile";
                             <Image 
                                 source={require('../assets/user.png')}
                                 resizeMode='contain'
-                                style={{
-                                    width:35,
-                                    height:35,
-                                    tintColor:focused?'white':'gray',
-                                }}
+                                style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
                             {/* {focused?<Text style={{color:'white', fontSize:12}}>Profile</Text>:null} */}
                         </View>
@@ -116,12 +100,12 @@ import Profile from "../screen/profile";
                 style:{
                     position:'absolute',
                     bottom:0,
-                    left:2,
-                    right:2,
+                    left:0,
+                    right:0,
                     height:60,
                     elevation:0,
                     backgroundColor: '#57CC99',
-                    borderRadius:10,
+                    borderRadius:1,
                 } 
             }
         }
@@ -136,5 +120,19 @@ import Profile from "../screen/profile";
     );
 
 export default createAppContainer(Tab);   
+
+const styles = StyleSheet.create({
+    IconNavbarfocus: {
+        width:30,
+        height:30,
+        tintColor:'white',
+    },
+    IconNavbar: {
+        width:30,
+        height:30,
+        tintColor:'gray',
+    }
+    
+  });
 
 
