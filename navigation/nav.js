@@ -25,7 +25,6 @@ import Profile from "../screen/profile";
                                 resizeMode='contain'
                                 style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
-                            {/* {focused?<Text style={{color:'white', fontSize:12}}>Home</Text>:null} */}
                         </View>
                         );
                     }}},
@@ -39,7 +38,6 @@ import Profile from "../screen/profile";
                                 resizeMode='contain'
                                 style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
-                            {/* {focused?<Text style={{color: 'white', fontSize:12}}>Vagetable</Text>:null} */}
                         </View>
                         );
                     }}},
@@ -77,7 +75,6 @@ import Profile from "../screen/profile";
                                 resizeMode='contain'
                                 style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
-                            {/* {focused?<Text style={{color:'white', fontSize:12}}>Notification</Text>:null} */}
                         </View>
                         );
                     }}},
@@ -91,7 +88,6 @@ import Profile from "../screen/profile";
                                 resizeMode='contain'
                                 style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
-                            {/* {focused?<Text style={{color:'white', fontSize:12}}>Profile</Text>:null} */}
                         </View>
                         );
                     }}},

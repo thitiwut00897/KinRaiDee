@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Alert } from 'react-native';
 import * as Facebook from 'expo-facebook';
 import { createStackNavigator } from 'react-navigation-stack';
 import { StackNavigator } from "react-navigation";
+import styles from "../style/styles";
 
 
 export default function Login(props) {
@@ -42,13 +43,3 @@ export default function Login(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
