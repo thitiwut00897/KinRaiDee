@@ -1,0 +1,24 @@
+.nav {
+  width: 100rem;
+  height: 3.5rem;
+  background-color: #4ab884;
+}
+.logo{
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.header {
+  font-size: 30px;
+  height: 100%;
+  color: #ffff ;
+  padding: 0.5rem;
+  Margin: auto 0; 
+  flex-direction: 1;
+}
+
+
+
+/*# sourceMappingURL=navbar.css.map */
