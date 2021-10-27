@@ -34,11 +34,16 @@ export default function Login(props) {
           alert(`Facebook Login Error: ${message}`);
         }
       }
+
+      function Test(){
+        props.navigation.navigate("Main");
+      }
       
   return (
     <View style={styles.container}>
       <Text>ssss!</Text>
-      <Button onPress={logInfacebok} title='Signin with facebook'/>
+      {/* <Button onPress={logInfacebok} title='Signin with facebook'/> */}
+      <Button onPress={Test} title='Signin with facebook'/>
       <Button onPress={()=> props.navigation.navigate("Signup")} title='Signup'/>
     </View>
   );
