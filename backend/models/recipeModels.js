@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const recipeSchema = mongoose.Schema({
     recipeName: {
@@ -11,7 +10,7 @@ const recipeSchema = mongoose.Schema({
         type: String, require: true
     },
     date: {
-        type: Date, require: true
+        type: String, require: true
     },
     picture: {
         type: String, require: true
@@ -21,7 +20,10 @@ const recipeSchema = mongoose.Schema({
     },
     commentCount:{
         type: Number, require: true
+    },
+    userId:{
+        type: String, require: true
     }
 })
-const Recipe = mongoose.model('users', recipeSchema);
+const Recipe = mongoose.model('recipes', recipeSchema);
 module.exports = Recipe;

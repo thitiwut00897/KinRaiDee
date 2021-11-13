@@ -14,20 +14,20 @@ router.post('/create', async (req, res, next) => {
     }
 })
 
-router.get('/', async (req, res, next) => {
+router.get('/:_id', async (req, res, next) => {
+    let notificationId = req.params._id;
     try {
-        let data = await Notifiaction.find().exec()
+        let data = await Notifiaction.findOne({ _id: notificationId }).exec()
         res.status(200).json(data)
     } catch (err) {
         res.status(500).send({ message: "Error!" })
     }
 })
 
-
-router.get('/:_id', async (req, res, next) => {
-    let productId = req.params.id;
+router.get('/users/:_id', async (req, res, next) => {
+    let userId = req.params._id;
     try {
-        let data = await Notifiaction.findOne({ _id: productId }).exec()
+        let data = await Notifiaction.find({ userId: userId }).exec()
         res.status(200).json(data)
     } catch (err) {
         res.status(500).send({ message: "Error!" })

@@ -26,6 +26,7 @@ const recipeApi = require('./routes/api/recipeApi');
 const userCommentApi = require('./routes/api/userCommentApi')
 const vegetableApi = require('./routes/api/vegetableApi')
 const notificationApi = require('./routes/api/notificationApi')
+const favoriteApi = require('./routes/api/favoriteApi')
 
 app.use(express.json());
   
@@ -34,5 +35,6 @@ app.use('/api/recipes', recipeApi);
 app.use('/api/userComments', userCommentApi);
 app.use('/api/vegetables', vegetableApi)
 app.use('/api/notifications', notificationApi)
+app.use('/api/favorites', favoriteApi)
 
   
