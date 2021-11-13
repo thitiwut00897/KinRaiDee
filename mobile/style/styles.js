@@ -16,12 +16,11 @@ export default StyleSheet.create({
       justifyContent: 'center',
     },
     header:{
-      justifyContent: 'center',
-      flex:0, 
+      // justifyContent: 'center',
+      // flex:0, 
       flexDirection:'row',
-      top:12,
-      padding:10,
-      height:60,
+      // top:12,
+      // height:60,
     },
     profile:{
       width:30,

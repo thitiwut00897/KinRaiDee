@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet, Text, TouchableOpacity, Button } from 'react-native';
 import { createBottomTabNavigator} from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
@@ -10,8 +10,16 @@ import Vagetable from "../screen/Vagetable";
 import Deeppage from "../screen/deeppage";
 import Notification from "../screen/notification";
 import Profile from "../screen/profile";
+import Styles from "../style/styles";
 
-    
+    function Headd(){
+        return(
+            <View style={Styles.header}>
+                <Image source={require('../assets/earth.png')} style={Styles.logo}></Image>
+                <Text style={{fontSize:16, color:'white', flex:1, paddingLeft:10}}>KIN RAI DEE</Text>
+            </View>
+        );}
+
     const Tab = createBottomTabNavigator(
         {   
             
@@ -102,7 +110,8 @@ import Profile from "../screen/profile";
                     elevation:0,
                     backgroundColor: '#57CC99',
                     borderRadius:1,
-                } 
+                },
+            
             }
         }
     );
@@ -111,11 +120,23 @@ import Profile from "../screen/profile";
             Login:{screen:Login},
             Signup:{screen:Signup},
             Main:{screen:Tab,
-                navigationOptions: {headerShown: false,},},
+                navigationOptions: {
+                    headerShown: true,
+                    title: <Headd/>,
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0 //border headerBar
+                    },
+                    headerLeft:()=>{},
+                    headerRight:()=>{return(<Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30, right:10}}></Image>);},
+                    
+                },},
         }
     );
 
-export default createAppContainer(Tab);   
+   
+
+export default createAppContainer(Stack);   
 
 const styles = StyleSheet.create({
     IconNavbarfocus: {
