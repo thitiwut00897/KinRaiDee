@@ -23,6 +23,9 @@ const recipeSchema = mongoose.Schema({
     },
     userId:{
         type: String, require: true
+    },
+    status:{
+        type: String, require: true
     }
 })
 const Recipe = mongoose.model('recipes', recipeSchema);

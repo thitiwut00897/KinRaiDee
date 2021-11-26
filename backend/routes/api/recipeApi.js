@@ -44,7 +44,6 @@ router.get('/users/:_id', async (req, res, next) => {
     }
 })
 
-
 router.put('/update/:_id', async (req, res, next) => {
     try {
         let data = await Recipe.findOneAndUpdate({ _id: req.params._id }, req.body)
@@ -53,7 +52,6 @@ router.put('/update/:_id', async (req, res, next) => {
         res.status(500).send({ message: "Error!" })
     }
 })
-
 
 router.delete('/delete/:_id', async (req, res, next) => {
     try {
