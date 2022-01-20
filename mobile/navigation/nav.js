@@ -10,13 +10,14 @@ import Vagetable from "../screen/Vagetable";
 import Deeppage from "../screen/deeppage";
 import Notification from "../screen/notification";
 import Profile from "../screen/profile";
+import Createprofile from "../screen/createprofilepage";
 import Styles from "../style/styles";
 
-    function Headd(){
+    function TitleNameHeader(){
         return(
             <View style={Styles.header}>
                 <Image source={require('../assets/earth.png')} style={Styles.logo}></Image>
-                <Text style={{fontSize:16, color:'white', flex:1, paddingLeft:10}}>KIN RAI DEE</Text>
+                <Text style={{color:'white', paddingLeft:10, fontSize:16}}>KIN RAI DEE</Text>
             </View>
         );}
 
@@ -117,12 +118,46 @@ import Styles from "../style/styles";
     );
     const Stack = createStackNavigator(
         {
-            Login:{screen:Login},
-            Signup:{screen:Signup},
+            Login:{screen:Login,
+                navigationOptions: {
+                headerShown: true,
+                title: '',
+                headerStyle:{
+                    backgroundColor:'#57CC99',
+                    elevation:0 //border headerBar
+                },
+                
+                
+                
+            },},
+            Signup:{screen:Signup,
+                navigationOptions: {
+                    headerShown: true,
+                    title: '',
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0 //border headerBar
+                    },
+                    
+                    headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=> Login}>Login</Text>);},
+                    
+                },},
+            Createprofile:{screen:Createprofile,
+                navigationOptions: {
+                    headerShown: true,
+                    title: '',
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0 //border headerBar
+                    },
+                    
+                    headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=>Login}>Login</Text>);},
+                    
+                },},    
             Main:{screen:Tab,
                 navigationOptions: {
                     headerShown: true,
-                    title: <Headd/>,
+                    title: <TitleNameHeader/>,
                     headerStyle:{
                         backgroundColor:'#57CC99',
                         elevation:0 //border headerBar

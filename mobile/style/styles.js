@@ -9,11 +9,12 @@ export default StyleSheet.create({
       justifyContent: 'center',
     },
     page:{
-      flex:10,
+      top:15,
+      flex:1,
       borderRadius:35,
-      backgroundColor: '#FFFF',
-      alignItems: 'center',
-      justifyContent: 'center',
+      backgroundColor: 'white',
+      // alignItems: 'center',
+      // justifyContent: 'center',
     },
     header:{
       // justifyContent: 'center',
