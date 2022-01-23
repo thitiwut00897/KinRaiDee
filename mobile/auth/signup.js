@@ -5,7 +5,7 @@ import styles from "../style/styles";
 const Signup = (props) => {
   const [Email, setEmail] = useState('')
   const [Password, setPassword] = useState('')
-  const [conPassword, setconPassword] = useState('')
+  const [ConPassword, setConPassword] = useState('')
 return (
     <View style={styles.container}>
       <View><Text style={{color:'white', paddingLeft:'10%', fontSize:26}}>Register</Text></View>
@@ -36,8 +36,8 @@ return (
             <TextInput
                 multiline={false}
                 numberOfLines={1}
-                onChangeText={(conPassword) => setconPassword({conPassword})}
-                value={conPassword}
+                onChangeText={(ConPassword) => setConPassword({ConPassword})}
+                value={ConPassword}
                 secureTextEntry={true}
                 placeholder="  confirm password"
                 style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20, height:43}}/>

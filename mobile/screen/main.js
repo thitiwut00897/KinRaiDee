@@ -6,8 +6,9 @@ const Main = (props) => {
 return (
     <View style={styles.container}>
       <View style={styles.page}>
-        
-        <Text>Welcome to Test {props.navigation.getParam("Token")}</Text>
+        <View style={{marginLeft:30, marginRight:30, fontWeight: 'bold'}}>
+          <Text>Welcome to Test {props.navigation.getParam("Token")}</Text>
+        </View>
       </View>
     </View>
 );

@@ -11,11 +11,14 @@ import Deeppage from "../screen/deeppage";
 import Notification from "../screen/notification";
 import Profile from "../screen/profile";
 import Createprofile from "../screen/createprofilepage";
+import Createrecipe from "../screen/createrecipe";
+import Editprofile from "../screen/editprofile";
+import Detailvagetable from "../screen/detailvagetable";
 import Styles from "../style/styles";
 
     function TitleNameHeader(){
         return(
-            <View style={Styles.header}>
+            <View style={{flexDirection:'row'}}>
                 <Image source={require('../assets/earth.png')} style={Styles.logo}></Image>
                 <Text style={{color:'white', paddingLeft:10, fontSize:16}}>KIN RAI DEE</Text>
             </View>
@@ -50,25 +53,25 @@ import Styles from "../style/styles";
                         </View>
                         );
                     }}},
-            Deeppage:{screen:Deeppage,
+            Deeppage:{screen:Detailvagetable,
                 navigationOptions: {
                     tabBarIcon: ({ focused }) => {
                         return(
-                    
-                                <View style={{
-                                    top:-20,
-                                    justifyContent:'center',
-                                    alignContent:'center',
-                                    width:70,
-                                    height:70,
-                                    borderRadius:35,
-                                    backgroundColor:'#57CC99'
-                                    
+                                <View style={{width:80, height:80,
+                                borderTopLeftRadius:40,borderTopRightRadius:40,
+                                backgroundColor: '#57CC99',
+                                // backgroundColor:"white",
+                                marginBottom:30, alignItems: 'center',
+                                justifyContent: 'center',
+                                // borderWidth:1,
+                                borderBottomLeftwidht:0,borderBottomRightwidht:0,
                                 }}>
-                                    <Image source={require('../assets/camera.png')} resizeMode='contain'style={{width:50,height:50,left:10,right:10,tintColor:focused?'black':'gray'}}/>
-                                    
+                                
+                                <View style={Styles.btnCircleUp}>
+                                    <Image source={require('../assets/camera.png')} resizeMode='contain'style={{width:35,height:35,tintColor:focused?'black':'gray'}}/>
                                 </View>
-                
+                                
+                                </View>
                             
                           
                         );
@@ -110,7 +113,10 @@ import Styles from "../style/styles";
                     height:60,
                     elevation:0,
                     backgroundColor: '#57CC99',
-                    borderRadius:1,
+                    // backgroundColor: 'white',
+                    borderTopWidth:0,
+                    // borderTopLeftRadius:20,
+                    // borderTopRightRadius:20
                 },
             
             }
@@ -124,7 +130,8 @@ import Styles from "../style/styles";
                 title: '',
                 headerStyle:{
                     backgroundColor:'#57CC99',
-                    elevation:0 //border headerBar
+                    elevation:0, //border headerBar
+                    borderBottomWidth:0
                 },
                 
                 
@@ -136,7 +143,8 @@ import Styles from "../style/styles";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0 //border headerBar
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
                     },
                     
                     headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=> Login}>Login</Text>);},
@@ -148,10 +156,11 @@ import Styles from "../style/styles";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0 //border headerBar
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
                     },
                     
-                    headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=>Login}>Login</Text>);},
+                    headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=>''}>Login</Text>);},
                     
                 },},    
             Main:{screen:Tab,
@@ -160,7 +169,11 @@ import Styles from "../style/styles";
                     title: <TitleNameHeader/>,
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0 //border headerBar
+                        // backgroundColor:'#87FAD2',
+                        
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
+                        
                     },
                     headerLeft:()=>{},
                     headerRight:()=>{return(<Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30, right:10}}></Image>);},
