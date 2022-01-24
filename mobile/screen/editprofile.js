@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button } from "react-native";
 import styles from "../style/styles";
 
-const Createprofile = (props) => {
+const Editprofile = (props) => {
   const [FirstName, setFirstName] = useState('')
   const [LastName, setLastName] = useState('')
   const [Description, setDescription] = useState('')
@@ -53,4 +53,4 @@ return (
 );
 };
 
-export default Createprofile;
+export default Editprofile;

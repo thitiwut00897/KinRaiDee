@@ -13,6 +13,8 @@ import Profile from "../screen/profile";
 import Createprofile from "../screen/createprofilepage";
 import Createrecipe from "../screen/createrecipe";
 import Editprofile from "../screen/editprofile";
+import Editrecipe from "../screen/editrecipe";
+import Reivewrecipe from "../screen/reviewrecipe";
 import Detailvagetable from "../screen/detailvagetable";
 import Styles from "../style/styles";
 
@@ -53,7 +55,7 @@ import Styles from "../style/styles";
                         </View>
                         );
                     }}},
-            Deeppage:{screen:Detailvagetable,
+            Deeppage:{screen:Reivewrecipe,
                 navigationOptions: {
                     tabBarIcon: ({ focused }) => {
                         return(
