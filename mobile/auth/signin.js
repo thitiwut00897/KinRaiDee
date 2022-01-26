@@ -65,7 +65,13 @@ export default function Login(props) {
                 placeholder="  password"
                 style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,height:43}}/>
             <Button onPress={()=> props.navigation.navigate("Main")} title='Login'/>
-            <View style={{alignItems:'center'}}><Text>-----------or------------</Text></View>
+            
+            <View style={{flexDirection:'row', justifyContent:'center'}}>
+              <View style={{borderTopWidth:1, width:'40%',marginTop:10}}></View>
+              <Text style={{marginLeft:'5%', marginRight:'5%'}}>OR</Text>
+              <View style={{borderTopWidth:1, width:'40%',marginTop:10}}></View>
+            </View>
+
         {/* <Button onPress={logInfacebok} title='Signin with facebook'/> */}
         <Button onPress={Test} title='Signin with facebook'/>
         <View style={{alignItems:'center'}}><Text >Don't have account  <Text style={{color:"blue", textDecorationLine: 'underline'}} onPress={()=> props.navigation.navigate("Signup")}>Register</Text></Text></View>

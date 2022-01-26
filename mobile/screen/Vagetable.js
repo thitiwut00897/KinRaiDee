@@ -6,7 +6,7 @@ const Detailvagetable = (props) => {
 return (
   <View style={styles.container}>
   <View style={styles.page}>
-    <View style={{marginLeft:30, marginRight:30}}>
+    <View style={{marginLeft:30, marginRight:30,paddingTop:30,}}>
       <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>History</Text></View>
     </View>
   </View>

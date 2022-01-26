@@ -6,8 +6,8 @@ const Vagetable = (props) => {
 return (
   <View style={styles.container}>
   <View style={styles.page}>
-    <View style={{marginLeft:30, marginRight:30}}>
-      <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Name Vagetable</Text></View>
+    <View style={{marginLeft:30, marginRight:30, paddingTop:10,}}>
+      <View><Text style={{color:'black', fontSize:24, fontWeight: 'bold'}}>Name Vagetable</Text></View>
         <View style={{alignItems: 'center',}}>
             <Image source={require('../assets/profilefacebook.jpg')} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'gray', borderWidth:1}}></Image>
         </View>

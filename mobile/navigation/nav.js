@@ -164,6 +164,56 @@ import Styles from "../style/styles";
                     
                     headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=>''}>Login</Text>);},
                     
+                },},
+            Createrecipe:{screen:Createrecipe,
+                navigationOptions: {
+                    headerShown: true,
+                    title: '',
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
+                    },
+                },}, 
+            Detailvagetable:{screen:Detailvagetable,
+                navigationOptions: {
+                    headerShown: true,
+                    title: '',
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
+                    },
+                },}, 
+            Editprofile:{screen:Editprofile,
+                navigationOptions: {
+                    headerShown: true,
+                    title: '',
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
+                    },
+                },},
+            Editrecipe:{screen:Editrecipe,
+                navigationOptions: {
+                    headerShown: true,
+                    title: '',
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
+                    },
+                },},
+            Reivewrecipe:{screen:Reivewrecipe,
+                navigationOptions: {
+                    headerShown: true,
+                    title: '',
+                    headerStyle:{
+                        backgroundColor:'#57CC99',
+                        elevation:0, //border headerBar
+                        borderBottomWidth:0
+                    },
                 },},    
             Main:{screen:Tab,
                 navigationOptions: {

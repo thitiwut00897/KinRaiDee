@@ -74,4 +74,16 @@ export default StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 1,
   },
+  // cardview:{
+  //   height:180, width:140, borderWidth:0,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 1,
+  //   },
+  //   shadowOpacity: 0.18,
+  //   shadowRadius: 1.00,
+
+  //   elevation: 1,
+  //     }
   });
