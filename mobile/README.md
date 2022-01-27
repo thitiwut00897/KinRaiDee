@@ -18,9 +18,9 @@
     - [ ] comments
     - [ ] Like
     - [ ] Favorite
-    - [x] Edit Recipe
-    - [x] Edite Profile
-    - [x] Create Recipe page
+  - [x] Edit Recipe
+  - [x] Edite Profile
+  - [x] Create Recipe page
 
 - [x] Nav bar
   - [x] UI
