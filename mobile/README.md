@@ -21,9 +21,11 @@ Sub Page
  - [x] Edit Recipe
  - [x] Edite Profile
  - [x] Create Recipe page
+
 Nav bar
 - [x] UI
 - [ ] pic profile drop down Edit and logout
+
 signin/signup
 - [x] register
 - [x] create profile
