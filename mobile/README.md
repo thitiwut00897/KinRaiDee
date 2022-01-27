@@ -15,10 +15,10 @@
 
 #Sub Page
  - [ ] Recipe Detail
-  - [ ] slide card same menu
-  - [ ] comments
-  - [ ] Like
-  - [ ] Favorite
+    - [ ] slide card same menu
+    - [ ] comments
+    - [ ] Like
+    - [ ] Favorite
  - [x] Edit Recipe
  - [x] Edite Profile
  - [x] Create Recipe page
