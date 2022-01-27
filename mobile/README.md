@@ -12,7 +12,7 @@
 - [x] Profile Page
   - [x] Card Recipe View --> Link to Recipe Detail
    - [ ] Drop down Edit
-Sub Page
+- [x] Sub Page
  - [ ] Recipe Detail
     - [ ] slide card same menu
     - [ ] comments
@@ -22,11 +22,11 @@ Sub Page
  - [x] Edite Profile
  - [x] Create Recipe page
 
-Nav bar
-- [x] UI
-- [ ] pic profile drop down Edit and logout
+- [x] Nav bar
+  - [x] UI
+  - [ ] pic profile drop down Edit and logout
 
-signin/signup
-- [x] register
-- [x] create profile
+- [x] signin/signup
+  - [x] register
+  - [x] create profile
 
