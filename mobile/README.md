@@ -13,14 +13,14 @@
   - [x] Card Recipe View --> Link to Recipe Detail
    - [ ] Drop down Edit
 - [x] Sub Page
- - [ ] Recipe Detail
+  - [ ] Recipe Detail
     - [ ] slide card same menu
     - [ ] comments
     - [ ] Like
     - [ ] Favorite
- - [x] Edit Recipe
- - [x] Edite Profile
- - [x] Create Recipe page
+    - [x] Edit Recipe
+    - [x] Edite Profile
+    - [x] Create Recipe page
 
 - [x] Nav bar
   - [x] UI
