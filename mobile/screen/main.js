@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, Button} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import ImagedCarouselCard from "react-native-imaged-carousel-card";
 import styles from "../style/styles";
 
 
