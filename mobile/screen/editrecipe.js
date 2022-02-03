@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TextInput, Button} from "react-native";
+import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
 import styles from "../style/styles";
 
 const Editrecipe = (props) => {
@@ -10,8 +10,9 @@ return (
     
     <View style={styles.container}>
       <View style={styles.page}>
-            <View style={{marginLeft:30, marginRight:30}}>
+            <SafeAreaView style={{marginLeft:30, marginRight:30}}>
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Edit Recipe</Text></View>
+                <ScrollView>
                 <View style={{alignItems: 'center',}}>
                     <Image source={require('../assets/profilefacebook.jpg')} style={{height:110, width:110, borderRadius:60, margin:10, borderColor:'gray', borderWidth:1}}></Image>
                 </View>
@@ -45,9 +46,9 @@ return (
                     style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
                 
             
-            
+                </ScrollView>
             <Button title="Confirm" onPress={()=> props.navigation.navigate("Main")}></Button>
-            </View>
+            </SafeAreaView>
         
         
             

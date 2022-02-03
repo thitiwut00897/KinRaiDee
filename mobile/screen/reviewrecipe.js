@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TextInput, Button} from "react-native";
+import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
 import { color } from "react-native-reanimated";
 import styles from "../style/styles";
 
@@ -12,7 +12,7 @@ return (
     
     <View style={styles.container}>
       <View style={styles.page}>
-            <View style={{marginLeft:30, marginRight:30}}>
+            <SafeAreaView style={{marginLeft:30, marginRight:30}}>
                 
                 <View style={{flexDirection:'row', paddingTop:30}}>
                     <View style={{width:'90%', flexDirection:'row'}}>
@@ -21,12 +21,12 @@ return (
                                 <Text style={{fontSize:9}}>Thitiwut.</Text>
                                 <Text style={{color:'gray',fontSize:9}}>sun 29 AUG 00:00 Test</Text>
                             </View>
-                        </View>
+                    </View>
                         <View style={{flexDirection:'row-reverse'}}>
                             <Image source={require('../assets/bookmark.png')} style={{height:30, width:30, tintColor:Bookmark?'#F06C6A':'gray'}}/>
                         </View>
-                    </View>
-                
+                </View>
+                <ScrollView>
                 <View style={{alignItems: 'center',}}>
                     <Image source={require('../assets/profilefacebook.jpg')} style={{height:140, width:140, borderRadius:70, margin:10, borderColor:'gray', borderWidth:1}}></Image>
                 </View>
@@ -43,8 +43,8 @@ return (
                 <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:10, marginBottom:10}}></View>
             
             
-            
-            </View>
+                </ScrollView>
+            </SafeAreaView>
         
         
             

@@ -1,8 +1,16 @@
-import React from "react";
-import { View, Image, StyleSheet, Text, TouchableOpacity, Button } from 'react-native';
+import React, { useState } from "react";
+import { View, Image, StyleSheet, Text, TouchableOpacity, Button, Picker } from 'react-native';
 import { createBottomTabNavigator} from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
+
+import {MenuProvider,
+    Menu,
+    MenuOptions,
+    MenuOption,
+    MenuTrigger,
+  } from 'react-native-popup-menu';
+
 import Main from '../screen/main';
 import Signup from '../auth/signup';
 import Login from '../auth/signin';
@@ -17,6 +25,7 @@ import Editrecipe from "../screen/editrecipe";
 import Reivewrecipe from "../screen/reviewrecipe";
 import Detailvagetable from "../screen/detailvagetable";
 import Styles from "../style/styles";
+
 
     function TitleNameHeader(){
         return(
@@ -227,8 +236,18 @@ import Styles from "../style/styles";
                         borderBottomWidth:0
                         
                     },
-                    headerLeft:()=>{},
-                    headerRight:()=>{return(<Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30, right:10}}></Image>);},
+                    headerLeft:()=>{},//<Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30, right:10}}></Image>
+                    headerRight:()=>{return(
+                        <MenuProvider><Menu>
+                        <MenuTrigger text={<View style={{}}><Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30,marginRight:20, marginTop:10}}></Image></View>} />
+                            <MenuOptions>
+                                <MenuOption onSelect={()=>''}text='Edit Profile' />
+                                <MenuOption onSelect={() => ''} text='Logout' />
+                                {/* <MenuOption onSelect={() => ''} text='Save' /> */}
+                                {/* <MenuOption onSelect={() => alert(`Not called`)} disabled={true} text='Disabled' /> */}
+                            </MenuOptions>
+                        </Menu></MenuProvider>
+                        );},
                     
                 },},
         }

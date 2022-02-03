@@ -1,15 +1,39 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, Button} from "react-native";
+import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import styles from "../style/styles";
 
 
 const Main = (props) => {
   const [Search, setSearch] = useState('')
+  const [ActiveIndex, setActiveIndex] = useState(0)
+  const [Carddata, setCarddata] = useState([
+    {
+        title:"Item 1",
+        text: "Text 1",
+    },
+    {
+        title:"Item 2",
+        text: "Text 2",
+    },
+    {
+        title:"Item 3",
+        text: "Text 3",
+    },
+    {
+        title:"Item 4",
+        text: "Text 4",
+    },
+    {
+        title:"Item 5",
+        text: "Text 5",
+    },
+  ])
+
 return (
     <View style={styles.container}>
       <View style={styles.page}>
-        <View style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold'}}>
+        <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold'}}>
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#EBEBEB', borderRadius:6}}>
           <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
           <View style={{width:'90%'}}><TextInput multiline={false}
@@ -20,12 +44,8 @@ return (
                   style={{}}/></View>
         </View>
           
-            
-            
-         
           <Button title="Create Recipe" onPress={()=> props.navigation.navigate('Createrecipe')} style={{}}></Button>
-
-        
+          
 
           <Text style={{fontWeight:'bold'}}>New Post {props.navigation.getParam("Token")}</Text>
           {/* card */}
@@ -79,7 +99,7 @@ return (
               </View>
             
             </View>
-        </View>
+        </SafeAreaView>
       </View>
     </View>
 );

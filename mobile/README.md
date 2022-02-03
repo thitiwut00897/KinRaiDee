@@ -1,6 +1,5 @@
 # KinRaiDee UI Process
 Problem!!!!!
-- [ ] Scroll View All Page cant
 - [ ] Drop Down All
 ----------------------------------------------
 - [x] Main page
