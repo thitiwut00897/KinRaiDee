@@ -1,6 +1,7 @@
 import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import StatusButtonGroup from '../Menu/StatusButtonGroup';
+import { useHistory } from "react-router";
 
 
 const MenuTableGrid = styled(Grid)`
@@ -57,6 +58,12 @@ const MenuTable = () => {
             </ImageTable>
         )
     }
+
+    const history = useHistory();
+    const handleClick = () => {
+        history.push('RecipeDetail');
+    }
+    
     return (
         <MenuTableGrid>
             <HeaderText variant='h5' component="div">Add Recommend</HeaderText>
@@ -78,6 +85,7 @@ const MenuTable = () => {
                             <TableRow
                                 key={row.menu}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                onClick={handleClick}
                             >
                                 <TableCell align="left" component="th" scope="row">
                                     {row.user}
