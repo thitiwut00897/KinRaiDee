@@ -12,6 +12,7 @@ const MainGrid = styled(Grid)`
   padding: 44px;
   display: flex;
   flex-direction: column;
+  margin-bottom:4em;
 `
 
 const HeaderText = styled(Typography)`

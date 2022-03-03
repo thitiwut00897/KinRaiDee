@@ -15,15 +15,11 @@ const onApprove = () => {
     console.log('Approve');
 }
 
-const onReject = () => {
-    console.log('Reject');
-}
 
 const StatusButtonGroup = () => {
     return (
         <ButtonGroup>
             <StatusButton onClickButton={onApprove} color='primary'>Approve</StatusButton>
-            <StatusButton onClickButton={onReject} color='error'>Reject</StatusButton>
         </ButtonGroup>
     )
 }

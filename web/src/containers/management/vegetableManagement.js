@@ -1,8 +1,7 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { useHistory } from "react-router";
 import VagetableItem from "../../components/Vegetable/VegetableItem";
-import AddIcon from '@mui/icons-material/Add';
 
 const MainGrid = styled(Grid)`
   width: 90%;
@@ -37,18 +36,12 @@ const VegetableManagement = () => {
         history.push('detail');
     }
 
-    const createVegetable = () => {
-        history.push('create')
-    }
-
     return (
         <MainGrid>
             <Header>
                 <HeaderText variant='h4' component='div'>Vegetable Management</HeaderText>
-                <Button onClick={createVegetable} variant='contained' color='white'>
-                    <AddIcon /> &nbsp;&nbsp; Create Vegetable
-                </Button>
             </Header>
+            
             <VegetableGrid>
                 <VagetableItem onClick={handleClick} />
                 <VagetableItem onClick={handleClick} />

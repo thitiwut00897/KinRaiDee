@@ -10,7 +10,6 @@ import Appbar from "./components/Appbar/Appbar";
 import UserManagement from "./containers/management/userManagement";
 import VegetableManagement from "./containers/management/vegetableManagement";
 import VegetableDetail from "./containers/vegetable/vegetableDetail";
-import CreateVegetable from './containers/vegetable/createVegetable';
 
 const App = () => {
   return (
@@ -23,7 +22,6 @@ const App = () => {
           <Route path="/user" component={UserManagement} />
           <Route path="/vegetable" component={VegetableManagement} />
           <Route path="/detail" component={VegetableDetail} />
-          <Route path="/create" component={CreateVegetable} />
         </Switch>
       </Router>
     </ThemeProvider>

@@ -63,5 +63,24 @@ router.delete('/delete/:_id', async (req, res, next) => {
         return res.status(500).send({ message: "Error" })
     }
 })
+router.post('/search', async (req,res,next) =>{ 
+    try{
+        let data = await Recipe.find().exec()
+        let searchText = req.body.searchRecipe
+        console.log(data);
+        let recipeName = []
+        data.forEach(recipe => {
+            let name = recipe.recipeName;
+            if (name.toUpperCase().includes(searchText.toUpperCase())) {
+                recipeName.push(recipe)
+            }
+        });
+        console.log(recipeName)
+        res.status(200).json(recipeName)
+
+    } catch (err) {
+        res.status(500).send({ message: "Error!" })
+    }
+})
 
 module.exports = router;

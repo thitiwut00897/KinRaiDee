@@ -2,6 +2,7 @@ import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Ta
 import { styled } from "@mui/system";
 import StatusButtonGroup from '../Menu/StatusButtonGroup';
 
+
 const MenuTableGrid = styled(Grid)`
     width: 100%;
     height: 100%;
@@ -32,6 +33,7 @@ const ImageTable = styled(Grid)`
     border-radius: 10px;
     margin: 0 auto;
 `
+  
 const MenuTable = () => {
     const createData = (user, dateAndTime, menu, ingredients, directions, picture, status) => {
         return { user, dateAndTime, menu, ingredients, directions, picture, status };
@@ -40,9 +42,7 @@ const MenuTable = () => {
     const rows = [
         createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส'),
         createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส'),
-        createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส'),
-        createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส'),
-        createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส'),
+        createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส')
     ];
 
     const renderImage = (url) => {

@@ -46,10 +46,10 @@ const Appbar = () => {
             <AppBar position="static">
                 <Toolbar variant="dense">
                     <img src='earth.png' alt='logo' style={{ width: '44px', height: '44px', margin: '12px 12px 12px 0' }} />
-                    <Typography variant="h6" color="inherit" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" color="white" component="div" sx={{ flexGrow: 1 }}>
                         Admin
                     </Typography>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
+                    <IconButton edge="start" color="white" aria-label="menu">
                         <MenuIcon
                             onClick={handleMenu}
                         />
