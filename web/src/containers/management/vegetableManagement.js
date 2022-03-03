@@ -33,7 +33,7 @@ const VegetableGrid = styled(Grid)`
 const VegetableManagement = () => {
     const history = useHistory();
     const handleClick = () => {
-        history.push('detail');
+        history.push('VegetableDetail');
     }
 
     return (

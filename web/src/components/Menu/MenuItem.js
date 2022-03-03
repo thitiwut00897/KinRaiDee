@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import { styled } from "@mui/system";
 import CloseIcon from '@mui/icons-material/Close';
+import { useHistory } from "react-router";
 
 
 const MenuGrid = styled(Grid)`
@@ -51,6 +52,10 @@ const onReject = () => {
     console.log('Reject');
 }
 const MenuItem = () => {
+    const history = useHistory();
+    const handleClick = () => {
+        history.push('RecipeDetail');
+    }
     return (
         <MenuGrid>
             <CloseIcon
@@ -62,6 +67,7 @@ const MenuItem = () => {
                 src={'https://picsum.photos/200'}
                 alt={'mock-up'}
                 loading='lazy'
+                onClick={handleClick}
             />
         </MenuGrid>
     )

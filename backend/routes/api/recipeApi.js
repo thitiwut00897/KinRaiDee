@@ -3,6 +3,7 @@ const router = express.Router();
 const Recipe = require("../../models/recipeModels")
 
 router.post('/create', async (req, res, next) => {
+    console.log(req.body);
     try {
         let data = new Recipe(req.body)
         await data.save(() => {
