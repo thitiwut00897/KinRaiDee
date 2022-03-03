@@ -8,6 +8,7 @@ const MainGrid = styled(Grid)`
   height: 100%;
   max-width: 1440px;
   margin: auto;
+  margin-left: 6em;
 `
 
 const Header = styled(Grid)`

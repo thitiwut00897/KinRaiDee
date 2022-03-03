@@ -46,10 +46,10 @@ const Appbar = () => {
             <AppBar position="static">
                 <Toolbar variant="dense">
                     <img src='earth.png' alt='logo' style={{ width: '44px', height: '44px', margin: '12px 12px 12px 0' }} />
-                    <Typography variant="h6" color="white" component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1}} style={{ color: 'white', fontSize: "30px"}}>
                         Admin
                     </Typography>
-                    <IconButton edge="start" color="white" aria-label="menu">
+                    <IconButton edge="start" color="white" aria-label="menu" size="medium">
                         <MenuIcon
                             onClick={handleMenu}
                         />
@@ -57,13 +57,13 @@ const Appbar = () => {
                             id="menu-appbar"
                             anchorEl={anchorEl}
                             anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                vertical: "bottom",
+                                horizontal: "left"
                             }}
                             keepMounted
                             transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                vertical: "top",
+                                horizontal: "left",
                             }}
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
