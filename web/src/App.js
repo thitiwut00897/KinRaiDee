@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import theme from "./theme";
+import customTheme from "./theme";
 
 import './_app.styles.scss';
 
@@ -14,7 +14,7 @@ import recipeDetail from "./containers/recipe/recipeDetail"
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme}>
       <Router basename='/'>
         <Appbar />
         <Switch>
