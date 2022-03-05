@@ -8,7 +8,7 @@ const MainGrid = styled(Grid)`
   height: 100%;
   max-width: 1440px;
   margin: auto;
-  margin-left: 6em;
+  margin-left: 7em;
 `
 
 const Header = styled(Grid)`
@@ -29,6 +29,7 @@ const VegetableGrid = styled(Grid)`
     justify-content: left;
     align-items: center;
     flex-wrap: wrap;
+
 `
 
 const VegetableManagement = () => {
