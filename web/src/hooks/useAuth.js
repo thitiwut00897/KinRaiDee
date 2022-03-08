@@ -9,13 +9,19 @@ const useAuth = () => {
     const { push } = useHistory();
 
     useEffect(() => {
-        const userId = localStorage.getItem('user');
+        const userId = localStorage.getItem('userId');
         if (!userId) {
             push('/login');
+        } else if (userId && (user === undefined || user === null)) {
+            console.log('test')
+            usersApi().getUserById(userId).then(res => {
+                setUser(res.data)
+            })
         }
     }, [user])
 
     const logout = () => {
+        localStorage.removeItem('userId')
         setUser(null);
         push('/login')
     }

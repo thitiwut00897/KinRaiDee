@@ -1,6 +1,11 @@
 import axiosInstance from '../utils/axios';
 
 export const usersApi = () => {
+
+    const getAllUsers = () => {
+        return axiosInstance.get('/users');
+    }
+
     const getUserById = (userId) => {
         return axiosInstance.get(`/users/${userId}`);
     }
@@ -12,8 +17,14 @@ export const usersApi = () => {
         })
     }
 
+    const deleteUserById = (userId) => {
+        return axiosInstance.delete(`/users/delete/${userId}`);
+    }
+
     return {
+        getAllUsers,
         getUserById,
-        loginByEmail
+        loginByEmail,
+        deleteUserById
     }
 }

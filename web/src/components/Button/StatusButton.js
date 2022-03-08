@@ -18,12 +18,12 @@ const ButtonStatus = styled(Button)`
 `
 
 const StatusButton = (props) => {
-    const { onClickButton, color } = props;
+    const { onClickButton, color, id } = props;
     return (
         <ButtonStatus
             variant="contained"
             color={color}
-            onClick={onClickButton}
+            onClick={() => onClickButton(id)}
             fullWidth
         >
             {props.children}

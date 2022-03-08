@@ -14,24 +14,8 @@ border-bottom: 2px solid #000000;
 box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
 `
 
-const UserTable = () => {
-    const createData = (firstname, lastname) => {
-        return { firstname, lastname };
-    }
-
-    const rows = [
-        createData('Test Data', 'mock-up'),
-        createData('Test Data', 'mock-up'),
-        createData('Test Data', 'mock-up'),
-        createData('Test Data', 'mock-up'),
-        createData('Test Data', 'mock-up'),
-    ];
-
-    const onDelete = () => {
-        console.log('Delete')
-    }
-
-
+const UserTable = (props) => {
+    const { users, handleDelete } = props
     return (
         <MainTable component={Paper} >
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -43,18 +27,19 @@ const UserTable = () => {
                     </Header>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {users.map((user) => (
                         <TableRow
-                            key={row.firstname}
+                            key={user._id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                {row.firstname}
+                                {user.firstName}
                             </TableCell>
-                            <TableCell align="left">{row.lastname}</TableCell>
+                            <TableCell align="left">{user.lastName}</TableCell>
                             <TableCell align="center">
                                 <StatusButton
-                                    onClickButton={onDelete}
+                                    id={user._id}
+                                    onClickButton={handleDelete}
                                     color='error'
                                 >
                                     Delete

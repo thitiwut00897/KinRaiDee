@@ -60,7 +60,7 @@ const LoginForm = () => {
     const handleSubmit = () => {
         usersApi().loginByEmail(enteredEmail, enteredPassword).then((res) => {
             setUser(res.data);
-            localStorage.setItem('user', `${res.data.email}${res.data.firstName}${res.data.lastName}`)
+            localStorage.setItem('userId', res.data[0]._id)
             resetEmailInput();
             resetPasswordInput();
             history.push('/')

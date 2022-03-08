@@ -8,11 +8,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 import { useHistory } from 'react-router';
 import useAuth from '../../hooks/useAuth';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../store/atom';
 
 const Appbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const history = useHistory();
-    const { user, logout } = useAuth();
+    const { user ,logout } = useAuth();
 
     const handleRecommend = () => {
         history.push('/');
@@ -20,7 +22,7 @@ const Appbar = () => {
     }
 
     const handleUserManagement = () => {
-        history.push('/user');
+        history.push('/users');
         setAnchorEl(null);
     }
 
