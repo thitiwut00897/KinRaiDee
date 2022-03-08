@@ -56,4 +56,19 @@ router.delete('/delete/:_id', async (req, res, next) => {
     }
 })
 
+router.post('/login', async (req,res,next) =>{
+    try {
+        let data = await User.find()
+        let login = req.body
+        if(data[0].email === login.userEmail && data[0].password === login.userPassword){
+            res.status(200).send({ message: "login success" })
+        }
+        else if(data[0].email !== login.userEmail || data[0].password !== login.userPassword){
+            res.status(400).send({ message: "Invalid Email or Password" })
+        }
+    } catch (err) {
+        return res.status(500).send({ message: "Error" })
+    }
+})
+
 module.exports = router;
