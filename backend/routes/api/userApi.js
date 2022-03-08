@@ -67,8 +67,8 @@ router.post('/login', async (req,res,next) =>{
         if(login.userEmail === email && login.userPassword === password){
             res.status(200).json(data)
         }
-        else if(login.userEmail !== email || login.userPassword !== password){
-            res.status(400).send({ message: "Invalid Email or Password"})
+        else{
+            res.status(400).send({ message: "Your administrator's email or password is incorrect."})
         }
     } catch (err) {
         return res.status(500).send({ message: "Error" })
