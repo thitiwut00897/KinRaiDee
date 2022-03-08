@@ -4,7 +4,11 @@ import { useState } from "react";
 import LoginInput from "./LoginInput";
 import LoginButton from "./LoginButton";
 import { useHistory } from "react-router";
-
+import useInput from "../../hooks/useInput";
+import { usersApi } from "../../api/usersApi";
+import { useSetRecoilState } from "recoil";
+import { userState } from "../../store/atom";
+import Swal from 'sweetalert2';
 
 const LoginGrid = styled(Grid)` 
     width: 100%;
@@ -27,39 +31,57 @@ const LoginPaper = styled(Paper)`
 
 const LoginForm = () => {
     const history = useHistory();
-    const [error, setError] = useState('');
-    const [user, setUser] = useState({
-        email: '',
-        password: '',
-        showPassword: true,
-    })
+    const setUser = useSetRecoilState(userState);
+    const [showPassword, setShowPassword] = useState(true);
+    let formIsValid = false;
 
-    const handleChange = (prop) => (event) => {
-        setUser({ ...user, [prop]: event.target.value });
-    };
+    const {
+        value: enteredEmail,
+        isValid: enteredEmailIsValid,
+        hasError: enteredEmailHasError,
+        valueChangeHandler: emailChangeHandler,
+        inputBlurHandler: emailBlurHandler,
+        reset: resetEmailInput,
+    } = useInput(value => value.includes('@'));
 
-    const handleClickShow = () => {
-        setUser({
-            ...user,
-            showPassword: !user.showPassword,
-        });
-    };
+    const {
+        value: enteredPassword,
+        isValid: enteredPasswordIsValid,
+        hasError: enteredPasswordHasError,
+        valueChangeHandler: passwordChangeHandler,
+        inputBlurHandler: passwordBlurHandler,
+        reset: resetPasswordInput,
+    } = useInput(value => value.length >= 8);
 
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+    if (enteredEmailIsValid && enteredPasswordIsValid) {
+        formIsValid = true;
+    }
 
     const handleSubmit = () => {
-        if (user.email === '' || user.password === '') {
-            if (user.email === '') {
-                setError('Email is empty')
+        usersApi().getUserById(enteredEmail).then((res) => {
+            const user = res.data;
+            if (user.password === enteredPassword) {
+                setUser(user);
+                localStorage.setItem('userId', res.data.id)
+                resetEmailInput();
+                resetPasswordInput();
+                history.push('/')
             } else {
-                setError('Password is empty')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Cannot login',
+                    text: 'Invalid Email or Password!'
+                }).then(resetPasswordInput())
             }
-            return
-        }
-        localStorage.setItem('user', user.email);
-        history.push('/');
+        }).catch(err => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Cannot login',
+                text: 'Invalid Email or Password!'
+            })
+            resetEmailInput();
+            resetPasswordInput();
+        })
     }
 
     return (
@@ -67,20 +89,21 @@ const LoginForm = () => {
             <LoginPaper elevation={10}>
                 <LoginInput
                     label={'email'}
-                    value={user.email}
-                    handleChange={handleChange}
-                    handleMouseDownPassword={handleMouseDownPassword}
+                    value={enteredEmail}
+                    handleChange={emailChangeHandler}
+                    handleOnBlur={emailBlurHandler}
                 />
+                {enteredEmailHasError && <Typography variant='subtitle1' color='error'>Email Invalid!</Typography>}
                 <LoginInput
                     label={'password'}
-                    value={user.password}
-                    handleChange={handleChange}
-                    handleClickShowPassword={handleClickShow}
-                    handleMouseDownPassword={handleMouseDownPassword}
-                    showPassword={user.showPassword}
+                    value={enteredPassword}
+                    handleChange={passwordChangeHandler}
+                    handleOnBlur={passwordBlurHandler}
+                    showPassword={showPassword}
+                    handleClickShowPassword={() => setShowPassword(!showPassword)}
                 />
-                {error === '' || <Typography variant='subtitle1' color='error'>{error}</Typography>}
-                <LoginButton onHandleSubmit={handleSubmit}>
+                {enteredPasswordHasError && <Typography variant='subtitle1' color='error'>Password Invalid!</Typography>}
+                <LoginButton disabled={!formIsValid} onHandleSubmit={handleSubmit}>
                     LOGIN
                 </LoginButton>
             </LoginPaper>

@@ -7,10 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 import { useHistory } from 'react-router';
+import useAuth from '../../hooks/useAuth';
 
 const Appbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const history = useHistory();
+    const { user } = useAuth();
 
     const handleRecommend = () => {
         history.push('/');
@@ -46,10 +48,10 @@ const Appbar = () => {
             <AppBar position="static">
                 <Toolbar variant="dense">
                     <img src='earth.png' alt='logo' style={{ width: '44px', height: '44px', margin: '12px 12px 12px 0' }} />
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1}} style={{ color: 'white', fontSize: "30px"}}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{ color: 'white', fontSize: "30px" }}>
                         Admin
                     </Typography>
-                    <IconButton edge="start" color="white" aria-label="menu" size="medium">
+                    {user && <IconButton edge="start" color="white" aria-label="menu" size="medium">
                         <MenuIcon
                             onClick={handleMenu}
                         />
@@ -73,7 +75,7 @@ const Appbar = () => {
                             <MenuItem onClick={handleUserManagement}>User Management</MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>
                         </Menu>
-                    </IconButton>
+                    </IconButton>}
                 </Toolbar>
             </AppBar>
         </Box>

@@ -7,12 +7,13 @@ const ButtonLogin = styled(Button)`
 `
 
 const LoginButton = (props) => {
-    const { onHandleSubmit } = props;
+    const { onHandleSubmit, disabled } = props;
     return (
         <ButtonLogin
             variant="contained"
             color="primary"
             onClick={onHandleSubmit}
+            disabled={disabled}
             fullWidth
         >
             {props.children}
