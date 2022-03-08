@@ -58,13 +58,12 @@ router.delete('/delete/:_id', async (req, res, next) => {
 
 router.post('/login', async (req,res,next) =>{
     try {
-        let data = await User.find()
-        let login = req.body
-        if(data[0].email === login.userEmail && data[0].password === login.userPassword){
+        let data = await User.find({email: req.body.userEmail, password: req.body.userPassword})
+        if(data.length !== 0){
             res.status(200).json(data)
         }
-        else if(data[0].email !== login.userEmail || data[0].password !== login.userPassword){
-            res.status(400).send({ message: "Invalid Email or Password" })
+        else{
+            res.status(400).send({ message: "Invalid Email or Password"})
         }
     } catch (err) {
         return res.status(500).send({ message: "Error" })
