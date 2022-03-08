@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import RecipeDetailItem from "../../components/recipe/RecipeDeatilItem";
 
 const MainGrid = styled(Grid)`
@@ -26,17 +26,18 @@ const HeaderText = styled(Typography)`
 `
 
 const RecipeDetail = () => {
-    const history = useHistory();
-    const onBackPress = () => {
-        history.push('/');
-    }
+  let { recipeId } = useParams();
+  const history = useHistory();
+  const onBackPress = () => {
+    history.push('/');
+  }
 
-    return (
-        <MainGrid>
-            <HeaderText onClick={onBackPress} variant='h4' component='div'>Back</HeaderText>
-            <RecipeDetailItem />
-        </MainGrid>
-    )
+  return (
+    <MainGrid>
+      <HeaderText onClick={onBackPress} variant='h4' component='div'>Back</HeaderText>
+      <RecipeDetailItem recipeId={recipeId} />
+    </MainGrid>
+  )
 }
 
 export default RecipeDetail;

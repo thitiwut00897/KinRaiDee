@@ -2,6 +2,7 @@ import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Ta
 import { styled } from "@mui/system";
 import StatusButtonGroup from '../Menu/StatusButtonGroup';
 import { useHistory } from "react-router";
+import { usersApi } from "../../api/usersApi";
 
 
 const MenuTableGrid = styled(Grid)`
@@ -34,17 +35,17 @@ const ImageTable = styled(Grid)`
     border-radius: 10px;
     margin: 0 auto;
 `
-  
-const MenuTable = () => {
-    const createData = (user, dateAndTime, menu, ingredients, directions, picture, status) => {
-        return { user, dateAndTime, menu, ingredients, directions, picture, status };
-    }
 
-    const rows = [
-        createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส'),
-        createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส'),
-        createData('Test Data', '5/2/2022', 'Frozen yoghurt', 'ไอศกรีมโยเกิร์ต', 'ลองเดินไปเรื่อยๆ', 'https://picsum.photos/200', 'เทส')
-    ];
+const MenuTable = (props) => {
+    const { menus } = props
+    const history = useHistory();
+
+    const getUser = (userId) => {
+        usersApi().getUserById(userId).then((res) => {
+            console.log(res.data.firstName)
+            return res.data.firstName;
+        })
+    }
 
     const renderImage = (url) => {
         return (
@@ -59,11 +60,10 @@ const MenuTable = () => {
         )
     }
 
-    const history = useHistory();
-    const handleClick = () => {
-        history.push('RecipeDetail');
+    const handleClick = (recipeId) => {
+        history.push(`recipe/${recipeId}`);
     }
-    
+
     return (
         <MenuTableGrid>
             <HeaderText variant='h5' component="div">Add Recommend</HeaderText>
@@ -71,9 +71,9 @@ const MenuTable = () => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <Header>
-                            <TableCell align="left"><Typography variant="h6">User</Typography></TableCell>
-                            <TableCell align="left"><Typography variant="h6">Date And Time</Typography></TableCell>
-                            <TableCell align="left"><Typography variant="h6">Menu</Typography></TableCell>
+                            <TableCell align="center"><Typography variant="h6">User</Typography></TableCell>
+                            <TableCell align="center"><Typography variant="h6">Date And Time</Typography></TableCell>
+                            <TableCell align="center"><Typography variant="h6">Menu</Typography></TableCell>
                             <TableCell align="left"><Typography variant="h6">Ingredients</Typography></TableCell>
                             <TableCell align="left"><Typography variant="h6">Directions</Typography></TableCell>
                             <TableCell align="center"><Typography variant="h6">Picture</Typography></TableCell>
@@ -81,20 +81,20 @@ const MenuTable = () => {
                         </Header>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {menus.map((menu) => (
                             <TableRow
-                                key={row.menu}
+                                key={menu._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                onClick={handleClick}
+                                onClick={() => handleClick(menu._id)}
                             >
-                                <TableCell align="left" component="th" scope="row">
-                                    {row.user}
+                                <TableCell align="center" component="th" scope="row">
+                                    {'rungwaraporn'}
                                 </TableCell>
-                                <TableCell align="left">{row.dateAndTime}</TableCell>
-                                <TableCell align="left">{row.menu}</TableCell>
-                                <TableCell align="left">{row.ingredients}</TableCell>
-                                <TableCell align="left">{row.directions}</TableCell>
-                                <TableCell align="center">{renderImage(row.picture)}</TableCell>
+                                <TableCell align="center">{menu.date}</TableCell>
+                                <TableCell align="center">{menu.recipeName}</TableCell>
+                                <TableCell align="left">{menu.ingredients}</TableCell>
+                                <TableCell align="left">{menu.directions}</TableCell>
+                                <TableCell align="center">{renderImage(menu.picture)}</TableCell>
                                 <TableCell align="center"><StatusButtonGroup /></TableCell>
                             </TableRow>
                         ))}

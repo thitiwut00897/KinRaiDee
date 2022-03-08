@@ -1,7 +1,11 @@
 import { Grid, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import recipesApi from '../api/recipesApi';
 import MenuTab from '../components/Menu/MenuTab';
 import MenuTable from '../components/Table/MenuTable';
+import { allMenuState } from '../store/atom';
 
 const RecommendGrid = styled(Grid)`
   width: 90%;
@@ -16,11 +20,19 @@ const HeaderText = styled(Typography)`
 `
 
 const Recommend = () => {
+  const [allMenu, setAllMenu] = useRecoilState(allMenuState);
+
+  useEffect(() => {
+    recipesApi().getAllMenu().then(res => {
+      setAllMenu(res.data)
+    })
+  }, [])
+
   return (
     <RecommendGrid>
       <HeaderText variant='h4' component="div">Recommend Menu</HeaderText>
       <MenuTab />
-      <MenuTable />
+      <MenuTable menus={allMenu} />
     </RecommendGrid>
   );
 }

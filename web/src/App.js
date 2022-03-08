@@ -22,8 +22,8 @@ const App = () => {
           <Route path="/login" component={Login} />
           <Route path="/users" component={UserManagement} />
           <Route path="/vegetable" component={VegetableManagement} />
-          <Route path="/vegetableDetail" component={VegetableDetail} />
-          <Route path="/recipeDetail" component={recipeDetail} />
+          <Route path="/vegetable/:id" component={VegetableDetail} />
+          <Route path="/recipe/:recipeId" component={recipeDetail} />
         </Switch>
       </Router>
     </ThemeProvider>

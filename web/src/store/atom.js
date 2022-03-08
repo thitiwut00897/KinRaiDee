@@ -9,3 +9,8 @@ export const allUsersState = atom({
     key: 'allUsersState',
     default: []
 })
+
+export const allMenuState = atom({
+    key: 'allMenuState',
+    default: []
+})

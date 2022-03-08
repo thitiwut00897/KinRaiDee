@@ -14,7 +14,7 @@ import { userState } from '../../store/atom';
 const Appbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const history = useHistory();
-    const { user ,logout } = useAuth();
+    const { user, logout } = useAuth();
 
     const handleRecommend = () => {
         history.push('/');
@@ -48,8 +48,8 @@ const Appbar = () => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar variant="dense">
-                    <img src='earth.png' alt='logo' style={{ width: '44px', height: '44px', margin: '12px 12px 12px 0' }} />
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{ color: 'white', fontSize: "30px" }}>
+                    <img src='earth.png' alt='logo' style={{ width: '44px', height: '44px', margin: '12px 12px 12px 0', cursor: 'pointer' }} onClick={() => history.push('/')} />
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{ color: 'white', fontSize: "30px", cursor: 'pointer' }} onClick={() => history.push('/')}>
                         Admin
                     </Typography>
                     {user && <IconButton edge="start" color="white" aria-label="menu" size="medium">
