@@ -5,6 +5,7 @@ import React from "react";
 
 const LoginInput = (props) => {
     const { value, handleChange, handleClickShowPassword, showPassword, label, handleOnBlur } = props;
+
     return (
         <FormControl sx={{ m: 1.5, width: '35ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
@@ -17,7 +18,7 @@ const LoginInput = (props) => {
                     handleClickShowPassword && <InputAdornment position="end">
                         <IconButton
                             aria-label="toggle password visibility"
-                            onClick={() => handleClickShowPassword}
+                            onClick={handleClickShowPassword}
                             edge="end"
                         >
                             {showPassword ? <VisibilityOff /> : <Visibility />}

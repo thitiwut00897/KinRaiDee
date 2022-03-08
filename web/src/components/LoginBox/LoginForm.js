@@ -58,26 +58,18 @@ const LoginForm = () => {
     }
 
     const handleSubmit = () => {
-        usersApi().getUserById(enteredEmail).then((res) => {
-            const user = res.data;
-            if (user.password === enteredPassword) {
-                setUser(user);
-                localStorage.setItem('userId', res.data.id)
-                resetEmailInput();
-                resetPasswordInput();
-                history.push('/')
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Cannot login',
-                    text: 'Invalid Email or Password!'
-                }).then(resetPasswordInput())
-            }
+        usersApi().loginByEmail(enteredEmail, enteredPassword).then((res) => {
+            setUser(res.data);
+            localStorage.setItem('user', `${res.data.email}${res.data.firstName}${res.data.lastName}`)
+            resetEmailInput();
+            resetPasswordInput();
+            history.push('/')
         }).catch(err => {
+            console.log(err)
             Swal.fire({
                 icon: 'error',
                 title: 'Cannot login',
-                text: 'Invalid Email or Password!'
+                text: err.response.data.message
             })
             resetEmailInput();
             resetPasswordInput();

@@ -12,7 +12,7 @@ import useAuth from '../../hooks/useAuth';
 const Appbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const history = useHistory();
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
 
     const handleRecommend = () => {
         history.push('/');
@@ -30,8 +30,7 @@ const Appbar = () => {
     }
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        history.push('/login');
+        logout();
         setAnchorEl(null);
     }
 

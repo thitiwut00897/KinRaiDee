@@ -5,7 +5,15 @@ export const usersApi = () => {
         return axiosInstance.get(`/users/${userId}`);
     }
 
+    const loginByEmail = (email, password) => {
+        return axiosInstance.post('/users/login', {
+            userEmail: email,
+            userPassword: password
+        })
+    }
+
     return {
-        getUserById
+        getUserById,
+        loginByEmail
     }
 }

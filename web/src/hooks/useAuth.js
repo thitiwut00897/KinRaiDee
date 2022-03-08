@@ -9,18 +9,20 @@ const useAuth = () => {
     const { push } = useHistory();
 
     useEffect(() => {
-        const userId = localStorage.getItem('userId');
+        const userId = localStorage.getItem('user');
         if (!userId) {
             push('/login');
-        } else if (!user) {
-            usersApi().getUserById(userId).then((res) => {
-                setUser(res.data);
-            })
         }
     }, [user])
 
+    const logout = () => {
+        setUser(null);
+        push('/login')
+    }
+
     return {
-        user
+        user,
+        logout
     }
 }
 
