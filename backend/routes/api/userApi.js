@@ -61,7 +61,7 @@ router.post('/login', async (req,res,next) =>{
         let data = await User.find()
         let login = req.body
         if(data[0].email === login.userEmail && data[0].password === login.userPassword){
-            res.status(200).send({ message: "login success" })
+            res.status(200).json(data)
         }
         else if(data[0].email !== login.userEmail || data[0].password !== login.userPassword){
             res.status(400).send({ message: "Invalid Email or Password" })
