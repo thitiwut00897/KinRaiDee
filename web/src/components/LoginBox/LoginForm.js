@@ -29,6 +29,12 @@ const LoginPaper = styled(Paper)`
     align-items: center;
 `
 
+const HeaderText = styled(Typography)`
+  cursor: default;
+  margin-bottom: 20px;
+  margin-top: 20px;
+`
+
 const LoginForm = () => {
     const history = useHistory();
     const setUser = useSetRecoilState(userState);
@@ -79,6 +85,7 @@ const LoginForm = () => {
     return (
         <LoginGrid>
             <LoginPaper elevation={10}>
+            <HeaderText variant='h4' component="div">Admin Panel Login</HeaderText>
                 <LoginInput
                     label={'email'}
                     value={enteredEmail}
