@@ -18,9 +18,10 @@ const ButtonStatus = styled(Button)`
 `
 
 const StatusButton = (props) => {
-    const { onClickButton, color, id } = props;
+    const { onClickButton, color, id, disabled } = props;
     return (
         <ButtonStatus
+            disabled={disabled}
             variant="contained"
             color={color}
             onClick={() => onClickButton(id)}

@@ -1,5 +1,7 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../store/atom";
 import StatusButton from "../Button/StatusButton";
 
 const MainTable = styled(TableContainer)`
@@ -15,6 +17,7 @@ box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
 `
 
 const UserTable = (props) => {
+    const userAdmin = useRecoilValue(userState);
     const { users, handleDelete } = props
     return (
         <MainTable component={Paper} >
@@ -38,6 +41,7 @@ const UserTable = (props) => {
                             <TableCell align="left">{user.lastName}</TableCell>
                             <TableCell align="center">
                                 <StatusButton
+                                    disabled={userAdmin._id === user._id}
                                     id={user._id}
                                     onClickButton={handleDelete}
                                     color='error'
