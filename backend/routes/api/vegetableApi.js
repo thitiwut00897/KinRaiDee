@@ -53,4 +53,23 @@ router.delete('/delete/:_id', async (req, res, next) => {
     }
 })
 
+router.post('/search', async (req,res,next) =>{ 
+    try{
+        let data = await Vegetable.find().exec()
+        let searchText = req.body.searchVegetable
+        let vegetableName = []
+        data.forEach(vegetable => {
+            let name = vegetable.vegetableName;
+            if (name.toUpperCase().includes(searchText.toUpperCase())) {
+                vegetableName.push(vegetable)
+            }
+        });
+        console.log(vegetableName)
+        res.status(200).json(vegetableName)
+
+    } catch (err) {
+        res.status(500).send({ message: "Error!" })
+    }
+})
+
 module.exports = router;

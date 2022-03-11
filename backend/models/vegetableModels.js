@@ -12,9 +12,6 @@ const vegetableSchema = mongoose.Schema({
     picture: {
         type: String, require: true
     },
-    genus: {
-        type: String, require: true
-    },
     description:{
         type: String, require: true
     },
