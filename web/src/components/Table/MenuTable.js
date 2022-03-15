@@ -87,8 +87,8 @@ const MenuTable = (props) => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 onClick={() => handleClick(menu._id)}
                             >
-                                <TableCell align="center" component="th" scope="row">
-                                    {'rungwaraporn'}
+                                <TableCell align="center">
+                                    {menu.firstName}&nbsp; &nbsp;{menu.lastName}
                                 </TableCell>
                                 <TableCell align="center">{menu.date}</TableCell>
                                 <TableCell align="center">{menu.recipeName}</TableCell>
