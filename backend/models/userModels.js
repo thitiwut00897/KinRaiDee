@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
     lastName: {
         type: String, require: true
     },
-    picture: {
+    photo: {
         type: String, require: true
     },
     descriptions: {
