@@ -1,25 +1,30 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView, Button } from "react-native";
+// import { Button } from "react-native-elements";
 import styles from "../style/styles";
 const Profile = (props) => {
   const [Post, setPost] = useState(true)
 return (
   <View style={styles.container}>
+  <ScrollView>
   <View style={styles.page}>
-    <SafeAreaView style={{marginLeft:30, marginRight:30, flex:1, paddingBottom:'25%'}}>
+    <SafeAreaView style={{marginLeft:30, marginRight:30, flex:1,marginBottom:80}}>
       <View style={{ flexDirection:'row', marginTop:30}}>
         <View><Image source={require('../assets/profilefacebook.jpg')} style={{height:100, width:100, borderRadius:50, borderColor:'gray', borderWidth:1}}></Image></View>
-          <View style={{marginLeft:10}}>
+          <View style={{marginLeft:10, flex:1}}>
             <Text style={{fontWeight:'bold', fontSize:20, marginBottom:7}}>Thitiwut</Text>
             <Text style={{fontWeight:'bold', fontSize:10}}>สามารถทำอาหารไทยได้</Text>
+            {/* <Button title={'Edit'} backgroundColor='yellow'><Text>Edit</Text></Button> */}
+            
           </View>
+
       </View>
       <View style={{flexDirection:'row'}}>
         <TouchableOpacity onPress={()=>setPost(true)} style={{height:30, borderWidth:1, borderColor:'gray', marginTop:10, marginBottom:10, width:'50%', alignItems:'center', justifyContent: 'center'}}><Text style={{fontWeight:'bold', fontSize:10}}>25 POST</Text></TouchableOpacity>
         <TouchableOpacity onPress={()=>setPost(false)}  style={{height:30, borderWidth:1, borderColor:'gray', marginTop:10, marginBottom:10, width:'50%', alignItems:'center', justifyContent: 'center'}}><Text style={{fontWeight:'bold', fontSize:10}}>2 Favorites</Text></TouchableOpacity>
       </View>
       
-      <ScrollView>
+      
       {Post?
         // Post card
         <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
@@ -156,7 +161,7 @@ return (
           
           
         </View>}
-        </ScrollView>
+        <Button title={'Logout'} color="#FF8B69"></Button>
         
 
 
@@ -165,7 +170,10 @@ return (
 
       
     </SafeAreaView>
+    
   </View>
+  
+  </ScrollView>
 </View>
 );
 };

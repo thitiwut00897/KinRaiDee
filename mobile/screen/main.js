@@ -1,39 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import styles from "../style/styles";
+import axios from "axios";
+import './global.js';
 
 
 const Main = (props) => {
   const [Search, setSearch] = useState('')
   const [ActiveIndex, setActiveIndex] = useState(0)
-  const [Carddata, setCarddata] = useState([
-    {
-        title:"Item 1",
-        text: "Text 1",
-    },
-    {
-        title:"Item 2",
-        text: "Text 2",
-    },
-    {
-        title:"Item 3",
-        text: "Text 3",
-    },
-    {
-        title:"Item 4",
-        text: "Text 4",
-    },
-    {
-        title:"Item 5",
-        text: "Text 5",
-    },
-  ])
+  const [RecipesList, setRecipesList] = useState([])
+  
+
+  useEffect(() => {
+    getAllrecipe();
+  }, []);
+
+  const getAllrecipe=()=>{
+    axios.get(`${url}/api/recipes`).then((response) => {
+      setRecipesList(response.data)
+    })
+  }
+  const searchRecipe=(props)=>{
+    if (props.Search == ''){
+      getAllrecipe();
+    }else 
+      axios.post(`${url}/api/recipes/search`, {"searchRecipe":props.Search}).then((response) => {
+      setRecipesList(response.data)
+    })
+  }
 
 return (
     <View style={styles.container}>
+      <ScrollView>
       <View style={styles.page}>
-        <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold'}}>
+        <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold', marginBottom:80}}>
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#EBEBEB', borderRadius:6}}>
           <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
           <View style={{width:'90%'}}><TextInput multiline={false}
@@ -41,6 +42,7 @@ return (
                   onChangeText={(Search) => setSearch({Search})}
                   value={Search}
                   placeholder="search recipe"
+                  onPress={searchRecipe(Search)}
                   style={{}}/></View>
         </View>
           
@@ -51,56 +53,32 @@ return (
           {/* card */}
           
           <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
+          
+          {RecipesList.map(RecipesList => 
+              
               <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
                 <View style={{flexDirection:'row'}}>
                   <View style={{width:'85%', flexDirection:'row'}}>
-                    <View><Image source={require('../assets/profilefacebook.jpg')} style={{height:20, width:20, borderRadius:15}}></Image></View>
+                    <View><Image source={{uri : RecipesList.picture}} style={{height:20, width:20, borderRadius:15}}></Image></View>
                     <View style={{marginLeft:1}}>
                       <Text style={{fontSize:7}}>Thitiwut.</Text>
-                      <Text style={{color:'gray',fontSize:6}}>sun 29 AUG 00:00</Text>
+                      <Text style={{color:'gray',fontSize:6}}>{RecipesList.date}</Text>
                     </View>
                   </View>
                   <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
                 </View>
-                <View style={{alignItems:'center'}}><Image source={require('../assets/fried-rice.jpg')} style={{height:80, width:80, margin:5, borderRadius:0}}/></View>
-                <Text style={{fontWeight:'bold', fontSize:9}}>สูตรทำข้าวผัด</Text>
-                <Text style={{fontSize:8}} numberOfLines={2}>1.ผัดหมูให้สุก.....asdasdasdasdasdadasdasdasdasdsdfsdfsdfsdfsdfsdfdsfdsfdsfdsfs</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe')} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
+                <View style={{alignItems:'center'}}><Image source={{uri : RecipesList.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
+                <Text style={{fontWeight:'bold', fontSize:9}}>{RecipesList.recipeName}</Text>
+                <Text style={{fontSize:8}} numberOfLines={2}>{RecipesList.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {id:RecipesList._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
               </View>
+          )}
               
-              <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5,}}>
-                <View style={{flexDirection:'row'}}>
-                  <View style={{width:'85%', flexDirection:'row'}}>
-                    <View><Image source={require('../assets/profilefacebook.jpg')} style={{height:20, width:20, borderRadius:15}}></Image></View>
-                    <View style={{marginLeft:1}}>
-                      <Text style={{fontSize:7}}>Thitiwut.</Text>
-                      <Text style={{color:'gray',fontSize:6}}>sun 29 AUG 00:00</Text>
-                    </View>
-                  </View>
-                  <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
-                </View>
-                <View style={{alignItems:'center'}}><Image source={require('../assets/fried-rice.jpg')} style={{height:80, width:80, margin:5, borderRadius:0}}/></View>
-                <Text style={{fontWeight:'bold', fontSize:9}}>สูตรทำข้าวผัด</Text>
-                <Text style={{fontSize:8}} numberOfLines={2}>1.ผัดหมูให้สุก.....asdasdasdasdasdadasdasdasdasdsdfsdfsdfsdfsdfsdfdsfdsfdsfdsfs</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe')} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
-              </View>
-              <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5,}}>
-                <View style={{flexDirection:'row'}}>
-                  <View style={{width:'85%', flexDirection:'row'}}>
-                    <View><Image source={require('../assets/profilefacebook.jpg')} style={{height:20, width:20, borderRadius:15}}></Image></View>
-                    <View style={{marginLeft:1}}>
-                      <Text style={{fontSize:7}}>Thitiwut.</Text>
-                      <Text style={{color:'gray',fontSize:6}}>sun 29 AUG 00:00</Text>
-                    </View>
-                  </View>
-                  <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
-                </View>
-                <View style={{alignItems:'center'}}><Image source={require('../assets/fried-rice.jpg')} style={{height:80, width:80, margin:5, borderRadius:0}}/></View>
-                <Text style={{fontWeight:'bold', fontSize:9}}>สูตรทำข้าวผัด</Text>
-                <Text style={{fontSize:8}} numberOfLines={2}>1.ผัดหมูให้สุก.....asdasdasdasdasdadasdasdasdasdsdfsdfsdfsdfsdfsdfdsfdsfdsfdsfs</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe')} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
-              </View>
             
             </View>
+          
         </SafeAreaView>
       </View>
+      </ScrollView>
     </View>
 );
 };

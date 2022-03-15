@@ -6,7 +6,6 @@ LogBox.ignoreLogs(['Remote debugger']);
 
 
 export default function App() {
-  
   return (
     
       <Navigationbar/>

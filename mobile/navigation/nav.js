@@ -57,7 +57,7 @@ import Styles from "../style/styles";
                         return(
                         <View style={{alignContent:"center", justifyContent:"center"}}>
                             <Image 
-                                source={require('../assets/carrot.png')}
+                                source={require('../assets/vegetable.png')}
                                 resizeMode='contain'
                                 style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
@@ -237,17 +237,12 @@ import Styles from "../style/styles";
                         
                     },
                     headerLeft:()=>{},//<Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30, right:10}}></Image>
-                    headerRight:()=>{return(
-                        <MenuProvider><Menu>
-                        <MenuTrigger text={<View style={{}}><Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30,marginRight:20, marginTop:10}}></Image></View>} />
-                            <MenuOptions>
-                                <MenuOption onSelect={()=>''}text='Edit Profile' />
-                                <MenuOption onSelect={() => ''} text='Logout' />
-                                {/* <MenuOption onSelect={() => ''} text='Save' /> */}
-                                {/* <MenuOption onSelect={() => alert(`Not called`)} disabled={true} text='Disabled' /> */}
-                            </MenuOptions>
-                        </Menu></MenuProvider>
-                        );},
+                    headerRight:()=>
+                    {
+                        // return(
+                        // <Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30,marginRight:20, marginTop:10}}></Image>
+                        // );
+                    }
                     
                 },},
         }

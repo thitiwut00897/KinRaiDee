@@ -11,7 +11,7 @@ export default StyleSheet.create({
       justifyContent: 'center',
     },
     page:{
-      top:15,
+      top:0,
       flex:1,
       borderRadius:35,
       backgroundColor: 'white',
