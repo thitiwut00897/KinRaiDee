@@ -53,7 +53,7 @@ const MenuTable = (props) => {
                 <img
                     className='MenuImage'
                     src={url}
-                    alt={'mock-up'}
+                    alt={url}
                     loading='lazy'
                 />
             </ImageTable>

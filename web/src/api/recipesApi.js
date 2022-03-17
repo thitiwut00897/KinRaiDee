@@ -10,9 +10,14 @@ const recipesApi = () => {
         return axiosInstance.get(`/recipes/${recipeId}`);
     }
 
+    const getAllRecommendMenu = () => {
+        return axiosInstance.get('/favorites');
+    }
+
     return {
         getAllMenu,
-        getMenuById
+        getMenuById,
+        getAllRecommendMenu,
     }
 }
 

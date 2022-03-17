@@ -49,7 +49,7 @@ const Appbar = () => {
             <AppBar position="static">
                 <Toolbar variant="dense">
                     <img src='earth.png' alt='logo' style={{ width: '44px', height: '44px', margin: '12px 12px 12px 0', cursor: 'pointer' }} onClick={() => history.push('/')} />
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{ color: 'white', fontSize: "30px", cursor: 'pointer' }} onClick={() => history.push('/')}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} style={{ color: 'white', fontSize: "30px", cursor: 'default' }}>
                         Admin
                     </Typography>
                     {user && <IconButton edge="start" color="white" aria-label="menu" size="medium">

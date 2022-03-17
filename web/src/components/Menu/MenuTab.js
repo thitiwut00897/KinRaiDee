@@ -8,7 +8,8 @@ const MenuTabBox = styled(Grid)`
     margin-top: 18px;
 `
 
-const MenuTab = () => {
+const MenuTab = (props) => {
+    const { menus } = props;
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -25,16 +26,11 @@ const MenuTab = () => {
                 allowScrollButtonsMobile
                 aria-label="scrollable force tabs example"
             >
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
-                <Tab label={<MenuItem />} />
+                {menus.map((menu) => {
+                    return (
+                        <Tab label={<MenuItem menu={menu} />} />
+                    )
+                })}
             </Tabs>
         </MenuTabBox>
     )

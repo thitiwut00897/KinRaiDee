@@ -51,7 +51,8 @@ const MenuGrid = styled(Grid)`
 const onReject = () => {
     console.log('Reject');
 }
-const MenuItem = () => {
+const MenuItem = (props) => {
+    const { menu } = props;
     const history = useHistory();
     const handleClick = () => {
         history.push('RecipeDetail');
@@ -64,8 +65,8 @@ const MenuItem = () => {
             />
             <img
                 className='MenuImage'
-                src={'https://picsum.photos/200'}
-                alt={'mock-up'}
+                src={menu.picture}
+                alt={menu._id}
                 loading='lazy'
                 onClick={handleClick}
             />

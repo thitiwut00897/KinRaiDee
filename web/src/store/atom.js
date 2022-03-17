@@ -14,3 +14,8 @@ export const allMenuState = atom({
     key: 'allMenuState',
     default: []
 })
+
+export const allRecommendMenuState = atom({
+    key: 'allRecommendMenuState',
+    default: []
+})
