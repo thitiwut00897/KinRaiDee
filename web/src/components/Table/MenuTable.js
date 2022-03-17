@@ -2,7 +2,6 @@ import { Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Ta
 import { styled } from "@mui/system";
 import StatusButtonGroup from '../Menu/StatusButtonGroup';
 import { useHistory } from "react-router";
-import { usersApi } from "../../api/usersApi";
 
 
 const MenuTableGrid = styled(Grid)`
@@ -39,13 +38,6 @@ const ImageTable = styled(Grid)`
 const MenuTable = (props) => {
     const { menus } = props
     const history = useHistory();
-
-    const getUser = (userId) => {
-        usersApi().getUserById(userId).then((res) => {
-            console.log(res.data.firstName)
-            return res.data.firstName;
-        })
-    }
 
     const renderImage = (url) => {
         return (

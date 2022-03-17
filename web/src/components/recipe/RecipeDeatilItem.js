@@ -50,54 +50,59 @@ const Description = styled(Grid)`
   align-items: start;
 `
 
+
 const ImageGrid = styled(Grid)``
 
 const RecommendGrid = styled(Grid)``
 
 const RecipeDetailItem = (props) => {
   const { recipeId } = props;
-  console.log(recipeId)
-  const [recipe, setRecipe] = useState();
-  console.log(recipe);
+  const [recipe, setRecipe] = useState('0');
 
   useEffect(() => {
     recipesApi().getMenuById(recipeId).then((res) => {
-      console.log(res.data)
       setRecipe(res.data);
     })
   }, [recipeId])
 
+  const renderImage = (url) => {
+    return (
+        <ImageGrid>
+            <img
+                className='VegetableDetailImage'
+                src={url}
+                alt={url}
+                loading='lazy'
+            />
+        </ImageGrid>
+    )
+}
+
   return (
     <MainGrid>
-      <HeaderText variant='h4'>Thitiwut P.</HeaderText>
+      <HeaderText variant='h4'>{recipe[0].firstName}&nbsp;&nbsp;{recipe[0].lastName}</HeaderText>
       <BodyGrid>
         <DetailGrid>
           <Detail>
             <Typography variant='h6'>Menu :&nbsp;&nbsp;</Typography>
-            <Typography variant='body1'>{recipe.recipeName}</Typography>
+            <Typography variant='body1'>{recipe[0].recipeName}</Typography>
           </Detail>
           <Detail>
             <Typography variant='h6'>Date And Time :&nbsp;&nbsp;</Typography>
-            <Typography variant='body1'>{recipe.date}</Typography>
+            <Typography variant='body1'>{recipe[0].date}</Typography>
           </Detail>
           <Detail>
             <Description>
               <Typography variant='h6'>Ingredients : </Typography>
-              <Typography>{recipe.ingredients}</Typography>
+              <Typography>{recipe[0].ingredients}</Typography>
             </Description>
           </Detail>
           <Description>
             <Typography variant='h6'>Directions : </Typography>
-            <Typography>{recipe.directions}</Typography>
+            <Typography>{recipe[0].directions}</Typography>
           </Description>
         </DetailGrid>
-        <ImageGrid>
-          <img
-            className='RecipeDetailItem'
-            src='https://picsum.photos/300'
-            alt='mockup'
-          />
-        </ImageGrid>
+        <ImageGrid> {renderImage(recipe[0].picture)} </ImageGrid>
       </BodyGrid>
     </MainGrid>
   )
