@@ -158,7 +158,7 @@ import Styles from "../style/styles";
                         borderBottomWidth:0
                     },
                     
-                    headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=> Login}>Login</Text>);},
+                    // headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=> Login}>Login</Text>);},
                     
                 },},
             Createprofile:{screen:Createprofile,
@@ -171,7 +171,7 @@ import Styles from "../style/styles";
                         borderBottomWidth:0
                     },
                     
-                    headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=>''}>Login</Text>);},
+                    // headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=>''}>Login</Text>);},
                     
                 },},
             Createrecipe:{screen:Createrecipe,

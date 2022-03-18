@@ -30,8 +30,8 @@ const Vagetablehistory = (props) => {
 
 return (
   <View style={styles.container}>
-  <ScrollView>
   <View style={styles.page}>
+  <ScrollView>
     <SafeAreaView style={{marginLeft:30, marginRight:30,paddingTop:30, marginBottom:80}}>
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#EBEBEB', borderRadius:6}}>
           <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
@@ -52,15 +52,11 @@ return (
                   <View style={{alignItems:'center'}}><Text style={{fontWeight:'bold', fontSize:9, alignItems:'center'}}>{VagetableList.vegetableName}</Text></View>
                 </TouchableOpacity>
                 )}
-                
-                
-                
-                
         </View>
-      
     </SafeAreaView>
+    </ScrollView>
   </View>
-  </ScrollView>
+  
 </View>
 );
 };

@@ -15,6 +15,7 @@ const VagetableDetail = (props) => {
   const getDetailVagetable=()=>{
     axios.get(`${url}/api/vegetables/${VagetableID}`).then((response) => {
       setDetailVagetable(response.data)
+  
     })
   }
 

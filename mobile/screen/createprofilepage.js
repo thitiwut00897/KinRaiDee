@@ -14,7 +14,7 @@ return (
         <SafeAreaView style={{marginLeft:30, marginRight:30}}>
           <ScrollView>
             <View style={{alignItems: 'center',}}>
-              <Image source={require('../assets/profilefacebook.jpg')} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'gray', borderWidth:1}}></Image>
+              <Image source={{}} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'gray', borderWidth:1, backgroundColor:'white'}}></Image>
             </View>
           <View style={{width: "100%", flexDirection: "row",justifyContent:"flex-start"}}>
             <View style={{width: "50%", paddingRight:5}}>

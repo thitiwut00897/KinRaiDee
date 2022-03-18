@@ -4,10 +4,12 @@ import styles from "../style/styles";
 const Notification = (props) => {
 return (
   <View style={styles.container}>
+    
     <View style={styles.page}>
+    <ScrollView>
       <SafeAreaView style={{marginLeft:30, marginRight:30}}>
         <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold', marginBottom:10}}>Notification</Text></View>
-        <ScrollView>
+        
         <View style={{height:60,backgroundColor:'#EBEBEB', borderRadius:8 , padding:5}}>
             <View style={{flexDirection:'row'}}>
               <View><Image source={require('../assets/profilefacebook.jpg')} style={{height:50, width:50, borderRadius:25}}></Image></View>
@@ -17,9 +19,11 @@ return (
               </View>
             </View>
           </View>
-        </ScrollView>
+        
       </SafeAreaView>
+      </ScrollView>
     </View>
+    
   </View>
 );
 };

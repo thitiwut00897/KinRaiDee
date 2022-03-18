@@ -6,23 +6,22 @@ import axios from "axios";
 import './global.js';
 
 const Reviewrecipe = (props) => {
-  const [RecipeName, setRecipeName] = useState('ข้าว')
-  const [Ingredients, setIngredients] = useState('"1.xxxxxxxxxx2.xxxxxxxxx3.xxxxxxxxx"')
-  const [Directions, setDirections] = useState('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
   const [Bookmark, setBookmark] = useState(true)
-  const [DetailRecipe, setDetailRecipe] = useState([])
-  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('id'))
-
+  const [DetailRecipe, setDetailRecipe] = useState([]);
+  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('id'));
   useEffect(() => {
     getDetailRecipe();
-  }, []);
+  }, [DetailRecipe]);
 
   const getDetailRecipe=()=>{
     axios.get(`${url}/api/recipes/${RecipeID}`).then((response) => {
         setDetailRecipe(response.data)
+        console.log(response.data)
+    }).catch((err)=>{
+      console.log(err);
     })
   }
-
+  
 return (
     
     <View style={styles.container}>
@@ -31,10 +30,10 @@ return (
                 
                 <View style={{flexDirection:'row', paddingTop:30}}>
                     <View style={{width:'90%', flexDirection:'row'}}>
-                        <View><Image source={require('../assets/profilefacebook.jpg')} style={{height:30, width:30, borderRadius:15}}></Image></View>
+                        <View><Image source={{uri : DetailRecipe[0].photo}} style={{height:30, width:30, borderRadius:15}}></Image></View>
                             <View>
-                                <Text style={{fontSize:9}}>Thitiwut.</Text>
-                                <Text style={{color:'gray',fontSize:9}}>{DetailRecipe.date}</Text>
+                                <Text style={{fontSize:9}}>{DetailRecipe[0].firstName}</Text>
+                                <Text style={{color:'gray',fontSize:9}}>{DetailRecipe[0].date}</Text>
                             </View>
                     </View>
                         <View style={{flexDirection:'row-reverse'}}>
@@ -43,17 +42,17 @@ return (
                 </View>
                 <ScrollView>
                 <View style={{alignItems: 'center',}}>
-                    <Image source={{uri : DetailRecipe.picture}} style={{height:140, width:140, borderRadius:70, margin:10, borderColor:'gray', borderWidth:1, backgroundColor:'white'}}></Image>
+                    <Image source={{uri : DetailRecipe[0].picture}} style={{height:140, width:140, borderRadius:70, margin:10, borderColor:'gray', borderWidth:1, backgroundColor:'white'}}></Image>
                 </View>
-                <Text style={{ fontWeight: 'bold'}}>{DetailRecipe.recipeName}</Text>
+                <Text style={{ fontWeight: 'bold'}}>{DetailRecipe[0].recipeName}</Text>
                 <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:10, marginBottom:10}}></View>
                 <Text style={{ fontWeight: 'bold'}}>Ingredients</Text>
                 
-                <Text>{DetailRecipe.ingredients}</Text>
+                <Text>{DetailRecipe[0].ingredients}</Text>
                 
                 <Text style={{ fontWeight: 'bold'}}>Directions</Text>
                 
-                <Text>{DetailRecipe.directions}</Text>
+                <Text>{DetailRecipe[0].directions}</Text>
 
                 <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:10, marginBottom:10}}></View>
             

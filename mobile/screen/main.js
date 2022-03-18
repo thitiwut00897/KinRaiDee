@@ -32,8 +32,8 @@ const Main = (props) => {
 
 return (
     <View style={styles.container}>
-      <ScrollView>
       <View style={styles.page}>
+      <ScrollView>
         <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold', marginBottom:80}}>
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#EBEBEB', borderRadius:6}}>
           <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
@@ -53,32 +53,29 @@ return (
           {/* card */}
           
           <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
-          
-          {RecipesList.map(RecipesList => 
-              
-              <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
-                <View style={{flexDirection:'row'}}>
-                  <View style={{width:'85%', flexDirection:'row'}}>
-                    <View><Image source={{uri : RecipesList.picture}} style={{height:20, width:20, borderRadius:15}}></Image></View>
-                    <View style={{marginLeft:1}}>
-                      <Text style={{fontSize:7}}>Thitiwut.</Text>
-                      <Text style={{color:'gray',fontSize:6}}>{RecipesList.date}</Text>
+            {RecipesList.map(RecipesList => 
+                
+                <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
+                  <View style={{flexDirection:'row'}}>
+                    <View style={{width:'85%', flexDirection:'row'}}>
+                      <View><Image source={{uri : RecipesList.photo}} style={{height:20, width:20, borderRadius:15}}></Image></View>
+                      <View style={{marginLeft:1}}>
+                        <Text style={{fontSize:7}}>{RecipesList.firstName} {RecipesList.lastName}</Text>
+                        <Text style={{color:'gray',fontSize:6}}>{RecipesList.date}</Text>
+                      </View>
                     </View>
+                    <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
                   </View>
-                  <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
+                  <View style={{alignItems:'center'}}><Image source={{uri : RecipesList.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
+                  <Text style={{fontWeight:'bold', fontSize:9}}>{RecipesList.recipeName}</Text>
+                  <Text style={{fontSize:8}} numberOfLines={2}>{RecipesList.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {id:RecipesList._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
                 </View>
-                <View style={{alignItems:'center'}}><Image source={{uri : RecipesList.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
-                <Text style={{fontWeight:'bold', fontSize:9}}>{RecipesList.recipeName}</Text>
-                <Text style={{fontSize:8}} numberOfLines={2}>{RecipesList.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {id:RecipesList._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
-              </View>
-          )}
-              
-            
-            </View>
+            )}
+          </View>
           
         </SafeAreaView>
+        </ScrollView>
       </View>
-      </ScrollView>
     </View>
 );
 };
