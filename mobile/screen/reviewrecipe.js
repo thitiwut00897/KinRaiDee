@@ -11,7 +11,7 @@ const Reviewrecipe = (props) => {
   const [RecipeID, setRecipeID] = useState(props.navigation.getParam('id'));
   useEffect(() => {
     getDetailRecipe();
-  }, [DetailRecipe]);
+  }, []);
 
   const getDetailRecipe=()=>{
     axios.get(`${url}/api/recipes/${RecipeID}`).then((response) => {
@@ -30,17 +30,17 @@ return (
                 
                 <View style={{flexDirection:'row', paddingTop:30}}>
                     <View style={{width:'90%', flexDirection:'row'}}>
-                        <View><Image source={{uri : DetailRecipe[0].photo}} style={{height:30, width:30, borderRadius:15}}></Image></View>
+                        <View><Image source={{uri : DetailRecipe.photo}} style={{height:30, width:30, borderRadius:15}}></Image></View>
                             <View>
-                                <Text style={{fontSize:9}}>{DetailRecipe[0].firstName}</Text>
-                                <Text style={{color:'gray',fontSize:9}}>{DetailRecipe[0].date}</Text>
+                                {/* <Text style={{fontSize:9}}>{DetailRecipe.firstName}</Text> */}
+                                {/* <Text style={{color:'gray',fontSize:9}}>{DetailRecipe[0].date}</Text> */}
                             </View>
                     </View>
                         <View style={{flexDirection:'row-reverse'}}>
                             <Image source={require('../assets/bookmark.png')} style={{height:30, width:30, tintColor:Bookmark?'#F06C6A':'gray'}}/>
                         </View>
                 </View>
-                <ScrollView>
+                {/* <ScrollView>
                 <View style={{alignItems: 'center',}}>
                     <Image source={{uri : DetailRecipe[0].picture}} style={{height:140, width:140, borderRadius:70, margin:10, borderColor:'gray', borderWidth:1, backgroundColor:'white'}}></Image>
                 </View>
@@ -57,7 +57,7 @@ return (
                 <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:10, marginBottom:10}}></View>
             
             
-                </ScrollView>
+                </ScrollView> */}
             </SafeAreaView>
         
         
