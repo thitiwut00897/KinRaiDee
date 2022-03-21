@@ -4,6 +4,7 @@ import MenuItem from "./MenuItem";
 import React from "react";
 import recipesApi from "../../api/recipesApi";
 import useMenu from "../../hooks/useMenu";
+import { useHistory } from "react-router";
 
 const MenuTabBox = styled(Grid)`
   width: 100%;
@@ -12,6 +13,7 @@ const MenuTabBox = styled(Grid)`
 
 const MenuTab = (props) => {
   const { menus } = props;
+  const history = useHistory();
   const [value, setValue] = React.useState(0);
   const { refresh } = useMenu();
 
@@ -29,6 +31,10 @@ const MenuTab = (props) => {
     refresh();
   };
 
+  const handleClick = (recipeId) => {
+    history.push(`recipe/${recipeId}`);
+  };
+
   return (
     <MenuTabBox>
       <Tabs
@@ -41,7 +47,15 @@ const MenuTab = (props) => {
       >
         {menus.map((menu) => {
           return (
-            <Tab label={<MenuItem menu={menu} onReject={handleReject} />} />
+            <Tab
+              label={
+                <MenuItem
+                  menu={menu}
+                  onReject={handleReject}
+                  onHandleClick={handleClick}
+                />
+              }
+            />
           );
         })}
       </Tabs>

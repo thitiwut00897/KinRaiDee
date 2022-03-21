@@ -48,7 +48,7 @@ const MenuGrid = styled(Grid)`
 `;
 
 const MenuItem = (props) => {
-  const { menu, onReject } = props;
+  const { menu, onReject, onHandleClick } = props;
   return (
     <MenuGrid>
       <CloseIcon className="close" onClick={() => onReject(menu._id)} />
@@ -57,6 +57,7 @@ const MenuItem = (props) => {
         src={menu.picture}
         alt={menu._id}
         loading="lazy"
+        onClick={() => onHandleClick(menu._id)}
       />
     </MenuGrid>
   );

@@ -7,11 +7,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import StatusButtonGroup from "../Menu/StatusButtonGroup";
-import { useHistory } from "react-router";
 import recipesApi from "../../api/recipesApi";
 import useMenu from "../../hooks/useMenu";
 
@@ -34,6 +34,14 @@ const MainTable = styled(TableContainer)`
   border: none;
 `;
 
+const HeaderGrid = styled(Grid)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 20px;
+`;
+
 const Header = styled(TableRow)`
   border-bottom: 2px solid #000000;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
@@ -48,7 +56,7 @@ const ImageTable = styled(Grid)`
 
 const MenuTable = (props) => {
   const { menus } = props;
-  const history = useHistory();
+  const { search } = useMenu();
   const { refresh } = useMenu();
 
   const renderImage = (url) => {
@@ -57,10 +65,6 @@ const MenuTable = (props) => {
         <img className="MenuImage" src={url} alt={url} loading="lazy" />
       </ImageTable>
     );
-  };
-
-  const handleClick = (recipeId) => {
-    // history.push(`recipe/${recipeId}`);
   };
 
   const handleApprove = async (recipeId) => {
@@ -73,11 +77,23 @@ const MenuTable = (props) => {
     refresh();
   };
 
+  const searchMenu = (event) => {
+    search(event.target.value);
+  };
+
   return (
     <MenuTableGrid>
-      <HeaderText variant="h5" component="div">
-        Add Recommend
-      </HeaderText>
+      <HeaderGrid>
+        <HeaderText variant="h5" component="div">
+          Add Recommend
+        </HeaderText>
+        <TextField
+          id="outlined-search"
+          label="Search menu"
+          type="search"
+          onChange={searchMenu}
+        />
+      </HeaderGrid>
       <MainTable component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -110,7 +126,6 @@ const MenuTable = (props) => {
               <TableRow
                 key={menu._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                onClick={() => handleClick(menu._id)}
               >
                 <TableCell align="center">
                   {menu.firstName}&nbsp; &nbsp;{menu.lastName}
