@@ -2,7 +2,6 @@ import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
 import recipesApi from "../../api/recipesApi";
-import MenuTab from "../Menu/MenuTab";
 
 const MainGrid = styled(Grid)`
   width: 100%;
@@ -52,8 +51,6 @@ const Description = styled(Grid)`
 
 
 const ImageGrid = styled(Grid)``
-
-const RecommendGrid = styled(Grid)``
 
 const RecipeDetailItem = (props) => {
   const { recipeId } = props;

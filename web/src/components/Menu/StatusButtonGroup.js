@@ -9,19 +9,17 @@ const ButtonGroup = styled(Grid)`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-`
+`;
 
-const onApprove = () => {
-    console.log('Approve');
-}
-
-
-const StatusButtonGroup = () => {
-    return (
-        <ButtonGroup>
-            <StatusButton onClickButton={onApprove} color='primary'>Approve</StatusButton>
-        </ButtonGroup>
-    )
-}
+const StatusButtonGroup = (props) => {
+  const { onApprove, id } = props;
+  return (
+    <ButtonGroup>
+      <StatusButton onClickButton={() => onApprove(id)} color="primary">
+        Approve
+      </StatusButton>
+    </ButtonGroup>
+  );
+};
 
 export default StatusButtonGroup;

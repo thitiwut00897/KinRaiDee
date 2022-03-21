@@ -8,8 +8,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Menu, MenuItem } from '@mui/material';
 import { useHistory } from 'react-router';
 import useAuth from '../../hooks/useAuth';
-import { useRecoilValue } from 'recoil';
-import { userState } from '../../store/atom';
 
 const Appbar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
