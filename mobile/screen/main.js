@@ -14,7 +14,7 @@ const Main = (props) => {
 
   useEffect(() => {
     getAllrecipe();
-  }, []);
+  }, [RecipesList]);
 
   const getAllrecipe=()=>{
     axios.get(`${url}/api/recipes`).then((response) => {

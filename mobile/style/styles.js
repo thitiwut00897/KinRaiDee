@@ -13,6 +13,7 @@ export default StyleSheet.create({
     page:{
       top:0,
       flex:1,
+      paddingBottom:30,
       borderRadius:35,
       backgroundColor: 'white',
       // backgroundColor:'#87FAD2',

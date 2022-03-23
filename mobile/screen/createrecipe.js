@@ -6,6 +6,21 @@ const Createprofile = (props) => {
   const [RecipeName, setRecipeName] = useState('')
   const [Ingredients, setIngredients] = useState('')
   const [Directions, setDirections] = useState('')
+  const [currentDate, setCurrentDate] = useState('');
+
+  useEffect(() => {
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var sec = new Date().getSeconds(); //Current Seconds
+    setCurrentDate(
+      date + '/' + month + '/' + year 
+      + ' ' + hours + ':' + min + ':' + sec
+    );
+  }, []);
+
 return (
     
     <View style={styles.container}>
@@ -47,7 +62,7 @@ return (
                 
             
             </ScrollView>
-            <Button title="Confirm" onPress={()=> props.navigation.navigate("Main")}></Button>
+            <Button title="Confirm" onPress={()=> {axios.post(`${url}/api/recipes/create`, {"recipeName":RecipeName,"directions":Directions,"ingredients":Ingredients,"date":currentDate,"picture":'',"userId":''}), props.navigation.navigate("Main")}}></Button>
 
             
             </SafeAreaView>
