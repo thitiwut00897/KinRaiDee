@@ -1,25 +1,29 @@
 import React, { useState, useEffect} from "react";
-import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView} from "react-native";
+import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView, LogBox} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+LogBox.ignoreLogs(['Reanimated 2']);
 import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
+
 
 
 const Main = (props) => {
   const [Search, setSearch] = useState('')
   const [ActiveIndex, setActiveIndex] = useState(0)
   const [RecipesList, setRecipesList] = useState([])
-  
+
 
   useEffect(() => {
     getAllrecipe();
-  }, [RecipesList]);
+  }, []);
 
   const getAllrecipe=()=>{
     axios.get(`${url}/api/recipes`).then((response) => {
-      setRecipesList(response.data)
-    })
+        setRecipesList(response.data)
+      })
+    
+    
   }
   const searchRecipe=(props)=>{
     if (props.Search == ''){
@@ -39,7 +43,7 @@ return (
           <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
           <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}
-                  onChangeText={(Search) => setSearch({Search})}
+                  onChangeText={(input) => setSearch(input)}
                   value={Search}
                   placeholder="search recipe"
                   onPress={searchRecipe(Search)}
@@ -49,28 +53,28 @@ return (
           <Button title="Create Recipe" onPress={()=> props.navigation.navigate('Createrecipe')} style={{}}></Button>
           
 
-          <Text style={{fontWeight:'bold'}}>New Post {props.navigation.getParam("Token")}</Text>
+          <Text style={{fontWeight:'bold'}}>New Post</Text>
+          <Text style={{fontWeight:'bold'}}>New Postหกหกห</Text>
           {/* card */}
           
           <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
-            {RecipesList.map(RecipesList => 
-                
+            {RecipesList.map((items) => 
                 <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
                   <View style={{flexDirection:'row'}}>
                     <View style={{width:'85%', flexDirection:'row'}}>
-                      <View><Image source={{uri : RecipesList.photo}} style={{height:20, width:20, borderRadius:15}}></Image></View>
+                      <View><Image source={{uri : items.photo}} style={{height:20, width:20, borderRadius:15}}></Image></View>
                       <View style={{marginLeft:1}}>
-                        <Text style={{fontSize:7}}>{RecipesList.firstName} {RecipesList.lastName}</Text>
-                        <Text style={{color:'gray',fontSize:6}}>{RecipesList.date}</Text>
+                        <Text style={{fontSize:7}}>{items.firstName} {items.lastName}</Text>
+                        <Text style={{color:'gray',fontSize:6}}>{items.date}</Text>
                       </View>
                     </View>
                     <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
                   </View>
-                  <View style={{alignItems:'center'}}><Image source={{uri : RecipesList.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
-                  <Text style={{fontWeight:'bold', fontSize:9}}>{RecipesList.recipeName}</Text>
-                  <Text style={{fontSize:8}} numberOfLines={2}>{RecipesList.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {id:RecipesList._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
+                  <View style={{alignItems:'center'}}><Image source={{uri : items.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
+                  <Text style={{fontWeight:'bold', fontSize:9}}>{items.recipeName}</Text>
+                  <Text style={{fontSize:8}} numberOfLines={2}>{items.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {idrecipe:items._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
                 </View>
-            )}
+)}
           </View>
           
         </SafeAreaView>

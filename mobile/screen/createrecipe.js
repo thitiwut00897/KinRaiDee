@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
 import styles from "../style/styles";
 
@@ -24,10 +24,10 @@ const Createprofile = (props) => {
 return (
     
     <View style={styles.container}>
+      <ScrollView>
       <View style={styles.page}>
             <SafeAreaView style={{marginLeft:30, marginRight:30, paddingBottom:'30%'}}>
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Create Recipe</Text></View>
-                <ScrollView>
                 <View style={{alignItems: 'center',}}>
                     <Image source={require('../assets/profilefacebook.jpg')} style={{height:110, width:110, borderRadius:60, margin:10, borderColor:'gray', borderWidth:1}}></Image>
                 </View>
@@ -61,7 +61,7 @@ return (
                     style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
                 
             
-            </ScrollView>
+            
             <Button title="Confirm" onPress={()=> {axios.post(`${url}/api/recipes/create`, {"recipeName":RecipeName,"directions":Directions,"ingredients":Ingredients,"date":currentDate,"picture":'',"userId":''}), props.navigation.navigate("Main")}}></Button>
 
             
@@ -70,7 +70,7 @@ return (
         
             
       </View>
-      
+      </ScrollView>
     </View>
     
 );

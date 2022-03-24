@@ -1,5 +1,6 @@
 import { StyleSheet} from "react-native";
 
+
 export default StyleSheet.create({
     container: {
       flex:1,
@@ -14,8 +15,11 @@ export default StyleSheet.create({
       top:0,
       flex:1,
       paddingBottom:30,
-      borderRadius:35,
+      borderTopRightRadius:35,
+      borderTopLeftRadius:35,
       backgroundColor: 'white',
+      marginBottom:0,
+      width:'auto',
       // backgroundColor:'#87FAD2',
       // backgroundColor: '#57CC99',
       // alignItems: 'center',
@@ -75,16 +79,4 @@ export default StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 1,
   },
-  // cardview:{
-  //   height:180, width:140, borderWidth:0,
-  //   shadowColor: "#000",
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 1,
-  //   },
-  //   shadowOpacity: 0.18,
-  //   shadowRadius: 1.00,
-
-  //   elevation: 1,
-  //     }
   });

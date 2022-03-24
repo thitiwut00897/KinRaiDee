@@ -4,13 +4,6 @@ import { createBottomTabNavigator} from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 
-import {MenuProvider,
-    Menu,
-    MenuOptions,
-    MenuOption,
-    MenuTrigger,
-  } from 'react-native-popup-menu';
-
 import Main from '../screen/main';
 import Signup from '../auth/signup';
 import Login from '../auth/signin';
@@ -25,6 +18,7 @@ import Editrecipe from "../screen/editrecipe";
 import Reivewrecipe from "../screen/reviewrecipe";
 import Detailvagetable from "../screen/detailvagetable";
 import Styles from "../style/styles";
+
 
 
     function TitleNameHeader(){

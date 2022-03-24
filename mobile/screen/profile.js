@@ -53,14 +53,14 @@ return (
         // Post card
         <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
           {UserPost.map(UserPost=>
-          <View style={{height:160, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
+          <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
             <View style={{flexDirection:'row'}}>
               <View style={{flexDirection:'row', width:'90%'}}><Text style={{color:'gray',fontSize:6}}>{UserPost.date}</Text></View>
-              <TouchableOpacity onPress={()=>props.navigation.navigate('Editrecipe', {id:UserPost._id})}><Image source={require('../assets/pencil.png')}  style={{width:15, height:15, tintColor:'gray'}}/></TouchableOpacity>
+              <TouchableOpacity onPress={()=>props.navigation.navigate('Editrecipe', {idrecipe:UserPost._id})}><Image source={require('../assets/pencil.png')}  style={{width:15, height:15, tintColor:'gray'}}/></TouchableOpacity>
             </View>
             <View style={{alignItems:'center'}}><Image source={{uri : UserPost.picture}} style={{height:80, width:80, margin:5, borderRadius:0}}/></View>
             <Text style={{fontWeight:'bold', fontSize:9}}>{UserPost.recipeName}</Text>
-            <Text style={{fontSize:8}} numberOfLines={2}>{UserPost.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe')} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
+            <Text style={{fontSize:8}} numberOfLines={2}>{UserPost.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {idrecipe:UserPost._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
           </View>
           )}
           
@@ -119,7 +119,7 @@ return (
           
           
         </View>}
-        <Button title={'Logout'} color="#FF8B69"></Button>
+        <Button title={'Logout'} color="#FF8B69" onPress={()=>props.navigation.popToTop()}></Button>
         
 
 

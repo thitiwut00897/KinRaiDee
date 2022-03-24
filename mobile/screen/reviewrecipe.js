@@ -8,7 +8,7 @@ import './global.js';
 const Reviewrecipe = (props) => {
   const [Bookmark, setBookmark] = useState(true)
   const [DetailRecipe, setDetailRecipe] = useState([]);
-  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('id'));
+  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('idrecipe'));
   useEffect(() => {
     getDetailRecipe();
   }, []);

@@ -8,7 +8,7 @@ const Editrecipe = (props) => {
   const [RecipeName, setRecipeName] = useState('')
   const [Ingredients, setIngredients] = useState('')
   const [Directions, setDirections] = useState('')
-  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('id'));
+  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('idrecipe'));
   const [RecipeDetail, setRecipeDetail] = useState([])
   const [showBox, setShowBox] = useState(true);
 
