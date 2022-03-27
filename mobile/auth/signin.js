@@ -74,7 +74,7 @@ export default function Login(props) {
 
         {/* <Button onPress={logInfacebok} title='Signin with facebook'/> */}
         <Button onPress={Test} title='Signin with facebook'/>
-        <View style={{alignItems:'center'}}><Text >Don't have account  <Text style={{color:"blue", textDecorationLine: 'underline'}} onPress={()=> props.navigation.navigate("Signup")}>Register</Text></Text></View>
+        <View style={{alignItems:'center'}}><Text>Don't have account  <Text style={{color:"blue", textDecorationLine: 'underline'}} onPress={()=> props.navigation.navigate("Signup")}>Register</Text></Text></View>
         </View>
         
       </View>

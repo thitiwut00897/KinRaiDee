@@ -79,4 +79,7 @@ export default StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 1,
   },
+  Text:{
+    fontFamily:'Athiti-Bold'
+  }
   });
