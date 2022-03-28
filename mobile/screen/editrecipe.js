@@ -53,7 +53,7 @@ return (
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Edit Recipe</Text></View>
                 
                 <View style={{alignItems: 'center',}}>
-                    <Image source={require('../assets/profilefacebook.jpg')} style={{height:110, width:110, borderRadius:60, margin:10, borderColor:'gray', borderWidth:1}}></Image>
+                    <Image source={require('../assets/profilefacebook.jpg')} style={{height:110, width:110, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
                 </View>
                 <Text>RecipeName</Text>
                 <TextInput
@@ -61,7 +61,7 @@ return (
                     numberOfLines={1}
                     onChangeText={(RecipeNameinput) => setRecipeName({RecipeNameinput})}
                     value={RecipeDetail.recipeName}
-                    style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
+                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
                 
                 <Text>Ingredients</Text>
                 
@@ -70,7 +70,7 @@ return (
                     numberOfLines={4}
                     onChangeText={(Ingredientsinput) => setIngredients({Ingredientsinput})}
                     value={RecipeDetail.ingredients}
-                    style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
+                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
                 
                 <Text>Directions</Text>
                 <TextInput
@@ -78,7 +78,7 @@ return (
                     numberOfLines={4}
                     onChangeText={(Directionsinput) => setDirections({Directionsinput})}
                     value={RecipeDetail.directions}
-                    style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
+                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
                 <Button title={"Confirm"} onPress={()=> {axios.put(`${url}/api/recipes/update/${RecipeID}`, {"recipeName": RecipeName,"directions": Directions,"ingredients": Ingredients}), props.navigation.navigate("Main")} }></Button>
                 <View style={{borderTopWidth:1,marginTop:20, marginBottom:20}}></View>
                 <Button title={"Delete"} color="#FF8B69" onPress={()=> AlertDeleteBox()}></Button>

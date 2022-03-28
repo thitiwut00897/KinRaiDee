@@ -53,7 +53,7 @@ export default function Login(props) {
                 value={Email}
                 textContentType="emailAddress"
                 placeholder="  example@email.com"
-                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:40, height:43}}/>
+                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginTop:40, height:43}}/>
             
             
             <TextInput
@@ -63,7 +63,7 @@ export default function Login(props) {
                 value={Password}
                 secureTextEntry={true}
                 placeholder="  password"
-                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,height:43}}/>
+                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,height:43}}/>
             <Button onPress={()=> props.navigation.navigate("Main")} title='Login'/>
             
             <View style={{flexDirection:'row', justifyContent:'center'}}>

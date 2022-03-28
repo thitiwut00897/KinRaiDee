@@ -29,7 +29,7 @@ return (
             <SafeAreaView style={{marginLeft:30, marginRight:30, paddingBottom:'30%'}}>
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Create Recipe</Text></View>
                 <View style={{alignItems: 'center',}}>
-                    <Image source={require('../assets/profilefacebook.jpg')} style={{height:110, width:110, borderRadius:60, margin:10, borderColor:'gray', borderWidth:1}}></Image>
+                    <Image source={require('../assets/profilefacebook.jpg')} style={{height:110, width:110, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
                 </View>
                 <Text>RecipeName</Text>
                 <TextInput
@@ -39,7 +39,7 @@ return (
                     value={RecipeName}
                     // textContentType=""
                     placeholder="  ข้าวผัด"
-                    style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
+                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
                 
                 <Text>Ingredients</Text>
                 
@@ -49,7 +49,7 @@ return (
                     onChangeText={(Ingredients) => setIngredients({Ingredients})}
                     value={Ingredients}
                     // placeholder="  password"
-                    style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
+                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
                 
                 <Text>Directions</Text>
                 <TextInput
@@ -58,7 +58,7 @@ return (
                     onChangeText={(Directions) => setDirections({Directions})}
                     value={Directions}
                     // placeholder="  confirm password"
-                    style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
+                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
                 
             
             

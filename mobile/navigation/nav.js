@@ -58,7 +58,7 @@ import Styles from "../style/styles";
                         </View>
                         );
                     }}},
-            Deeppage:{screen:Deeppage,
+            Deeppage:{screen: Reivewrecipe,
                 navigationOptions: {
                     tabBarIcon: ({ focused }) => {
                         return(

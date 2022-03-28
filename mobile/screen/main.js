@@ -54,7 +54,6 @@ return (
           
 
           <Text style={{fontWeight:'bold'}}>New Post</Text>
-          <Text style={{fontWeight:'bold'}}>New Postหกหกห</Text>
           {/* card */}
           
           <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>

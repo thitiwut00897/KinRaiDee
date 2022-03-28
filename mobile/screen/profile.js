@@ -34,7 +34,7 @@ return (
   <ScrollView>
     <SafeAreaView style={{marginLeft:30, marginRight:30, flex:1,marginBottom:80}}>
       <View style={{ flexDirection:'row', marginTop:30}}>
-        <View><Image source={{uri : AuthList.photo}} style={{height:100, width:100, borderRadius:50, borderColor:'gray', borderWidth:1}}></Image></View>
+        <View><Image source={{uri : AuthList.photo}} style={{height:100, width:100, borderRadius:50, borderColor: '#E1E6E6', borderWidth:1}}></Image></View>
           <View style={{marginLeft:10, flex:1}}>
             <Text style={{fontWeight:'bold', fontSize:20, marginBottom:7}}>{AuthList.firstName} {AuthList.lastName}</Text>
             <Text style={{fontWeight:'bold', fontSize:10}}>{AuthList.descriptions}</Text>
