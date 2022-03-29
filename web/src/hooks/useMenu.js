@@ -31,11 +31,10 @@ const useMenu = () => {
     setAllMenu(data);
   };
 
-  const searchRejectMenu = (searchParam) => {
-    let searchMenu = allRejectMenu.filter((rejectMenu) =>
+  const searchRejectMenu = (searchParam, menus) => {
+    let searchMenu = menus.filter((rejectMenu) =>
       rejectMenu.recipeName.startsWith(searchParam)
     );
-    console.log(searchMenu);
     setAllRejectMenu(searchMenu);
   };
 

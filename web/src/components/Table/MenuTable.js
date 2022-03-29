@@ -14,6 +14,7 @@ import { styled } from "@mui/system";
 import StatusButtonGroup from "../Menu/StatusButtonGroup";
 import recipesApi from "../../api/recipesApi";
 import useMenu from "../../hooks/useMenu";
+import { useEffect } from "react";
 
 const MenuTableGrid = styled(Grid)`
   width: 100%;
@@ -56,8 +57,7 @@ const ImageTable = styled(Grid)`
 
 const MenuTable = (props) => {
   const { menus } = props;
-  const { search } = useMenu();
-  const { refresh } = useMenu();
+  const { refresh, search } = useMenu();
 
   const renderImage = (url) => {
     return (
@@ -78,7 +78,7 @@ const MenuTable = (props) => {
   };
 
   const searchMenu = (event) => {
-    search(event.target.value);
+    search(event.target.value, menus);
   };
 
   return (
