@@ -32,21 +32,24 @@ return (
   <View style={styles.page}>
   <ScrollView>
     <SafeAreaView style={{marginLeft:30, marginRight:30,paddingTop:30, marginBottom:80}}>
-        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#EBEBEB', borderRadius:6}}>
-          <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
-          <View style={{width:'90%'}}><TextInput multiline={false}
+        
+        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E1E3E3', borderRadius:6}}>
+            <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
+            <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}
-                  onChangeText={(Searchv) => setSearchv(Searchv)}
+                  onChangeText={(input) => setSearchv(input)}
                   value={Searchv}
-                  onPress={searchVagetable(Searchv)}
                   placeholder="search recipe"
-                  style={{}}/></View>
+                  onPress={searchVagetable(Searchv)}
+                  style={{}}/>
+            </View>
         </View>
+      
       <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>History</Text></View>
       
         <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
                 {VagetableList.map((items) => 
-                  <TouchableOpacity onPress={()=> props.navigation.navigate('Detailvagetable', {id:items._id})} style={{height:120, width:95, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
+                  <TouchableOpacity key={items._id} onPress={()=> props.navigation.navigate('Detailvagetable', {id:items._id})} style={{height:120, width:95, borderRadius:10, backgroundColor:'#E1E3E3', padding:5, marginRight:5, marginBottom:5}}>
                   <View style={{alignItems:'center'}}><Image source={{uri : items.picture}} style={{height:80, width:80, margin:5, borderRadius:0}}/></View>
                   <View style={{alignItems:'center'}}><Text style={{fontWeight:'bold', fontSize:9, alignItems:'center'}}>{items.vegetableName}</Text></View>
                 </TouchableOpacity>

@@ -44,16 +44,16 @@ return (
 
       </View>
       <View style={{flexDirection:'row'}}>
-        <TouchableOpacity onPress={()=>{setStatusPost(true), setStatusFav(false)}} style={{height:30,borderWidth:1, borderColor:StatusPost?"#A69C9A":"black", marginTop:10, marginBottom:10, width:'50%', alignItems:'center', justifyContent: 'center'}}><Text style={{fontWeight:'bold', fontSize:10, color:StatusPost?"#A69C9A":"black",}}>{AuthList.postCount} POST</Text></TouchableOpacity>
-        <TouchableOpacity onPress={()=>{setStatusPost(false), setStatusFav(true)}}  style={{height:30, borderWidth:1, borderColor:StatusFav?"#A69C9A":"black", marginTop:10, marginBottom:10, width:'50%', alignItems:'center', justifyContent: 'center'}}><Text style={{fontWeight:'bold', fontSize:10, color:StatusFav?"#A69C9A":"black"}}>2 Favorites</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>{setStatusPost(true), setStatusFav(false)}} style={{height:30,borderWidth:1, borderColor:StatusPost?"black":"#A69C9A", marginTop:10, marginBottom:10, width:'50%', alignItems:'center', justifyContent: 'center'}}><Text style={{fontWeight:'bold', fontSize:10, color:StatusPost?"black":"#A69C9A",}}>{AuthList.postCount} POST</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>{setStatusPost(false), setStatusFav(true)}}  style={{height:30, borderWidth:1, borderColor:StatusFav?"black":"#A69C9A", marginTop:10, marginBottom:10, width:'50%', alignItems:'center', justifyContent: 'center'}}><Text style={{fontWeight:'bold', fontSize:10, color:StatusFav?"black":"#A69C9A"}}>2 Favorites</Text></TouchableOpacity>
       </View>
       
       
       {StatusPost?
         // Post card
         <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
-          {UserPost.map(UserPost=>
-          <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
+          {UserPost.map((UserPost)=>
+          <View key={UserPost._id} style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
             <View style={{flexDirection:'row'}}>
               <View style={{flexDirection:'row', width:'90%'}}><Text style={{color:'gray',fontSize:6}}>{UserPost.date}</Text></View>
               <TouchableOpacity onPress={()=>props.navigation.navigate('Editrecipe', {idrecipe:UserPost._id})}><Image source={require('../assets/pencil.png')}  style={{width:15, height:15, tintColor:'gray'}}/></TouchableOpacity>

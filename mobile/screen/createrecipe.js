@@ -39,7 +39,7 @@ return (
                     value={RecipeName}
                     // textContentType=""
                     placeholder="  ข้าวผัด"
-                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
                 
                 <Text>Ingredients</Text>
                 
@@ -49,7 +49,7 @@ return (
                     onChangeText={(Ingredients) => setIngredients({Ingredients})}
                     value={Ingredients}
                     // placeholder="  password"
-                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
                 
                 <Text>Directions</Text>
                 <TextInput
@@ -58,7 +58,7 @@ return (
                     onChangeText={(Directions) => setDirections({Directions})}
                     value={Directions}
                     // placeholder="  confirm password"
-                    style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
                 
             
             

@@ -39,15 +39,16 @@ return (
       <View style={styles.page}>
       <ScrollView>
         <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold', marginBottom:80}}>
-        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#EBEBEB', borderRadius:6}}>
-          <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
-          <View style={{width:'90%'}}><TextInput multiline={false}
+        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E1E3E3', borderRadius:6}}>
+            <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
+            <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}
                   onChangeText={(input) => setSearch(input)}
                   value={Search}
                   placeholder="search recipe"
                   onPress={searchRecipe(Search)}
-                  style={{}}/></View>
+                  style={{}}/>
+            </View>
         </View>
           
           <Button title="Create Recipe" onPress={()=> props.navigation.navigate('Createrecipe')} style={{}}></Button>
@@ -58,7 +59,7 @@ return (
           
           <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
             {RecipesList.map((items) => 
-                <View style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
+                <View key={items._id}style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
                   <View style={{flexDirection:'row'}}>
                     <View style={{width:'85%', flexDirection:'row'}}>
                       <View><Image source={{uri : items.photo}} style={{height:20, width:20, borderRadius:15}}></Image></View>

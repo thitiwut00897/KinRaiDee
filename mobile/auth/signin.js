@@ -53,7 +53,7 @@ export default function Login(props) {
                 value={Email}
                 textContentType="emailAddress"
                 placeholder="  example@email.com"
-                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginTop:40, height:43}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:40, height:43}}/>
             
             
             <TextInput
@@ -63,13 +63,13 @@ export default function Login(props) {
                 value={Password}
                 secureTextEntry={true}
                 placeholder="  password"
-                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,height:43}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,height:43}}/>
             <Button onPress={()=> props.navigation.navigate("Main")} title='Login'/>
             
             <View style={{flexDirection:'row', justifyContent:'center'}}>
-              <View style={{borderTopWidth:1, width:'40%',marginTop:10}}></View>
-              <Text style={{marginLeft:'5%', marginRight:'5%'}}>OR</Text>
-              <View style={{borderTopWidth:1, width:'40%',marginTop:10}}></View>
+              <View style={{borderTopWidth:1, width:'40%',marginTop:10, borderColor:'#CCCFCF'}}></View>
+              <Text style={{marginLeft:'5%', marginRight:'5%', color:'#CCCFCF'}}>OR</Text>
+              <View style={{borderTopWidth:1, width:'40%',marginTop:10, borderColor:'#CCCFCF'}}></View>
             </View>
 
         {/* <Button onPress={logInfacebok} title='Signin with facebook'/> */}

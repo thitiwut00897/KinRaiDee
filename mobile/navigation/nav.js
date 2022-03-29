@@ -17,6 +17,7 @@ import Editprofile from "../screen/editprofile";
 import Editrecipe from "../screen/editrecipe";
 import Reivewrecipe from "../screen/reviewrecipe";
 import Detailvagetable from "../screen/detailvagetable";
+import ScanPage from "../screen/scanPage";
 import Styles from "../style/styles";
 
 
@@ -58,14 +59,14 @@ import Styles from "../style/styles";
                         </View>
                         );
                     }}},
-            Deeppage:{screen: Reivewrecipe,
+            Createrecipe:{screen:Deeppage,
                 navigationOptions: {
                     tabBarIcon: ({ focused }) => {
                         return(
                                 <View style={{width:80, height:80,
                                 borderTopLeftRadius:40,borderTopRightRadius:40,
-                                backgroundColor: '#57CC99',
-                                // backgroundColor:"white",
+                                // backgroundColor: '#57CC99',
+                                backgroundColor:"white",
                                 marginBottom:30, alignItems: 'center',
                                 justifyContent: 'center',
                                 // borderWidth:1,
@@ -73,7 +74,7 @@ import Styles from "../style/styles";
                                 }}>
                                 
                                 <View style={Styles.btnCircleUp}>
-                                    <Image source={require('../assets/camera.png')} resizeMode='contain'style={{width:35,height:35,tintColor:focused?'black':'gray'}}/>
+                                    <Image source={require('../assets/plus.png')} resizeMode='contain'style={{width:35,height:35,tintColor:focused?'black':'gray'}}/>
                                 </View>
                                 
                                 </View>
@@ -82,13 +83,13 @@ import Styles from "../style/styles";
                         );
                     }
                 }},
-            Notification:{screen:Notification,
+            Deeppage:{screen: ScanPage,
                 navigationOptions: {
                     tabBarIcon: ({ focused }) => {
                         return(
                         <View style={{alignContent:"center", justifyContent:"center"}}>
                             <Image 
-                                source={require('../assets/notification.png')}
+                                source={require('../assets/photo-camera.png')}
                                 resizeMode='contain'
                                 style={focused?styles.IconNavbarfocus:styles.IconNavbar}
                                 />
@@ -112,16 +113,22 @@ import Styles from "../style/styles";
                 showLabel: false,
                 style:{
                     position:'absolute',
-                    bottom:0,
-                    left:0,
-                    right:0,
+                    bottom:10,
+                    left:8,
+                    right:8,
                     height:60,
                     elevation:0,
-                    backgroundColor: '#57CC99',
-                    // backgroundColor: 'white',
+                    backgroundColor: 'white',
                     borderTopWidth:0,
-                    // borderTopLeftRadius:20,
-                    // borderTopRightRadius:20
+                    borderRadius:15,
+                    shadowColor:'#7F5DF0',
+                    shadowOffset:{
+                        width:0,
+                        height:10
+                    },
+                    shadowOpacity:0.25,
+                    shadowRadius:3.5,
+                    elevation:5
                 },
             
             }
@@ -224,7 +231,7 @@ import Styles from "../style/styles";
                     title: <TitleNameHeader/>,
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        // backgroundColor:'#87FAD2',
+                        // backgroundColor:'#97DBAE',
                         
                         elevation:0, //border headerBar
                         borderBottomWidth:0
@@ -250,12 +257,12 @@ const styles = StyleSheet.create({
     IconNavbarfocus: {
         width:30,
         height:30,
-        tintColor:'white',
+        tintColor:'#57CC99',
     },
     IconNavbar: {
         width:30,
         height:30,
-        tintColor:'gray',
+        tintColor:'#D0D4D6',
     }
     
   });

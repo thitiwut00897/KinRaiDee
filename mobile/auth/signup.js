@@ -21,7 +21,7 @@ return (
                 value={Email}
                 textContentType="emailAddress"
                 placeholder="  example@email.com"
-                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginTop:40, height:43}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:40, height:43}}/>
             
             
             <TextInput
@@ -31,7 +31,7 @@ return (
                 value={Password}
                 secureTextEntry={true}
                 placeholder="  password"
-                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginTop:20, height:43}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, height:43}}/>
 
             <TextInput
                 multiline={false}
@@ -40,7 +40,7 @@ return (
                 value={ConPassword}
                 secureTextEntry={true}
                 placeholder="  confirm password"
-                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20, height:43}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20, height:43}}/>
             
           
           

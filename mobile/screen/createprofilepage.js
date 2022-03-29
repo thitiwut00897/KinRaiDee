@@ -24,7 +24,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(FirstName) => setFirstName({FirstName})}
                 value={FirstName}
-                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8,}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8,}}/>
             </View>
             <View style={{width: "50%", paddingLeft:5}}>
               <Text style={{color:'gray'}}>Last Name</Text>
@@ -33,7 +33,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(LastName) => setLastName({LastName})}
                 value={LastName}
-                style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8,}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8,}}/>
             </View>
           </View>
           <Text style={{color:'gray'}}>Description</Text>
@@ -42,7 +42,7 @@ return (
             numberOfLines={4}
             onChangeText={(Description) => setDescription({Description})}
             value={Description}
-            style={{borderColor: '#BBBFBF',borderWidth: 1,borderRadius:8, marginBottom:30}}/>
+            style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginBottom:30}}/>
           </ScrollView>
           <Button title="Register" onPress={()=> props.navigation.navigate("Login")}></Button>
         </SafeAreaView>
