@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet ,Text, View, Button, Image} from 'react-native';
+import { StyleSheet ,Text, View, Button, Image, ScrollView} from 'react-native';
 import { Camera } from 'expo-camera';
 import styles from "../style/styles";
 
@@ -28,12 +28,14 @@ const takePicture = async () => {
 
   return (
     <View style={styles.container}>
+      <ScrollView>
         <View style={styles.page}>
             <Camera ref={ref => setCamera(ref)}style={styles.camera} type={type}ratio={'1:1'} />
       
        <Button title="Take Picture" onPress={() => takePicture()} />
         {image && <Image source={{uri: image}} style={styles.camera}/>}
         </View>
+      </ScrollView>
     </View>
   );
 }
