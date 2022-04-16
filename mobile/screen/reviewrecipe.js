@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
-import { color } from "react-native-reanimated";
 import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
