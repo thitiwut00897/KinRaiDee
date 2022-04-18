@@ -9,6 +9,13 @@ import styles from "../style/styles";
 export default function Login(props) {
   const [Email, setEmail] = useState('')
   const [Password, setPassword] = useState('')
+  
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      localStorage.removeItem('userId')
+    }
+  })
     // const [Token, setToken] = useState();
     async function logInfacebok() {
         try {
