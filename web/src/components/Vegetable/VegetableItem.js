@@ -1,5 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import { useEffect, useState } from "react";
+import vegetableApi from "../../api/vegetableApi";
+import { useHistory } from "react-router";
 
 const VegetableGrid = styled(Grid)`
     width: 221px;
@@ -30,22 +33,39 @@ const VegetableGrid = styled(Grid)`
 
 const BodyText = styled(Typography)`
     margin: auto;
+    font-size: 22px;
 `
-const VagetableItem = (props) => {
-    const { onClick } = props;
-    return (
-        <VegetableGrid
-            onClick={onClick}
-        >
+const VegetableItem = () => {
+    const [allVegetable, setAllVegetable] = useState([]);
+    
+    useEffect(() => {
+    const getAllVegetable = async () => {
+        const { data } = await vegetableApi().getAllVegetables();
+        setAllVegetable(data);
+      };
+        getAllVegetable();
+    }, []);
+
+    const history = useHistory();
+    const handleClick = (vegetableId) => {
+        history.push(`vegetable/${vegetableId}`);
+      };
+
+    return( 
+        <>
+        {allVegetable.map(vegetable => (
+            <VegetableGrid onClick={() => (handleClick(vegetable._id))}>
             <img
                 className='VegetableItem'
-                src={'https://picsum.photos/200'}
-                alt={'mock-up'}
+                src={vegetable.picture}
+                alt={vegetable._id}
                 loading='lazy'
             />
-            <BodyText typography='body1'>มะเขือเทศ</BodyText>
+            <BodyText typography='body1'>{vegetable.vegetableName}</BodyText>
         </VegetableGrid>
+        ))}
+        </>
     )
 }
 
-export default VagetableItem;
+export default VegetableItem;

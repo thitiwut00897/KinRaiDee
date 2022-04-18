@@ -31,12 +31,12 @@ const useMenu = () => {
     setAllMenu(data);
   };
 
-  const searchRejectMenu = (searchParam, menus) => {
-    let searchMenu = menus.filter((rejectMenu) =>
-      rejectMenu.recipeName.startsWith(searchParam)
-    );
-    setAllRejectMenu(searchMenu);
-  };
+  // const searchRejectMenu = (searchParam, menus) => {
+  //   let searchMenu = menus.filter((rejectMenu) =>
+  //     rejectMenu.recipeName.startsWith(searchParam)
+  //   );
+  //   setAllRejectMenu(searchMenu);
+  // };
 
   return {
     allMenu,
@@ -44,7 +44,7 @@ const useMenu = () => {
     allRejectMenu,
     refresh: refreshAllMenu,
     getMenu: getAllMenu,
-    search: searchRejectMenu,
+    // search: searchRejectMenu,
   };
 };
 

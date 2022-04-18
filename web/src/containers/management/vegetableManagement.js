@@ -1,7 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import { useHistory } from "react-router";
+import { Route } from "react-router-dom";
 import VagetableItem from "../../components/Vegetable/VegetableItem";
+import VegetableDetail from "../vegetable/vegetableDetail";
 
 const MainGrid = styled(Grid)`
   width: 90%;
@@ -9,53 +10,43 @@ const MainGrid = styled(Grid)`
   max-width: 1440px;
   margin: auto;
   margin-left: 7em;
-`
+  margin-bottom: 3.5em;
+`;
 
 const Header = styled(Grid)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const HeaderText = styled(Typography)`
   cursor: default;
   margin: 60px 0;
-`
+`;
 
 const VegetableGrid = styled(Grid)`
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+`;
 
-`
-
-const VegetableManagement = () => {
-    const history = useHistory();
-    const handleClick = () => {
-        history.push('VegetableDetail');
-    }
-
-    return (
-        <MainGrid>
-            <Header>
-                <HeaderText variant='h4' component='div'>Vegetable Management</HeaderText>
-            </Header>
-            
-            <VegetableGrid>
-                <VagetableItem onClick={handleClick} />
-                <VagetableItem onClick={handleClick} />
-                <VagetableItem onClick={handleClick} />
-                <VagetableItem onClick={handleClick} />
-                <VagetableItem onClick={handleClick} />
-                <VagetableItem onClick={handleClick} />
-                <VagetableItem onClick={handleClick} />
-                <VagetableItem onClick={handleClick} />
-            </VegetableGrid>
-        </MainGrid>
-    )
-}
+const VegetableManagement = ({ match }) => {
+  return (
+    <MainGrid>
+      <Header>
+        <HeaderText variant="h4" component="div">
+          Vegetable Management
+        </HeaderText>
+      </Header>
+      <VegetableGrid>
+        <VagetableItem />
+      </VegetableGrid>
+      <Route path={`${match.path}/:vegetableId`} component={VegetableDetail} />
+    </MainGrid>
+  );
+};
 
 export default VegetableManagement;

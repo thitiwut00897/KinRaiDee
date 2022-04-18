@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&display=swap");
 
 html,
 body {
@@ -6,15 +6,19 @@ body {
   margin: 0;
 }
 
+p {
+  font-family: "Athiti", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
 .Appbar {
-    position: sticky;
-    top: 0px;
-    width: 100%;
-    z-index: 1;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
 }
 
 .MenuImage {

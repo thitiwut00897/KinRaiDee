@@ -57,7 +57,7 @@ const ImageTable = styled(Grid)`
 
 const MenuTable = (props) => {
   const { menus } = props;
-  const { refresh, search } = useMenu();
+  const { refresh } = useMenu();
 
   const renderImage = (url) => {
     return (
@@ -77,9 +77,9 @@ const MenuTable = (props) => {
     refresh();
   };
 
-  const searchMenu = (event) => {
-    search(event.target.value, menus);
-  };
+  // const searchMenu = (event) => {
+  //   search(event.target.value, menus);
+  // };
 
   return (
     <MenuTableGrid>
@@ -87,12 +87,12 @@ const MenuTable = (props) => {
         <HeaderText variant="h5" component="div">
           Add Recommend
         </HeaderText>
-        <TextField
+        {/* <TextField
           id="outlined-search"
           label="Search menu"
           type="search"
           onChange={searchMenu}
-        />
+        /> */}
       </HeaderGrid>
       <MainTable component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

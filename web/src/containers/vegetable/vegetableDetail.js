@@ -1,7 +1,10 @@
 import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import vegetableApi from "../../api/vegetableApi";
 import VegetableDetailItem from "../../components/Vegetable/VegetableDetailItem";
+import { useParams } from "react-router-dom";
 
 const MainGrid = styled(Grid)`
   width: 90%;
@@ -26,15 +29,24 @@ const HeaderText = styled(Typography)`
 `
 
 const VegetableDetail = () => {
-    const history = useHistory();
+  const history = useHistory();
+  const { vegetableId } = useParams();
+  const [ vegetable, setVegetable ] = useState([]);
+
+  useEffect(() => {
+    vegetableApi().getVegetableById(vegetableId).then((res) => {
+      setVegetable(res.data);
+    })
+  }, [vegetableId])
+  
     const onBackPress = () => {
         history.push('/vegetable');
     }
-
+    
     return (
         <MainGrid>
             <HeaderText onClick={onBackPress} variant='h4' component='div'>Back</HeaderText>
-            <VegetableDetailItem />
+            <VegetableDetailItem  vegetable={vegetable}/>
         </MainGrid>
     )
 }
