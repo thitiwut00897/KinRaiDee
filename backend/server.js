@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-
+// app.use(express.json({limit: '50mb'}));
+// app.use(express.urlencoded({limit: '50mb'}));
 const cors =require('cors')
 app.use(cors());
 
@@ -29,6 +30,7 @@ const userCommentApi = require('./routes/api/userCommentApi')
 const vegetableApi = require('./routes/api/vegetableApi')
 const notificationApi = require('./routes/api/notificationApi')
 const favoriteApi = require('./routes/api/favoriteApi')
+const teachablemachinApi = require('./routes/api/teachablemachinApi')
 
 app.use(express.json());
   
@@ -38,5 +40,6 @@ app.use('/api/userComments', userCommentApi);
 app.use('/api/vegetables', vegetableApi)
 app.use('/api/notifications', notificationApi)
 app.use('/api/favorites', favoriteApi)
+app.use('/api/teachablemachin', teachablemachinApi)
 
   

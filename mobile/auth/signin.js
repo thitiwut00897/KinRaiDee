@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
 import * as Facebook from 'expo-facebook';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -10,41 +10,41 @@ export default function Login(props) {
   const [Email, setEmail] = useState('')
   const [Password, setPassword] = useState('')
   
-  useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      localStorage.removeItem('userId')
-    }
-  })
-    // const [Token, setToken] = useState();
-    async function logInfacebok() {
-        try {
-          await Facebook.initializeAsync({
-            appId: '1008123863106181',
-          });
-          const {
-            type,
-            token,
-            expirationDate,
-            permissions,
-            declinedPermissions,
-          } = await Facebook.logInWithReadPermissionsAsync({
-            permissions: ['public_profile'],
-          });
-          if (type === 'success') {
-            // Get the user's name using Facebook's Graph API
-            const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-            // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-            props.navigation.navigate("Main", {Token:token});
-          } else {
-            // type === 'cancel'
-          }
-        } catch ({ message }) {
-          alert(`Facebook Login Error: ${message}`);
-        }
-      }
+  // useEffect(() => {
+  //   const userId = localStorage.getItem('userId');
+  //   if (userId) {
+  //     localStorage.removeItem('userId')
+  //   }
+  // })
+  //   // const [Token, setToken] = useState();
+  //   async function logInfacebok() {
+  //       try {
+  //         await Facebook.initializeAsync({
+  //           appId: '1008123863106181',
+  //         });
+  //         const {
+  //           type,
+  //           token,
+  //           expirationDate,
+  //           permissions,
+  //           declinedPermissions,
+  //         } = await Facebook.logInWithReadPermissionsAsync({
+  //           permissions: ['public_profile'],
+  //         });
+  //         if (type === 'success') {
+  //           // Get the user's name using Facebook's Graph API
+  //           const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+  //           // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
+  //           props.navigation.navigate("Main", {Token:token});
+  //         } else {
+  //           // type === 'cancel'
+  //         }
+  //       } catch ({ message }) {
+  //         alert(`Facebook Login Error: ${message}`);
+  //       }
+  //     }
 
-      function Test(){
+      function validateAccoutFacebook(){
         props.navigation.navigate("Main");
       }
       
@@ -80,7 +80,7 @@ export default function Login(props) {
             </View>
 
         {/* <Button onPress={logInfacebok} title='Signin with facebook'/> */}
-        <Button onPress={Test} title='Signin with facebook'/>
+        <Button onPress={validateAccoutFacebook} title='Signin with facebook'/>
         <View style={{alignItems:'center'}}><Text>Don't have account  <Text style={{color:"blue", textDecorationLine: 'underline'}} onPress={()=> props.navigation.navigate("Signup")}>Register</Text></Text></View>
         </View>
         

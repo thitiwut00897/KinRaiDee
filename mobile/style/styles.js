@@ -84,9 +84,22 @@ export default StyleSheet.create({
   Text:{
     fontFamily:'Athiti-Bold'
   },
-  camera:{
-    height:300,
-    margin:20
+  photopreview:{
+    height:280,
+    width:280,
+    marginTop:20,
+    borderWidth:1,
+    borderColor:'#BBBFBF',
+    borderRadius:20
+  },
+  beforphoto:{
+    height:280,
+    width:280,
+    marginTop:20,
+    borderWidth:1,
+    borderColor:'#BBBFBF',
+    tintColor:'#BBBFBF',
+    borderRadius:20
   },
 
   });

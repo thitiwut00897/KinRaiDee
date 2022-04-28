@@ -24,8 +24,9 @@ const Createprofile = (props) => {
 return (
     
     <View style={styles.container}>
-      <ScrollView>
       <View style={styles.page}>
+      <ScrollView>
+      
             <SafeAreaView style={{marginLeft:30, marginRight:30, paddingBottom:'30%'}}>
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Create Recipe</Text></View>
                 <View style={{alignItems: 'center',}}>
@@ -68,9 +69,8 @@ return (
             </SafeAreaView>
         
         
-            
+        </ScrollView> 
       </View>
-      </ScrollView>
     </View>
     
 );

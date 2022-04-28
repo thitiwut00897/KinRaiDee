@@ -5,7 +5,7 @@ import axios from "axios";
 import './global.js';
 
 const Vagetablehistory = (props) => {
-  const [Searchv, setSearchv] = useState('');
+  const [Searchinput, setSearchinput] = useState('');
   const [VagetableList, setVagetableList] = useState([]);
   
   useEffect(() => {
@@ -17,11 +17,11 @@ const Vagetablehistory = (props) => {
       setVagetableList(response.data)
     })
   }
-  const searchVagetable=(props)=>{
+  const searchVagetable=()=>{
     if (props.Searchv == ''){
       getAllVagetable()
     }else 
-      axios.post(`${url}/api/vegetables/search`, {"searchVegetable":props.Searchv}).then((response) => {
+      axios.post(`${url}/api/vegetables/search`, {"searchVegetable":Searchinput}).then((response) => {
       setVagetableList(response.data)
     })
   }
@@ -34,15 +34,16 @@ return (
     <SafeAreaView style={{marginLeft:30, marginRight:30,paddingTop:30, marginBottom:80}}>
         
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E1E3E3', borderRadius:6}}>
-            <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
+            <TouchableOpacity onPress={searchVagetable()} style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></TouchableOpacity>
             <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}
-                  onChangeText={(input) => setSearchv(input)}
-                  value={Searchv}
+                  onChangeText={(input) => setSearchinput(input)}
+                  value={Searchinput}
                   placeholder="search recipe"
-                  onPress={searchVagetable(Searchv)}
+                  // onPress={searchVagetable(Searchv)}
                   style={{}}/>
             </View>
+            
         </View>
       
       <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>History</Text></View>

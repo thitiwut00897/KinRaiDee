@@ -10,9 +10,9 @@ return (
     <View style={styles.container}>
       <View><Text style={{color:'white', paddingLeft:'10%', fontSize:26, fontWeight: 'bold'}}>Register</Text></View>
       <View style={styles.page}>
-        
+      <ScrollView>
         <SafeAreaView style={{marginLeft:30, marginRight:30}}>
-          <ScrollView>
+          
             <View style={{alignItems: 'center',}}>
               <Image source={{}} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'#BBBFBF', borderWidth:1, backgroundColor:'white'}}></Image>
             </View>
@@ -43,10 +43,10 @@ return (
             onChangeText={(Description) => setDescription({Description})}
             value={Description}
             style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginBottom:30}}/>
-          </ScrollView>
+          
           <Button title="Register" onPress={()=> props.navigation.navigate("Login")}></Button>
         </SafeAreaView>
-        
+        </ScrollView>
         
     
       </View>

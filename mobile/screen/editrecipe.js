@@ -47,8 +47,9 @@ const Editrecipe = (props) => {
 return (
     
     <View style={styles.container}>
+    <View style={styles.page}>
     <ScrollView>
-      <View style={styles.page}>
+      
             <SafeAreaView style={{marginLeft:30, marginRight:30}}>
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Edit Recipe</Text></View>
                 
@@ -89,9 +90,8 @@ return (
             </SafeAreaView>
             
         
-            
+        </ScrollView>
       </View>
-      </ScrollView>
     </View>
     
 );

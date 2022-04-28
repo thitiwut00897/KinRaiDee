@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.it61070088.KinRaiDee"
     },
     "web": {
       "favicon": "./assets/favicon.png"

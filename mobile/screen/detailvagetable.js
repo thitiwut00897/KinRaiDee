@@ -21,8 +21,8 @@ const VagetableDetail = (props) => {
 
 return (
   <View style={styles.container}>
-    <ScrollView>
   <View style={styles.page}>
+  <ScrollView>
     <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:10, flex:1}}>
       
         <View><Text style={{color:'black', fontSize:24, fontWeight: 'bold'}}>{DetailVagetable.vegetableName}</Text></View>
@@ -39,8 +39,8 @@ return (
         <Text></Text>      
       
     </SafeAreaView>
+    </ScrollView>
   </View>
-  </ScrollView>
 </View>
 );
 };

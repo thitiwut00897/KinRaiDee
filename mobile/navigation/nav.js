@@ -8,8 +8,6 @@ import Main from '../screen/main';
 import Signup from '../auth/signup';
 import Login from '../auth/signin';
 import Vagetable from "../screen/Vagetable";
-import Deeppage from "../screen/deeppage";
-import Notification from "../screen/notification";
 import Profile from "../screen/profile";
 import Createprofile from "../screen/createprofilepage";
 import Createrecipe from "../screen/createrecipe";
@@ -17,8 +15,9 @@ import Editprofile from "../screen/editprofile";
 import Editrecipe from "../screen/editrecipe";
 import Reivewrecipe from "../screen/reviewrecipe";
 import Detailvagetable from "../screen/detailvagetable";
-import ScanPage from "../screen/scanPage";
 import Styles from "../style/styles";
+import Imagepickup from "../screen/imagepickup";
+import pop from "../screen/popup";
 
 
 
@@ -59,7 +58,7 @@ import Styles from "../style/styles";
                         </View>
                         );
                     }}},
-            Createrecipe:{screen:Deeppage,
+            Createrecipe:{screen:Createrecipe,
                 navigationOptions: {
                     tabBarIcon: ({ focused }) => {
                         return(
@@ -83,7 +82,7 @@ import Styles from "../style/styles";
                         );
                     }
                 }},
-            Deeppage:{screen: ScanPage,
+            Deeppage:{screen: Imagepickup,
                 navigationOptions: {
                     tabBarIcon: ({ focused }) => {
                         return(

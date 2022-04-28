@@ -3,20 +3,16 @@ import { StyleSheet, View} from 'react-native';
 import Navigationbar from './navigation/nav';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Remote debugger']);
+import * as firebase from 'firebase'
+import firebaseConfig from './screen/firebase/firebase';
 
 
 export default function App() {
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig)
+  }
   return (
-    
       <Navigationbar/>
-    
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#57CC99',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

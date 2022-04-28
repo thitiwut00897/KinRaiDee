@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView, LogBox} from "react-native";
+import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView, LogBox, TouchableOpacity} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 LogBox.ignoreLogs(['Reanimated 2']);
 import styles from "../style/styles";
@@ -9,7 +9,7 @@ import './global.js';
 
 
 const Main = (props) => {
-  const [Search, setSearch] = useState('')
+  const [Searchinput, setSearchinput] = useState('')
   const [ActiveIndex, setActiveIndex] = useState(0)
   const [RecipesList, setRecipesList] = useState([])
 
@@ -23,13 +23,12 @@ const Main = (props) => {
         setRecipesList(response.data)
       })
     
-    
   }
-  const searchRecipe=(props)=>{
-    if (props.Search == ''){
+  const searchRecipe=()=>{
+    if (Searchinput == ''){
       getAllrecipe();
     }else 
-      axios.post(`${url}/api/recipes/search`, {"searchRecipe":props.Search}).then((response) => {
+      axios.post(`${url}/api/recipes/search`, {"searchRecipe":Searchinput}).then((response) => {
       setRecipesList(response.data)
     })
   }
@@ -40,13 +39,13 @@ return (
       <ScrollView>
         <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold', marginBottom:80}}>
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E1E3E3', borderRadius:6}}>
-            <View style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></View>
+        <TouchableOpacity onPress={searchRecipe()} style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></TouchableOpacity>
             <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}
-                  onChangeText={(input) => setSearch(input)}
-                  value={Search}
+                  onChangeText={(input) => setSearchinput(input)}
+                  value={Searchinput}
                   placeholder="search recipe"
-                  onPress={searchRecipe(Search)}
+                  // onPress={searchRecipe(Search)}
                   style={{}}/>
             </View>
         </View>
