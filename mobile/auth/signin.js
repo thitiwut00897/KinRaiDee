@@ -4,50 +4,33 @@ import * as Facebook from 'expo-facebook';
 import { createStackNavigator } from 'react-navigation-stack';
 import { StackNavigator } from "react-navigation";
 import styles from "../style/styles";
+import * as firebase from 'firebase';
 
 
 export default function Login(props) {
-  const [Email, setEmail] = useState('')
-  const [Password, setPassword] = useState('')
-  
-  // useEffect(() => {
-  //   const userId = localStorage.getItem('userId');
-  //   if (userId) {
-  //     localStorage.removeItem('userId')
-  //   }
-  // })
-  //   // const [Token, setToken] = useState();
-  //   async function logInfacebok() {
-  //       try {
-  //         await Facebook.initializeAsync({
-  //           appId: '1008123863106181',
-  //         });
-  //         const {
-  //           type,
-  //           token,
-  //           expirationDate,
-  //           permissions,
-  //           declinedPermissions,
-  //         } = await Facebook.logInWithReadPermissionsAsync({
-  //           permissions: ['public_profile'],
-  //         });
-  //         if (type === 'success') {
-  //           // Get the user's name using Facebook's Graph API
-  //           const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-  //           // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-  //           props.navigation.navigate("Main", {Token:token});
-  //         } else {
-  //           // type === 'cancel'
-  //         }
-  //       } catch ({ message }) {
-  //         alert(`Facebook Login Error: ${message}`);
-  //       }
-  //     }
+  const [Email, setEmail] = useState(null)
+  const [Password, setPassword] = useState(null)
+  const [messageError, setMessageError] = useState(null)
+  const auth = firebase.auth();
+
 
       function validateAccoutFacebook(){
         props.navigation.navigate("Main");
       }
-      
+  const handleLogin=()=>{
+    auth.signInWithEmailAndPassword(Email, Password).then(userCredentials =>{
+      const user = userCredentials.user;
+      console.log('Login with '+ user.email)
+      setEmail(null)
+      setPassword(null)
+      setMessageError(null)
+      props.navigation.navigate("Main")
+    }).catch((error)=>{
+      setMessageError(error.message)
+    })
+  }
+
+
   return (
     <View style={styles.container}>
       <View><Text style={{color:'white', paddingLeft:'10%', fontSize:26}}>Welcome</Text></View>
@@ -56,7 +39,7 @@ export default function Login(props) {
             <TextInput
                 multiline={false}
                 numberOfLines={1}
-                onChangeText={(Email) => setEmail({Email})}
+                onChangeText={(input) => setEmail(input)}
                 value={Email}
                 textContentType="emailAddress"
                 placeholder="  example@email.com"
@@ -66,12 +49,13 @@ export default function Login(props) {
             <TextInput
                 multiline={false}
                 numberOfLines={1}
-                onChangeText={(Password) => setPassword({Password})}
+                onChangeText={(input) => setPassword(input)}
                 value={Password}
                 secureTextEntry={true}
                 placeholder="  password"
-                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,height:43}}/>
-            <Button onPress={()=> props.navigation.navigate("Main")} title='Login'/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:0,height:43}}/>
+            <Text style={{alignItems:'center', color:'red', fontSize:12}}>{messageError?messageError:null}</Text>
+            <Button onPress={handleLogin} title='Login'/>
             
             <View style={{flexDirection:'row', justifyContent:'center'}}>
               <View style={{borderTopWidth:1, width:'40%',marginTop:10, borderColor:'#CCCFCF'}}></View>

@@ -1,12 +1,19 @@
 import React, { useState, useEffect} from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
 import styles from "../style/styles";
+import * as firebase from 'firebase';
+import 'firebase/auth';
+import axios from "axios";
 
-const Createprofile = (props) => {
-  const [RecipeName, setRecipeName] = useState('')
-  const [Ingredients, setIngredients] = useState('')
-  const [Directions, setDirections] = useState('')
+const Createrecipe = (props) => {
+  const [RecipeName, setRecipeName] = useState(null)
+  const [Ingredients, setIngredients] = useState(null)
+  const [Directions, setDirections] = useState(null)
   const [currentDate, setCurrentDate] = useState('');
+  const [picture, setpicture] = useState('https://firebasestorage.googleapis.com/v0/b/kinraidee-d5af8.appspot.com/o/asset%2Fbibimbap.png?alt=media&token=0beca7bf-2b86-4368-9af8-e458091d7753');
+  const auth = firebase.auth();
+  const [AuthID, setAuthId] = useState(auth.currentUser?.uid)
+  const [messageError, setMessageError] = useState(null)
 
   useEffect(() => {
     var date = new Date().getDate(); //Current Date
@@ -21,6 +28,20 @@ const Createprofile = (props) => {
     );
   }, []);
 
+
+  function createRecipe(){
+    axios.post(`${url}/api/recipes/create`, {"userId":AuthID, "recipeName":RecipeName, "directions":Directions, "ingredients":Ingredients, "date":currentDate,"picture":picture}).then(async function(response){
+        console.log(response.data)
+        setpicture('https://firebasestorage.googleapis.com/v0/b/kinraidee-d5af8.appspot.com/o/asset%2Fbibimbap.png?alt=media&token=0beca7bf-2b86-4368-9af8-e458091d7753')
+        setIngredients(null)
+        setDirections(null)
+        setRecipeName(null)
+        props.navigation.goBack()
+    }).catch(function(error){
+      setMessageError(error)
+    })
+  }
+
 return (
     
     <View style={styles.container}>
@@ -30,40 +51,40 @@ return (
             <SafeAreaView style={{marginLeft:30, marginRight:30, paddingBottom:'30%'}}>
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Create Recipe</Text></View>
                 <View style={{alignItems: 'center',}}>
-                    <Image source={require('../assets/profilefacebook.jpg')} style={{height:110, width:110, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
+                    <Image source={{uri:picture}} style={{height:120, width:120, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
                 </View>
                 <Text>RecipeName</Text>
                 <TextInput
                     multiline={false}
                     numberOfLines={1}
-                    onChangeText={(RecipeName) => setRecipeName({RecipeName})}
+                    onChangeText={(input) => setRecipeName(input)}
                     value={RecipeName}
                     // textContentType=""
                     placeholder="  ข้าวผัด"
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginBottom:10, height:43}}/>
                 
                 <Text>Ingredients</Text>
                 
                 <TextInput
                     multiline={true}
                     numberOfLines={4}
-                    onChangeText={(Ingredients) => setIngredients({Ingredients})}
+                    onChangeText={(input) => setIngredients(input)}
                     value={Ingredients}
                     // placeholder="  password"
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:10}}/>
                 
                 <Text>Directions</Text>
                 <TextInput
                     multiline={true}
                     numberOfLines={4}
-                    onChangeText={(Directions) => setDirections({Directions})}
+                    onChangeText={(input) => setDirections(input)}
                     value={Directions}
                     // placeholder="  confirm password"
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:0,}}/>
                 
             
-            
-            <Button title="Confirm" onPress={()=> {axios.post(`${url}/api/recipes/create`, {"recipeName":RecipeName,"directions":Directions,"ingredients":Ingredients,"date":currentDate,"picture":'',"userId":''}), props.navigation.navigate("Main")}}></Button>
+                <Text style={{alignItems:'center', color:'red', fontSize:12}}>{messageError?messageError:null}</Text>
+            <Button title="Confirm" disabled={RecipeName&&Ingredients&&Directions?false:true} onPress={createRecipe}></Button>
 
             
             </SafeAreaView>
@@ -76,4 +97,4 @@ return (
 );
 };
 
-export default Createprofile;
+export default Createrecipe;

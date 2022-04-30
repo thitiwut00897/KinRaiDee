@@ -5,6 +5,7 @@ LogBox.ignoreLogs(['Reanimated 2']);
 import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
+import * as firebase from 'firebase';
 
 
 
@@ -12,6 +13,8 @@ const Main = (props) => {
   const [Searchinput, setSearchinput] = useState('')
   const [ActiveIndex, setActiveIndex] = useState(0)
   const [RecipesList, setRecipesList] = useState([])
+  const auth = firebase.auth();
+
 
 
   useEffect(() => {
@@ -39,7 +42,7 @@ return (
       <ScrollView>
         <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold', marginBottom:80}}>
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E1E3E3', borderRadius:6}}>
-        <TouchableOpacity onPress={searchRecipe()} style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></TouchableOpacity>
+            <TouchableOpacity onPress={searchRecipe()} style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></TouchableOpacity>
             <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}
                   onChangeText={(input) => setSearchinput(input)}
@@ -49,7 +52,7 @@ return (
                   style={{}}/>
             </View>
         </View>
-          
+        <Text>{auth.currentUser?.uid}</Text>
           <Button title="Create Recipe" onPress={()=> props.navigation.navigate('Createrecipe')} style={{}}></Button>
           
 
@@ -58,7 +61,7 @@ return (
           
           <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
             {RecipesList.map((items) => 
-                <View key={items._id}style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
+                <View key={items._id}style={{height:170, width:145, borderRadius:10, backgroundColor:'#E5E7E9', padding:5, marginRight:5, marginBottom:5}}>
                   <View style={{flexDirection:'row'}}>
                     <View style={{width:'85%', flexDirection:'row'}}>
                       <View><Image source={{uri : items.photo}} style={{height:20, width:20, borderRadius:15}}></Image></View>
@@ -73,8 +76,8 @@ return (
                   <Text style={{fontWeight:'bold', fontSize:9}}>{items.recipeName}</Text>
                   <Text style={{fontSize:8}} numberOfLines={2}>{items.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {idrecipe:items._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
                 </View>
-)}
-          </View>
+                )}
+        </View>
           
         </SafeAreaView>
         </ScrollView>

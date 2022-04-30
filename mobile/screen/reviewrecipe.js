@@ -4,8 +4,17 @@ import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 
 const Reviewrecipe = (props) => {
+  const auth = firebase.auth();
+  const firestore = firebase.firestore();
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [userPhoto, setUserPhoto] = useState('')
+  ///recipe detail state
+  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('idrecipe'));
   const [ownRecipe, setownRecipe] = useState('')
   const [photoProfile, setphotoProfile] = useState()
   const [directions, setdirections] = useState('')
@@ -15,16 +24,35 @@ const Reviewrecipe = (props) => {
   const [picRecipe, setpicRecipe] = useState()
   const [date, setdate] = useState('')
   const [userId, setuserId] = useState('')
+///comment state
+  const [Commentinput, setCommentinput] = useState('')
+  const [getAllComment, setGetAllComment] = useState([])
+  const [currentDate, setCurrentDate] = useState('');
 
-  const [Bookmark, setBookmark] = useState(true)
-  const [DetailRecipe, setDetailRecipe] = useState([]);
-  const [RecipeID, setRecipeID] = useState(props.navigation.getParam('idrecipe'));
-  const [Comment, setComment] = useState('')
   useEffect(() => {
     getDetailRecipe();
+    getComment();
+    (async () => {
+      const users = firestore.collection('users').doc(auth.currentUser?.uid);
+      const doc = await users.get();
+      setFirstName(doc.data().firstName)
+      setLastName(doc.data().lastName)
+      setUserPhoto(doc.data().photo)
+    })();
+    var date = new Date().getDate(); //Current Date
+    var month = new Date().getMonth() + 1; //Current Month
+    var year = new Date().getFullYear(); //Current Year
+    var hours = new Date().getHours(); //Current Hours
+    var min = new Date().getMinutes(); //Current Minutes
+    var sec = new Date().getSeconds(); //Current Seconds
+    setCurrentDate(
+      date + '/' + month + '/' + year 
+      + ' ' + hours + ':' + min + ':' + sec
+    );
   }, []);
 
   const getDetailRecipe=()=>{
+  
     axios.get(`${url}/api/recipes/${RecipeID}`).then((response) => {
       setownRecipe(response.data[0].firstName)
       setphotoProfile(response.data[0].photo)
@@ -35,12 +63,37 @@ const Reviewrecipe = (props) => {
       setIDRecipe(response.data[0]._id)
       setdate(response.data[0].date)
       setuserId(response.data[0].userId)
-        // setDetailRecipe(response.data)
-        // console.log(response.data[0].photo)
+    }).catch((err)=>{
+      console.log(err);
+    })
+    
+
+
+  }
+
+  const postComment=()=>{
+    axios.post(`${url}/api/userComments/create`, 
+    {"comment": Commentinput,
+    "userId": auth.currentUser?.uid,
+    "date": currentDate,
+    "recipeId": RecipeID,
+    "userPhoto":userPhoto,
+    "userFirstname":firstName}).then((response) => {
+      setCommentinput('')
+      getComment()
+      console.log('Success')
+      
     }).catch((err)=>{
       console.log(err);
     })
   }
+
+  const getComment=()=>{
+    axios.get(`${url}/api/userComments/recipes/${props.navigation.getParam('idrecipe')}`).then((response) => {
+      setGetAllComment(response.data)
+    })
+  }
+
   
 return (
     
@@ -58,7 +111,7 @@ return (
                             </View>
                     </View>
                         <SafeAreaView style={{flexDirection:'row-reverse'}}>
-                            <Image source={require('../assets/bookmark.png')} style={{height:30, width:30, tintColor:Bookmark?'#F06C6A':'gray'}}/>
+                            <Image source={require('../assets/bookmark.png')} style={{height:30, width:30, tintColor:true?'#F06C6A':'gray'}}/>
                         </SafeAreaView>
                 </View>
 
@@ -81,28 +134,31 @@ return (
 
             {/* --------------------------------comment------------------------------------ */}
                   <View style={{borderTopWidth:1}}></View>
-                  <View><Text style={{marginTop:10, marginBottom:10, fontWeight:'bold'}}>comment</Text></View>
-
-                  <View style={{flexDirection:'row' }}>
+                  <View><Text style={{marginTop:10, marginBottom:10, fontWeight:'bold', fontSize:20}}>comment</Text></View>
+              {getAllComment.map((items) =>
+                  <View key={items._id} style={{flexDirection:'row', marginBottom:10}}>
                     <View style={{flexDirection:'row', margin:5}}>
-                      <Image source={{}} style={{height:35, width:35, borderRadius:50, borderColor: 'black', borderWidth:1}}/>
+                      <Image source={{uri:items.userPhoto}} style={{height:30, width:30, borderRadius:50, borderColor: '#E5E7E9', borderWidth:1}}/>
                     </View>
-                    <View style={{borderRadius:10, backgroundColor:'#E8EDED', padding:10, width:'90%'}}>
-                      <Text style={{fontWeight:'bold', fontSize:13}}>thitiwut time</Text>
-                      <Text style={{fontSize:13}}>comment detailcommentasda</Text>
+                    <View style={{borderRadius:10, backgroundColor:'#E5E7E9', padding:10, width:'90%'}}>
+                      <Text style={{fontWeight:'bold', fontSize:13}}>{items.userFirstname} <Text style={{fontSize:8,fontWeight:'normal'}}>{items.date}</Text></Text>
+                      <Text style={{fontSize:13}}>{items.comment}</Text>
                     </View>
                   </View>
+              )}
+
+                  
                   <View style={{flexDirection:'row', marginTop:20}}>
                     <View style={{width:'90%'}}>
                       <TextInput
                         multiline={true}
                         numberOfLines={1}
-                        onChangeText={(input) => setComment(input)}
-                        value={Comment}
+                        onChangeText={(input) => setCommentinput(input)}
+                        value={Commentinput}
                         placeholder="Write a comment"
                         style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, padding:5}}/>
                     </View>
-                    <View><TouchableOpacity style={{padding:10,borderRadius:8}} disabled={Comment == ''?true:false}><Text style={{color:Comment==''?'#AFE6F5':'#5BD4F5'}}>Post</Text></TouchableOpacity></View>
+                    <View><TouchableOpacity style={{padding:10,borderRadius:8}} disabled={Commentinput == ''?true:false} onPress={postComment}><Text style={{color:Commentinput==''?'#AFE6F5':'#5BD4F5'}}>Post</Text></TouchableOpacity></View>
                     </View>
                   
           </SafeAreaView>

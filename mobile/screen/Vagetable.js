@@ -33,7 +33,7 @@ return (
   <ScrollView>
     <SafeAreaView style={{marginLeft:30, marginRight:30,paddingTop:30, marginBottom:80}}>
         
-        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E1E3E3', borderRadius:6}}>
+        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E5E7E9', borderRadius:6}}>
             <TouchableOpacity onPress={searchVagetable()} style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></TouchableOpacity>
             <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}

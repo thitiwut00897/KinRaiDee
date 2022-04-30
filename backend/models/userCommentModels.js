@@ -11,6 +11,12 @@ const userCommentSchema = mongoose.Schema({
     },
     recipeId:{
         type: String, require: true
+    },
+    userPhoto:{
+        type: String, require: true
+    },
+    userFirstname:{
+        type: String, require: true
     }
 })
 const UserComment = mongoose.model('userComments', userCommentSchema);
