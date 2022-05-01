@@ -4,18 +4,21 @@ import styles from "../style/styles";
 import * as firebase from 'firebase';
 import 'firebase/auth';
 import axios from "axios";
+import 'firebase/firestore';
 
 const Createrecipe = (props) => {
+  const auth = firebase.auth();
+  const firestore = firebase.firestore();
   const [RecipeName, setRecipeName] = useState(null)
   const [Ingredients, setIngredients] = useState(null)
   const [Directions, setDirections] = useState(null)
   const [currentDate, setCurrentDate] = useState('');
   const [picture, setpicture] = useState('https://firebasestorage.googleapis.com/v0/b/kinraidee-d5af8.appspot.com/o/asset%2Fbibimbap.png?alt=media&token=0beca7bf-2b86-4368-9af8-e458091d7753');
-  const auth = firebase.auth();
   const [AuthID, setAuthId] = useState(auth.currentUser?.uid)
   const [messageError, setMessageError] = useState(null)
 
   useEffect(() => {
+    
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
@@ -29,9 +32,10 @@ const Createrecipe = (props) => {
   }, []);
 
 
-  function createRecipe(){
-    axios.post(`${url}/api/recipes/create`, {"userId":AuthID, "recipeName":RecipeName, "directions":Directions, "ingredients":Ingredients, "date":currentDate,"picture":picture}).then(async function(response){
-        console.log(response.data)
+  const createRecipe=async()=>{
+    const users = firestore.collection('Auth').doc(AuthID);
+    const doc = await users.get();
+    axios.post(`${url}/api/recipes/create`, {"userId":doc.data()._id, "recipeName":RecipeName, "directions":Directions, "ingredients":Ingredients, "date":currentDate,"picture":picture, "status":false}).then(async function(response){
         setpicture('https://firebasestorage.googleapis.com/v0/b/kinraidee-d5af8.appspot.com/o/asset%2Fbibimbap.png?alt=media&token=0beca7bf-2b86-4368-9af8-e458091d7753')
         setIngredients(null)
         setDirections(null)

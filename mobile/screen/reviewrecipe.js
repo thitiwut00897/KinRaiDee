@@ -10,9 +10,7 @@ import 'firebase/firestore';
 const Reviewrecipe = (props) => {
   const auth = firebase.auth();
   const firestore = firebase.firestore();
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [userPhoto, setUserPhoto] = useState('')
+ const [AuthId, setAuthId] = useState(auth.currentUser?.uid)
   ///recipe detail state
   const [RecipeID, setRecipeID] = useState(props.navigation.getParam('idrecipe'));
   const [ownRecipe, setownRecipe] = useState('')
@@ -32,13 +30,13 @@ const Reviewrecipe = (props) => {
   useEffect(() => {
     getDetailRecipe();
     getComment();
-    (async () => {
-      const users = firestore.collection('users').doc(auth.currentUser?.uid);
-      const doc = await users.get();
-      setFirstName(doc.data().firstName)
-      setLastName(doc.data().lastName)
-      setUserPhoto(doc.data().photo)
-    })();
+    // (async () => {
+    //   const users = firestore.collection('users').doc(auth.currentUser?.uid);
+    //   const doc = await users.get();
+    //   setFirstName(doc.data().firstName)
+    //   setLastName(doc.data().lastName)
+    //   setUserPhoto(doc.data().photo)
+    // })();
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
@@ -71,23 +69,24 @@ const Reviewrecipe = (props) => {
 
   }
 
-  const postComment=()=>{
+  const postComment=async()=>{
+    const users = firestore.collection('Auth').doc(AuthId);
+    const doc = await users.get();
     axios.post(`${url}/api/userComments/create`, 
     {"comment": Commentinput,
-    "userId": auth.currentUser?.uid,
+    "userId": doc.data()._id,
     "date": currentDate,
-    "recipeId": RecipeID,
-    "userPhoto":userPhoto,
-    "userFirstname":firstName}).then((response) => {
+    "recipeId": RecipeID,}).then((response) => {
       setCommentinput('')
       getComment()
+      console.log(response.data)
       console.log('Success')
       
     }).catch((err)=>{
       console.log(err);
     })
   }
-
+/// รอเปลี่ยน api 
   const getComment=()=>{
     axios.get(`${url}/api/userComments/recipes/${props.navigation.getParam('idrecipe')}`).then((response) => {
       setGetAllComment(response.data)

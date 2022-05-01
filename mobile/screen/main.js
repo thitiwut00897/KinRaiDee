@@ -52,7 +52,7 @@ return (
                   style={{}}/>
             </View>
         </View>
-        <Text>{auth.currentUser?.uid}</Text>
+
           <Button title="Create Recipe" onPress={()=> props.navigation.navigate('Createrecipe')} style={{}}></Button>
           
 

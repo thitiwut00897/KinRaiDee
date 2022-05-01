@@ -14,9 +14,10 @@ export default function Login(props) {
   const auth = firebase.auth();
 
 
-      function validateAccoutFacebook(){
-        props.navigation.navigate("Main");
-      }
+  function validateAccoutFacebook(){
+    props.navigation.navigate("Main");
+  }
+  
   const handleLogin=()=>{
     auth.signInWithEmailAndPassword(Email, Password).then(userCredentials =>{
       const user = userCredentials.user;

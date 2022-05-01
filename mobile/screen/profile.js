@@ -11,6 +11,10 @@ const Profile = (props) => {
   const auth = firebase.auth();
   const firestore = firebase.firestore();
   const [AuthID, setAuthId] = useState(auth.currentUser?.uid)
+  const [userId, setUserId] = useState()
+  
+
+  const [AuthData, setAuthData] = useState()
   const [AuthList, setAuthList] = useState()
 
   const [StatusPost, setStatusPost] = useState(true)
@@ -19,46 +23,41 @@ const Profile = (props) => {
   const [UserPost, setUserPost] = useState([])
   const [recipeUser, setRecipeUser] = useState([])
 
+
   const [firstName, setFirstName] =useState()
   const [lastName, setLastName] =useState()
   const [descriptions, setDescriptions] =useState()
   const [photo, setPhoto] =useState()
-
+  const [listRecipeUser, setListRecipeUser] = useState(false)
+ 
   useEffect(() => {
-    (async () => {
-      const users = firestore.collection('users').doc(AuthID);
-      const doc = await users.get();
-      setFirstName(doc.data().firstName)
-      setLastName(doc.data().lastName)
-      setDescriptions(doc.data().descriptions)
-      setPhoto(doc.data().photo)
-    })();
-    getUserPost()
     
-    // getAuth();
-    // getUserPost();
+    (async () => {
+      const users = firestore.collection('Auth').doc(AuthID);
+      const doc = await users.get();
+      setUserId(doc.data()._id)
+      await axios.get(`${url}/api/users/${doc.data()._id}`).then((response) => {
+        setFirstName(response.data.firstName)
+        setLastName(response.data.lastName)
+        setDescriptions(response.data.descriptions)
+        setPhoto(response.data.photo)
+        getUserPost(doc.data()._id)
+      }).catch(function(error){
+          console.log(error)
+      })
+      
+    })();
   }, []);
 
   
-  const getUserPost=()=>{
-    axios.get(`${url}/api/recipes/users/${AuthID}`).then((response) => {
-      setRecipeUser(response.data)
+  const getUserPost=(id)=>{
+    axios.get(`${url}/api/recipes/users/${id}`).then((response) => {
+      setAuthData(response.data)
+      setListRecipeUser(true)
     })
   }
-  
 
-// useEffect(() => {
-//   getDetailrecipe()
-// }, []);
 
-// function getDetailrecipe(){
-//   axios.get(`${url}/api/recipes/${RecipeID}`).then(async function(response){
-//       setRecipeUser(response.data)
-//       console.log(RecipeDetail)
-//   }).catch(function(error){
-//       console.log(error)
-//   })
-// }
 
   const handleSignout=()=>{
     Alert.alert(
@@ -88,8 +87,8 @@ return (
   <ScrollView>
     <SafeAreaView style={{marginLeft:30, marginRight:30, flex:1,marginBottom:80}}>
 
-      <View style={{ flexDirection:'row', marginTop:30}}>
-        <View><Image source={{uri : photo}} style={{height:100, width:100, borderRadius:50, borderColor: '#E1E6E6', borderWidth:1}}></Image></View>
+        <View style={{ flexDirection:'row', marginTop:30}}>
+          <View><Image source={{uri : photo}} style={{height:100, width:100, borderRadius:50, borderColor: '#E1E6E6', borderWidth:1}}></Image></View>
           <View style={{marginLeft:10, flex:1}}>
             <Text style={{fontWeight:'bold', fontSize:20, marginBottom:7}}>{firstName} {lastName}</Text>
             <Text style={{fontWeight:'bold', fontSize:10}}>{descriptions}</Text>
@@ -104,9 +103,9 @@ return (
       <Text style={{fontWeight:'bold'}}>Post</Text>
       
       
-        
+        {listRecipeUser?
         <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
-          {recipeUser.map((UserPost)=>
+          {AuthData.map((UserPost)=>
           <View key={UserPost._id} style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
             <View style={{flexDirection:'row'}}>
               <View style={{flexDirection:'row', width:'90%'}}><Text style={{color:'gray',fontSize:6}}>{UserPost.date}</Text></View>
@@ -117,7 +116,9 @@ return (
             <Text style={{fontSize:8}} numberOfLines={2}>{UserPost.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {idrecipe:UserPost._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
           </View>
           )}
-        </View>
+        </View>:
+        null
+        }
         
        
         

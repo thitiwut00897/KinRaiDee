@@ -109,7 +109,9 @@ return (
             <Image source={uploadState?{uri: urlPhoto}:require('../assets/camera.png')} style={styles.photopreview}/>
             {loadingPredic?<Text style={{fontWeight: 'bold', fontSize:30}}>{Predict?Predict:'wait process'}</Text>:<Text style={{fontWeight: 'bold', fontSize:30}}> </Text>}
             </View>
+            
             {!hasPhoto?<Button onPress={_takePhoto} title="Take a photo" />:<View>{uploadState?<Button color='#57CC99' title="prediction" onPress={predictionPhoto}/>:<Button title="Upload for Predic" onPress={()=>{getUrlphoto()}}></Button>}</View>}
+    
             {uploadState?<Button color='#EEAD18' title="Take photo again" onPress={_takePhoto}/>:null}
             {!hasPhoto?
             <View style={{flexDirection:'row', backgroundColor:'#EEE294', borderRadius:0, height:70, width:'100%', alignItems:'center', borderRadius:10, marginTop:10}}>
@@ -117,11 +119,16 @@ return (
                 <View style={{width:'90%'}}><Text style={{fontWeight: 'bold'}}>Not sure if you know this vegetable?</Text><Text>You can take photo to check the vegetables.</Text></View>
             </View>
             :<View>
+                {!uploadState?
                 <View style={{flexDirection:'row', backgroundColor:'#EEE294', borderRadius:0, height:70, width:'100%', alignItems:'center', borderRadius:10, marginTop:10}}>
                     <View style={{width:'10%',alignItems:'center'}}><Image source={require('../assets/notification.png')} style={{height:20, width:20, tintColor:'#E2C302'}}/></View>
                     <View style={{width:'90%'}}><Text style={{fontWeight: 'bold'}}>Can only predict the vegetables that are in the system.</Text></View>
+                </View>:
+                <View style={{flexDirection:'row', backgroundColor:'#EEE294', borderRadius:0, height:70, width:'100%', alignItems:'center', borderRadius:10, marginTop:10}}>
+                    <View style={{width:'10%',alignItems:'center'}}><Image source={require('../assets/notification.png')} style={{height:20, width:20, tintColor:'#E2C302'}}/></View>
+                    <View style={{width:'90%'}}><Text style={{fontWeight: 'bold'}}>wait until the picture appears</Text></View>
                 </View>
-                
+                }
              </View>}
              
             
