@@ -13,10 +13,6 @@ export default function Login(props) {
   const [messageError, setMessageError] = useState(null)
   const auth = firebase.auth();
 
-
-  function validateAccoutFacebook(){
-    props.navigation.navigate("Main");
-  }
   
   const handleLogin=()=>{
     auth.signInWithEmailAndPassword(Email, Password).then(userCredentials =>{
@@ -64,8 +60,7 @@ export default function Login(props) {
               <View style={{borderTopWidth:1, width:'40%',marginTop:10, borderColor:'#CCCFCF'}}></View>
             </View>
 
-        {/* <Button onPress={logInfacebok} title='Signin with facebook'/> */}
-        <Button onPress={validateAccoutFacebook} title='Signin with facebook'/>
+
         <View style={{alignItems:'center'}}><Text>Don't have account  <Text style={{color:"blue", textDecorationLine: 'underline'}} onPress={()=> props.navigation.navigate("Signup")}>Register</Text></Text></View>
         </View>
         

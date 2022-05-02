@@ -72,7 +72,7 @@ return (
                 style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, height:43}}/>
 
 
-          <Text style={{alignItems:'center', color:'red', fontSize:12}}>{messageError?messageError:null}</Text>
+          <Text style={styles.messageError}>{messageError?messageError:null}</Text>
           <Button title="Submit" disabled={Password&&Email?false:true} onPress={handlesubmit}></Button>
         </SafeAreaView>
         

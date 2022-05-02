@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollView, Button, Alert, RefreshControl, ActivityIndicator } from "react-native";
 // import { Button } from "react-native-elements";
 import styles from "../style/styles";
 import axios from "axios";
@@ -7,11 +7,17 @@ import './global.js';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
 
+
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
+
 const Profile = (props) => {
   const auth = firebase.auth();
   const firestore = firebase.firestore();
   const [AuthID, setAuthId] = useState(auth.currentUser?.uid)
   const [userId, setUserId] = useState()
+  const [refreshing, setRefreshing] = useState(false);
   
 
   const [AuthData, setAuthData] = useState()
@@ -29,11 +35,23 @@ const Profile = (props) => {
   const [descriptions, setDescriptions] =useState()
   const [photo, setPhoto] =useState()
   const [listRecipeUser, setListRecipeUser] = useState(false)
+  const [Loading, setLoading] = useState(false)
  
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    getRecipeUser();
+    wait(1500).then(() => setRefreshing(false));
+  }, []);
+
+  
   useEffect(() => {
-    
-    (async () => {
-      const users = firestore.collection('Auth').doc(AuthID);
+    getRecipeUser();
+  }, []);
+
+  const getRecipeUser=async()=>{
+    setLoading(true)
+    const users = firestore.collection('Auth').doc(AuthID);
       const doc = await users.get();
       setUserId(doc.data()._id)
       await axios.get(`${url}/api/users/${doc.data()._id}`).then((response) => {
@@ -42,12 +60,11 @@ const Profile = (props) => {
         setDescriptions(response.data.descriptions)
         setPhoto(response.data.photo)
         getUserPost(doc.data()._id)
+        setLoading(false)
       }).catch(function(error){
           console.log(error)
       })
-      
-    })();
-  }, []);
+  }
 
   
   const getUserPost=(id)=>{
@@ -84,23 +101,29 @@ const Profile = (props) => {
 return (
   <View style={styles.container}>
   <View style={styles.page}>
-  <ScrollView>
+  <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
+    {Loading?<View style={{alignItems: 'center', marginTop:'50%'}}><ActivityIndicator  size="large" color="#00ff00" /></View>:
     <SafeAreaView style={{marginLeft:30, marginRight:30, flex:1,marginBottom:80}}>
-
-        <View style={{ flexDirection:'row', marginTop:30}}>
-          <View><Image source={{uri : photo}} style={{height:100, width:100, borderRadius:50, borderColor: '#E1E6E6', borderWidth:1}}></Image></View>
-          <View style={{marginLeft:10, flex:1}}>
-            <Text style={{fontWeight:'bold', fontSize:20, marginBottom:7}}>{firstName} {lastName}</Text>
-            <Text style={{fontWeight:'bold', fontSize:10}}>{descriptions}</Text>
-            {/* <Button title={'Edit'} backgroundColor='yellow'><Text>Edit</Text></Button> */}
+        
+        <View style={{ flexDirection:'row', marginTop:30, marginBottom:10}}>
+          <View style={{width:'30%'}}><Image source={{uri : photo}} style={{height:90, width:90, borderRadius:50, borderColor: '#E1E6E6', borderWidth:1}}></Image></View>
+          <View style={{marginLeft:10, flex:1, width:'65%'}}>
+            <Text style={{fontWeight:'bold', fontSize:18, marginBottom:7}}>{firstName} {lastName}</Text>
+            <Text style={{fontWeight:'bold', fontSize:9}}>{descriptions}</Text>
           </View>
+          <TouchableOpacity  style={{width:'5%'}} onPress={()=>props.navigation.navigate('Editprofile', {id:userId})}><Image source={require('../assets/edit.png')}  style={{width:15, height:15, tintColor:'gray'}}/></TouchableOpacity>
         </View>
 
           <Button title={'Logout'} color="#FF8B69" onPress={handleSignout}></Button>
           
 
       
-      <Text style={{fontWeight:'bold'}}>Post</Text>
+      <Text style={{fontWeight:'bold', fontSize:15, marginTop:5, marginBottom:5}}>Post</Text>
       
       
         {listRecipeUser?
@@ -130,6 +153,7 @@ return (
 
       
     </SafeAreaView>
+    }
     </ScrollView>
   </View>
 </View>

@@ -101,5 +101,10 @@ export default StyleSheet.create({
     tintColor:'#BBBFBF',
     borderRadius:20
   },
+  messageError:{
+    alignItems:'center', 
+    color:'red', 
+    fontSize:12
+  }
 
   });

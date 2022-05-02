@@ -2,6 +2,7 @@ import React, { useState, useEffect} from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
 import styles from "../style/styles";
 import * as firebase from 'firebase';
+import * as ImagePicker from 'expo-image-picker';
 import 'firebase/auth';
 import axios from "axios";
 import 'firebase/firestore';
@@ -32,6 +33,32 @@ const Createrecipe = (props) => {
   }, []);
 
 
+
+  const _pickImage=async()=>{
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    if (!pickerResult.cancelled){
+      uploadImageAuth(pickerResult.uri, 'test-image.jpeg')
+      .then(()=>{
+        console.log('seccess upload')
+      }).catch((e)=>{
+          console.log(e)
+      })    
+           
+  }
+    
+  }
+const uploadImageAuth= async(uri, name)=>{
+  const response = await fetch(uri);
+    const blob = await response.blob();
+    var ref = await firebase.storage().ref().child(`RecipePicture/${AuthID}`+ name);
+    const snapshot = await ref.put(blob, { contentType: "image/png" });
+    const remoteURL = await snapshot.ref.getDownloadURL();
+    setpicture(remoteURL)
+    console.log('upload seccess')
+
+}
+
+
   const createRecipe=async()=>{
     const users = firestore.collection('Auth').doc(AuthID);
     const doc = await users.get();
@@ -56,6 +83,7 @@ return (
                 <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Create Recipe</Text></View>
                 <View style={{alignItems: 'center',}}>
                     <Image source={{uri:picture}} style={{height:120, width:120, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
+                    <Text style={{color: '#43A1FF',}} onPress={_pickImage}>Choose a picture of food</Text>
                 </View>
                 <Text>RecipeName</Text>
                 <TextInput
@@ -74,7 +102,6 @@ return (
                     numberOfLines={4}
                     onChangeText={(input) => setIngredients(input)}
                     value={Ingredients}
-                    // placeholder="  password"
                     style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:10}}/>
                 
                 <Text>Directions</Text>
@@ -83,7 +110,6 @@ return (
                     numberOfLines={4}
                     onChangeText={(input) => setDirections(input)}
                     value={Directions}
-                    // placeholder="  confirm password"
                     style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:0,}}/>
                 
             

@@ -97,8 +97,8 @@ const predictionPhoto=async()=>{
 return (
     <View style={styles.container}>
         <View style={styles.page}>
-      <ScrollView>
-      {loading?<Text>loadonggggggggggggg</Text>:
+      <ScrollView >
+      
       <SafeAreaView style={{marginLeft:30, marginRight:30, paddingBottom:'30%'}}>
         <Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Check Vegetables</Text>
         
@@ -134,7 +134,7 @@ return (
             
             
     </SafeAreaView>
-}
+
     </ScrollView>
     </View>
       

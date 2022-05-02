@@ -17,7 +17,7 @@ const Createprofile = (props) => {
   const [firstNameinput, setfirstName] = useState(null)
   const [lastNameinput, setlastName] = useState(null)
   const [photoUrl, setPhotoUrl] = useState('https://firebasestorage.googleapis.com/v0/b/kinraidee-d5af8.appspot.com/o/asset%2Fuser%20(1).png?alt=media&token=798e3f66-768d-444d-9b8a-0e5259e9bb62')
-
+  const [messageError, setMessageError] = useState(null)
 
 
 const _pickImage=async()=>{
@@ -88,7 +88,7 @@ return (
           
             <View style={{alignItems: 'center',}}>
               <Image source={{uri:photoUrl}} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'#BBBFBF', borderWidth:1, backgroundColor:'white'}}></Image>
-              <Text onPress={_pickImage}>Choose a profile picture</Text>
+              <Text style={{color: '#43A1FF',}} onPress={_pickImage}>Choose a profile picture</Text>
             </View>
           <View style={{width: "100%", flexDirection: "row",justifyContent:"flex-start"}}>
             <View style={{width: "50%", paddingRight:5}}>
@@ -117,7 +117,7 @@ return (
             onChangeText={(input) => setdescriptions(input)}
             value={descriptionsinput}
             style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginBottom:30}}/>
-          
+          <Text style={styles.messageError}>{messageError}</Text>
           <Button title="Register" onPress={createProfile}></Button>
         </SafeAreaView>
         </ScrollView>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView, LogBox, TouchableOpacity} from "react-native";
+import { View, Text, StyleSheet, Image, Button, SafeAreaView, ScrollView, LogBox, TouchableOpacity, RefreshControl} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 LogBox.ignoreLogs(['Reanimated 2']);
 import styles from "../style/styles";
@@ -7,15 +7,23 @@ import axios from "axios";
 import './global.js';
 import * as firebase from 'firebase';
 
-
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
 const Main = (props) => {
   const [Searchinput, setSearchinput] = useState('')
   const [ActiveIndex, setActiveIndex] = useState(0)
   const [RecipesList, setRecipesList] = useState([])
   const auth = firebase.auth();
+  const [refreshing, setRefreshing] = useState(false);
 
-
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setSearchinput('')
+    getAllrecipe()
+    wait(1500).then(() => setRefreshing(false));
+  }, []);
 
   useEffect(() => {
     getAllrecipe();
@@ -39,7 +47,12 @@ const Main = (props) => {
 return (
     <View style={styles.container}>
       <View style={styles.page}>
-      <ScrollView>
+      <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
         <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:30,fontWeight: 'bold', marginBottom:80}}>
         <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E1E3E3', borderRadius:6}}>
             <TouchableOpacity onPress={searchRecipe()} style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></TouchableOpacity>
