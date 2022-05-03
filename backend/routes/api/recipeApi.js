@@ -106,7 +106,6 @@ router.post('/search', async (req,res,next) =>{
     try{
         let data = await Recipe.find().exec()
         let searchText = req.body.searchRecipe
-        console.log(data);
         let recipeName = []
         data.forEach(recipe => {
             let name = recipe.recipeName;
@@ -117,6 +116,23 @@ router.post('/search', async (req,res,next) =>{
         console.log(recipeName)
         res.status(200).json(recipeName)
 
+    } catch (err) {
+        res.status(500).send({ message: "Error!" })
+    }
+})
+
+router.post('/search/:vegetableName', async(req,res,next) =>{ 
+    try{
+        let vegetableName = req.params.vegetableName;
+        let data = await Recipe.find().exec()
+        let recipes = [];
+        data.forEach(recipe => {
+            let ingredients = recipe.ingredients;
+            if(ingredients.indexOf(vegetableName) !== -1){
+                recipes.push(recipe)
+            }
+        });
+        res.status(200).json(recipes)
     } catch (err) {
         res.status(500).send({ message: "Error!" })
     }
