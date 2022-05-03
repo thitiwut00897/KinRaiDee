@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button, ScrollView, SafeAreaView} from "react-native";
 import styles from "../style/styles";
-import * as firebase from 'firebase';
-import 'firebase/auth';
+import firebase from 'firebase';
 import 'firebase/firestore';
 
 const Signup = (props) => {

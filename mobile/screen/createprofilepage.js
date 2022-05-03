@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollV
 import styles from "../style/styles";
 import * as ImagePicker from 'expo-image-picker';
 import axios from "axios";
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import 'firebase/firestore';
 
 

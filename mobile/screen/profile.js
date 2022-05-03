@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, ScrollVi
 import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import 'firebase/firestore';
 
 
@@ -18,18 +18,7 @@ const Profile = (props) => {
   const [AuthID, setAuthId] = useState(auth.currentUser?.uid)
   const [userId, setUserId] = useState()
   const [refreshing, setRefreshing] = useState(false);
-  
-
   const [AuthData, setAuthData] = useState()
-  const [AuthList, setAuthList] = useState()
-
-  const [StatusPost, setStatusPost] = useState(true)
-  const [StatusFav, setStatusFav] = useState(false)
-
-  const [UserPost, setUserPost] = useState([])
-  const [recipeUser, setRecipeUser] = useState([])
-
-
   const [firstName, setFirstName] =useState()
   const [lastName, setLastName] =useState()
   const [descriptions, setDescriptions] =useState()
@@ -129,7 +118,7 @@ return (
         {listRecipeUser?
         <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
           {AuthData.map((UserPost)=>
-          <View key={UserPost._id} style={{height:170, width:145, borderRadius:10, backgroundColor:'#EBEBEB', padding:5, marginRight:5, marginBottom:5}}>
+          <View key={UserPost._id} style={{height:170, width:145, borderRadius:10, backgroundColor:'#F1F1F1', padding:5, marginRight:5, marginBottom:5}}>
             <View style={{flexDirection:'row'}}>
               <View style={{flexDirection:'row', width:'90%'}}><Text style={{color:'gray',fontSize:6}}>{UserPost.date}</Text></View>
               <TouchableOpacity onPress={()=>props.navigation.navigate('Editrecipe', {idrecipe:UserPost._id})}><Image source={require('../assets/pencil.png')}  style={{width:15, height:15, tintColor:'gray'}}/></TouchableOpacity>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
 import styles from "../style/styles";
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import * as ImagePicker from 'expo-image-picker';
 import 'firebase/auth';
 import axios from "axios";

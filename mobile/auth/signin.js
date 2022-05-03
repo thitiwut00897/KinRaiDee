@@ -1,10 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
-import * as Facebook from 'expo-facebook';
-import { createStackNavigator } from 'react-navigation-stack';
-import { StackNavigator } from "react-navigation";
 import styles from "../style/styles";
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 
 export default function Login(props) {

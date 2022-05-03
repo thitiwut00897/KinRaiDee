@@ -3,13 +3,12 @@ import { View, Text, StyleSheet, Image, TextInput, Button, ActivityIndicator} fr
 import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import * as ImagePicker from 'expo-image-picker';
 
 const Editprofile = (props) => {
   const auth = firebase.auth();
   const [AuthID, setAuthId] = useState(auth.currentUser?.uid)
-
   const [userId, setUserID] = useState(props.navigation.getParam('id'))
   const [FirstName, setFirstName] = useState('')
   const [LastName, setLastName] = useState('')

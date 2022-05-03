@@ -33,7 +33,7 @@ return (
   <ScrollView>
     <SafeAreaView style={{marginLeft:30, marginRight:30,paddingTop:30, marginBottom:80}}>
         
-        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#E5E7E9', borderRadius:6}}>
+        <View style={{flexDirection:'row', marginBottom:10, backgroundColor:'#F1F1F1', borderRadius:6}}>
             <TouchableOpacity onPress={searchVagetable()} style={{width:'10%',justifyContent:'center', alignItems:'center'}}><Image source={require('../assets/search.png')} style={{width:20, height:20}}/></TouchableOpacity>
             <View style={{width:'90%'}}><TextInput multiline={false}
                   numberOfLines={1}
@@ -50,7 +50,7 @@ return (
       
         <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
                 {VagetableList.map((items) => 
-                  <TouchableOpacity key={items._id} onPress={()=> props.navigation.navigate('Detailvagetable', {id:items._id})} style={{height:120, width:95, borderRadius:10, backgroundColor:'#E1E3E3', padding:5, marginRight:5, marginBottom:5}}>
+                  <TouchableOpacity key={items._id} onPress={()=> props.navigation.navigate('Detailvagetable', {id:items._id})} style={{height:120, width:95, borderRadius:10, backgroundColor:'#F1F1F1', padding:5, marginRight:5, marginBottom:5}}>
                   <View style={{alignItems:'center'}}><Image source={{uri : items.picture}} style={{height:80, width:80, margin:5, borderRadius:0}}/></View>
                   <View style={{alignItems:'center'}}><Text style={{fontWeight:'bold', fontSize:9, alignItems:'center'}}>{items.vegetableName}</Text></View>
                 </TouchableOpacity>

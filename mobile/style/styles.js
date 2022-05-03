@@ -7,8 +7,6 @@ export default StyleSheet.create({
       display:'flex',
       flexDirection:'column',
       backgroundColor: '#57CC99',
-      // backgroundColor: 'F1E1A6',
-      // backgroundColor:'#87FAD2',
       justifyContent: 'center',
     },
     page:{
@@ -17,22 +15,13 @@ export default StyleSheet.create({
       paddingBottom:30,
       borderTopRightRadius:35,
       borderTopLeftRadius:35,
-      backgroundColor: '#F2F5F5',
-      // backgroundColor: '#97DBAE',
+      // backgroundColor: '#F2F5F5',
+      backgroundColor: '#FEFEFE',
       marginBottom:0,
       width:'auto',
-      // backgroundColor:'#87FAD2',
-      // backgroundColor: '#57CC99',
-      // alignItems: 'center',
-      // justifyContent: 'center',
+
     },
-    // header:{
-    //   // justifyContent: 'center',
-    //   // flex:0, 
-    //   flexDirection:'row',
-    //   // top:12,
-    //   // height:60,
-    // },
+ 
     profile:{
       width:30,
       height:30,
@@ -45,23 +34,6 @@ export default StyleSheet.create({
       height:30,
       tintColor:'white', 
     },
-  //   btnCircle: {
-  //     width: 60,
-  //     height: 60,
-  //     borderRadius: 30,
-  //     alignItems: 'center',
-  //     justifyContent: 'center',
-  //     backgroundColor: 'white',
-  //     shadowColor: "#000",
-  //     shadowOffset: {
-  //     width: 0,
-  //     height: 1,
-  //     },
-  //     shadowOpacity: 0.20,
-  //     shadowRadius: 1.41,
-  //     elevation: 1,
-  //     bottom: 28
-  // },
   btnCircleUp: {
     width: 60,
     height: 60,

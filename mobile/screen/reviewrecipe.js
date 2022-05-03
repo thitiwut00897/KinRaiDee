@@ -4,7 +4,7 @@ import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
 import { TouchableOpacity } from "react-native-gesture-handler";
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import 'firebase/firestore';
 
 const Reviewrecipe = (props) => {
@@ -137,10 +137,10 @@ return (
               {getAllComment.map((items) =>
                   <View key={items._id} style={{flexDirection:'row', marginBottom:10}}>
                     <View style={{flexDirection:'row', margin:5}}>
-                      <Image source={{uri:items.userPhoto}} style={{height:30, width:30, borderRadius:50, borderColor: '#E5E7E9', borderWidth:1}}/>
+                      <Image source={{uri:items.photo}} style={{height:30, width:30, borderRadius:50, borderColor: '#E5E7E9', borderWidth:1}}/>
                     </View>
                     <View style={{borderRadius:10, backgroundColor:'#E5E7E9', padding:10, width:'90%'}}>
-                      <Text style={{fontWeight:'bold', fontSize:13}}>{items.userFirstname} <Text style={{fontSize:8,fontWeight:'normal'}}>{items.date}</Text></Text>
+                      <Text style={{fontWeight:'bold', fontSize:13}}>{items.firstName} {items.lastName} <Text style={{fontSize:8,fontWeight:'normal'}}>{items.date}</Text></Text>
                       <Text style={{fontSize:13}}>{items.comment}</Text>
                     </View>
                   </View>

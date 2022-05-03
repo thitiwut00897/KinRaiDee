@@ -3,7 +3,7 @@ import { StyleSheet, View} from 'react-native';
 import Navigationbar from './navigation/nav';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Remote debugger']);
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
 import firebaseConfig from './screen/firebase/firebase';
 
