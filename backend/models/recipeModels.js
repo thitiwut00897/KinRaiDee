@@ -15,12 +15,6 @@ const recipeSchema = mongoose.Schema({
     picture: {
         type: String, require: true
     },
-    likeCount: {
-        type: Number, require: true
-    },
-    commentCount:{
-        type: Number, require: true
-    },
     userId:{
         type: String, require: true
     },

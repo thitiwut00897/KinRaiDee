@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const UserComment = require('../../models/userCommentModels')
+const Recipe = require('../../models/recipeModels')
+const User = require('../../models/userModels')
 
 router.post('/create', async (req, res, next) => {
     try {
@@ -37,7 +39,20 @@ router.delete('/delete/:_id', async (req, res, next) => {
 router.get('/recipes/:recipeId', async (req, res, next) => {
     let recipeId = req.params.recipeId;
     try {
-        let data = await UserComment.find({ recipeId: recipeId }).exec()
+        let data = []
+        let userCommentData = await UserComment.find({ recipeId: recipeId }).exec()
+        for(const userComment of userCommentData) {
+            let userData = await User.findById({ _id: userComment.userId }).exec()
+            data.push({
+                "_id":userComment._id,
+                "comment": userComment.comment,
+                "userId": userComment.userId,
+                "recipeId": userComment.recipeId,
+                "photo": userData.photo,
+                "firstName": userData.firstName,
+                "lastName": userData.lastName,
+            })
+        }
         res.status(200).json(data)
     } catch (err) {
         res.status(500).send({ message: "Error!" })
