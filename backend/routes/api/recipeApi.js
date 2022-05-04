@@ -122,8 +122,46 @@ router.post('/search', async (req,res,next) =>{
 })
 
 router.post('/search/:vegetableName', async(req,res,next) =>{ 
+    
+
     try{
-        let vegetableName = req.params.vegetableName;
+        switch (req.params.vegetableName) {
+            case "Yanang":
+              thaiName ="ย่านาง";
+              break;
+            case "Saranae":
+              thaiName ="สะระแหน่";
+              break;
+            case "Plu":
+               thaiName ="พลู";
+              break;
+            case "Mint":
+              thaiName ="มิ้น";
+              break;
+            case "Manow":
+              thaiName ="มะนาว";
+              break;
+            case "Makrut":
+              thaiName ="มะกรูด";
+              break;
+            case "Lemon":
+              thaiName ="เลม่อน";
+            case "Krapao khaow" :
+              thaiName ="กะเพรา";
+              break;
+            case "Krapao dang":
+              thaiName ="กะเพราแดง";
+              break
+            case "Horapa":
+              thaiName ="โหระพา";
+              break;
+            case "Fahthalinejol":
+              thaiName ="ฟ้าทะลายโจร";
+              break;
+            case "Bai makrut":
+              thaiName ="ใบมะกรูด";
+          }
+        let vegetableName = thaiName;
         let data = await Recipe.find().exec()
         let recipes = [];
         data.forEach(recipe => {
