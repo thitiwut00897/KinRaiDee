@@ -77,6 +77,14 @@ export default StyleSheet.create({
     alignItems:'center', 
     color:'red', 
     fontSize:12
+  },
+  textInput: {
+
+    borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10,height:43, paddingHorizontal: 10
+    
+  },
+  headderText:{
+    fontWeight: 'bold', marginTop:5, marginBottom:5
   }
 
   });

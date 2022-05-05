@@ -40,9 +40,11 @@ const Profile = (props) => {
 
   const getRecipeUser=async()=>{
     setLoading(true)
+    console.log(AuthID)
     const users = firestore.collection('Auth').doc(AuthID);
       const doc = await users.get();
       setUserId(doc.data()._id)
+      console.log(doc.data()._id)
       await axios.get(`${url}/api/users/${doc.data()._id}`).then((response) => {
         setFirstName(response.data.firstName)
         setLastName(response.data.lastName)

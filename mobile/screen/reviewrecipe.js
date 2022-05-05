@@ -118,13 +118,13 @@ return (
                 <View style={{alignItems: 'center',}}>
                     <Image source={{uri : picRecipe}} style={{height:140, width:140, borderRadius:70, margin:10, borderColor:'gray', borderWidth:1, backgroundColor:'white'}}></Image>
                 </View>
-                <Text style={{ fontWeight: 'bold'}}>{recipeName}</Text>
-                <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:10, marginBottom:10}}></View>
-                <Text style={{ fontWeight: 'bold'}}>Ingredients</Text>
+                <Text style={{ fontWeight: 'bold', marginBottom:5, fontSize:14}}>{recipeName}</Text>
+                <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:5, marginBottom:5}}></View>
+                <Text style={styles.headderText}>Ingredients</Text>
                 
                 <Text>{ingredients}</Text>
                 
-                <Text style={{ fontWeight: 'bold'}}>Directions</Text>
+                <Text style={styles.headderText}>Directions</Text>
                 
                 <Text>{directions}</Text>
 

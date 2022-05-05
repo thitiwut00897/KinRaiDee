@@ -69,30 +69,30 @@ return (
                 <View style={{alignItems: 'center',}}>
                     <Image source={{uri:Picture}} style={{height:110, width:110, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
                 </View>
-                <Text>RecipeName</Text>
+                <Text style={styles.headderText}>RecipeName</Text>
                 <TextInput
                     multiline={false}
                     numberOfLines={1}
                     onChangeText={(input) => setRecipeName(input)}
                     value={RecipeName}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, height:43}}/>
+                    style={styles.textInput}/>
                 
-                <Text>Ingredients</Text>
+                <Text style={styles.headderText}>Ingredients</Text>
                 
                 <TextInput
                     multiline={true}
                     numberOfLines={4}
                     onChangeText={(input) => setIngredients(input)}
                     value={Ingredients}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20,}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:0,paddingHorizontal: 10}}/>
                 
-                <Text>Directions</Text>
+                <Text style={styles.headderText}>Directions</Text>
                 <TextInput
                     multiline={true}
                     numberOfLines={4}
                     onChangeText={(input) => setDirections(input)}
                     value={Directions}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:20,}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:0, marginBottom:20,paddingHorizontal: 10}}/>
                     
                 <Text style={styles.messageError}>{messageError}</Text>
                 <Button title={"Confirm"} onPress={editDetailrecipe}></Button>

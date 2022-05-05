@@ -37,7 +37,7 @@ export default function Login(props) {
                 value={Email}
                 textContentType="emailAddress"
                 placeholder="  example@email.com"
-                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:40, height:43}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10,height:43}}/>
             
             
             <TextInput
@@ -47,7 +47,7 @@ export default function Login(props) {
                 value={Password}
                 secureTextEntry={true}
                 placeholder="  password"
-                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, marginBottom:0,height:43}}/>
+                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10,height:43}}/>
             <Text style={{alignItems:'center', color:'red', fontSize:12}}>{messageError?messageError:null}</Text>
             <Button onPress={handleLogin} title='Login'/>
             

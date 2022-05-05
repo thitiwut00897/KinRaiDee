@@ -37,7 +37,7 @@ const Createrecipe = (props) => {
   const _pickImage=async()=>{
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
     if (!pickerResult.cancelled){
-      uploadImageAuth(pickerResult.uri, 'test-image.jpeg')
+      uploadImageAuth(pickerResult.uri, pickerResult.uri)
       .then(()=>{
         console.log('seccess upload')
       }).catch((e)=>{
@@ -62,7 +62,7 @@ const uploadImageAuth= async(uri, name)=>{
   const createRecipe=async()=>{
     const users = firestore.collection('Auth').doc(AuthID);
     const doc = await users.get();
-    axios.post(`${url}/api/recipes/create`, {"userId":doc.data()._id, "recipeName":RecipeName, "directions":Directions, "ingredients":Ingredients, "date":currentDate,"picture":picture, "status":false}).then(async function(response){
+    axios.post(`${url}/api/recipes/create`, {"userId":doc.data()._id, "recipeName":RecipeName, "directions":Directions, "ingredients":Ingredients, "date":currentDate,"picture":picture, "status":"Reject"}).then(async function(response){
         setpicture('https://firebasestorage.googleapis.com/v0/b/kinraidee-d5af8.appspot.com/o/asset%2Fbibimbap.png?alt=media&token=0beca7bf-2b86-4368-9af8-e458091d7753')
         setIngredients(null)
         setDirections(null)
@@ -93,7 +93,7 @@ return (
                     value={RecipeName}
                     // textContentType=""
                     placeholder="  ข้าวผัด"
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginBottom:10, height:43}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:10, height:43}}/>
                 
                 <Text>Ingredients</Text>
                 
@@ -102,7 +102,7 @@ return (
                     numberOfLines={4}
                     onChangeText={(input) => setIngredients(input)}
                     value={Ingredients}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:10}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:10, paddingHorizontal: 10}}/>
                 
                 <Text>Directions</Text>
                 <TextInput
@@ -110,7 +110,7 @@ return (
                     numberOfLines={4}
                     onChangeText={(input) => setDirections(input)}
                     value={Directions}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:0,}}/>
+                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:0,paddingHorizontal: 10}}/>
                 
             
                 <Text style={{alignItems:'center', color:'red', fontSize:12}}>{messageError?messageError:null}</Text>

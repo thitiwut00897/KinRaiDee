@@ -98,7 +98,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(input) => setFirstName(input)}
                 value={FirstName}
-                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8,}}/>
+                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, paddingHorizontal: 10}}/>
             </View>
             <View style={{width: "50%", paddingLeft:5}}>
               <Text style={{color:'gray'}}>Last Name</Text>
@@ -107,7 +107,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(input) => setLastName(input)}
                 value={LastName}
-                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8,}}/>
+                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8,paddingHorizontal: 10}}/>
             </View>
           </View>
           <Text style={{color:'gray'}}>Description</Text>
@@ -116,7 +116,7 @@ return (
             numberOfLines={4}
             onChangeText={(input) => setDescription(input)}
             value={Description}
-            style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginBottom:30}}/>
+            style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginBottom:30, paddingHorizontal: 10}}/>
           <Button title="Confirm" onPress={editUser}></Button>
         </View>
         

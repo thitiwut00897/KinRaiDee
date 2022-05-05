@@ -17,6 +17,7 @@ const Main = (props) => {
   const [RecipesList, setRecipesList] = useState([])
   const auth = firebase.auth();
   const [refreshing, setRefreshing] = useState(false);
+  const [recommendMenu, setRecommendMenu] = useState([])
 
 
   const onRefresh = React.useCallback(() => {
@@ -28,6 +29,7 @@ const Main = (props) => {
 
   useEffect(() => {
     getAllrecipe();
+    searchRecipe();
 
   }, []);
 
@@ -36,14 +38,19 @@ const Main = (props) => {
 
   const getAllrecipe=()=>{
     axios.get(`${url}/api/recipes`).then((response) => {
-        setRecipesList(response.data)
+        setRecommendMenu(response.data)
+
       })
+      
   }
-  const searchRecipe=()=>{
+  const searchRecipe=async()=>{
     if (Searchinput == ''){
-      getAllrecipe();
+      axios.get(`${url}/api/recipes`).then((response) => {
+        setRecipesList(response.data)
+
+      })
     }else 
-      axios.post(`${url}/api/recipes/search`, {"searchRecipe":Searchinput}).then((response) => {
+      await axios.post(`${url}/api/recipes/search`, {"searchRecipe":Searchinput}).then((response) => {
       setRecipesList(response.data)
     })
   }
@@ -69,35 +76,38 @@ return (
                   style={{}}/>
             </View>
         </View>
-
-          <Button title="Create Recipe" onPress={()=> props.navigation.navigate('Createrecipe')} style={{}}></Button>
           
-          <Text style={{fontWeight:'bold'}}>Recommend</Text>
-          <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
-          {RecipesList.map((items) => 
-            items.status === "Approve"?
-                <View key={items._id}style={{height:170, width:145, borderRadius:10, backgroundColor:'#F1F1F1', padding:5, marginRight:5, marginBottom:5}}>
-                  <View style={{flexDirection:'row'}}>
-                    <View style={{width:'85%', flexDirection:'row'}}>
-                      <View><Image source={{uri : items.photo}} style={{height:20, width:20, borderRadius:15}}></Image></View>
-                      <View style={{marginLeft:1}}>
-                        <Text style={{fontSize:7}}>{items.firstName} {items.lastName}</Text>
-                        <Text style={{color:'gray',fontSize:6}}>{items.date}</Text>
-                      </View>
-                    </View>
-                    <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
-                  </View>
-                  <View style={{alignItems:'center'}}><Image source={{uri : items.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
-                  <Text style={{fontWeight:'bold', fontSize:9}}>{items.recipeName}</Text>
-                  <Text style={{fontSize:8}} numberOfLines={2}>{items.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {idrecipe:items._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
-                </View>
-            :null
-                )}
+          <Text style={{fontWeight:'bold', marginTop:5, marginBottom:5}}>Recommend</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={{
+              borderRadius: 100,
+              transform: [{ scaleX: 1 }],
+            }}>
+                      {recommendMenu.map((items)=> 
+                        items.status === "Approve"?
+                            <View key={items._id}style={{height:170, width:145, borderRadius:10, backgroundColor:'#F1F1F1', padding:5, marginRight:5, marginBottom:5}}>
+                              <View style={{flexDirection:'row'}}>
+                                <View style={{width:'85%', flexDirection:'row'}}>
+                                  <View><Image source={{uri : items.photo}} style={{height:20, width:20, borderRadius:15}}></Image></View>
+                                  <View style={{marginLeft:1}}>
+                                    <Text style={{fontSize:7}}>{items.firstName} {items.lastName}</Text>
+                                    <Text style={{color:'gray',fontSize:6}}>{items.date}</Text>
+                                  </View>
+                                </View>
+                              </View>
+                              <View style={{alignItems:'center'}}><Image source={{uri : items.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
+                              <Text style={{fontWeight:'bold', fontSize:9}}>{items.recipeName}</Text>
+                              <Text style={{fontSize:8}} numberOfLines={2}>{items.directions}</Text><Text onPress={()=>props.navigation.navigate('Reivewrecipe', {idrecipe:items._id})} style={{fontSize:8, color:'blue'}}>อ่านเพิ่มเติม</Text>
+                            </View>
+                        :null
+                            )}
+          </ScrollView>
+          
 
-          </View>
 
-
-          <Text style={{fontWeight:'bold'}}>New Post</Text>
+          <Text style={{fontWeight:'bold', marginTop:5, marginBottom:5}}>New Post</Text>
           {/* card */}
           
           <View style={{flexDirection:'row', justifyContent:'flex-start', flexWrap: 'wrap',}}>
@@ -111,7 +121,7 @@ return (
                         <Text style={{color:'gray',fontSize:6}}>{items.date}</Text>
                       </View>
                     </View>
-                    <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View>
+                    {/* <View style={{flexDirection:'row-reverse'}}><Image source={require('../assets/bookmark.png')} style={{height:20, width:20, tintColor:'#F06C6A'}}/></View> */}
                   </View>
                   <View style={{alignItems:'center'}}><Image source={{uri : items.picture}} style={{height:80, width:80, margin:5, borderRadius:0, backgroundColor:'white'}}/></View>
                   <Text style={{fontWeight:'bold', fontSize:9}}>{items.recipeName}</Text>

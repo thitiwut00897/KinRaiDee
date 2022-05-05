@@ -58,7 +58,7 @@ return (
               value={Email}
               textContentType="emailAddress"
               placeholder="  example@email.com"
-              style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20,height:43}}/>
+              style={styles.textInput}/>
             
             
             <TextInput
@@ -68,7 +68,7 @@ return (
                 value={Password}
                 secureTextEntry={true}
                 placeholder="  password"
-                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:20, height:43}}/>
+                style={styles.textInput}/>
 
 
           <Text style={styles.messageError}>{messageError?messageError:null}</Text>

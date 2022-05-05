@@ -27,6 +27,7 @@ const Vagetablehistory = (props) => {
   }
 
 
+
 return (
   <View style={styles.container}>
   <View style={styles.page}>
@@ -55,6 +56,8 @@ return (
                   <View style={{alignItems:'center'}}><Text style={{fontWeight:'bold', fontSize:9, alignItems:'center'}}>{items.vegetableName}</Text></View>
                 </TouchableOpacity>
                 )}
+
+          
         </View>
     </SafeAreaView>
     </ScrollView>

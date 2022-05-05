@@ -87,8 +87,8 @@ return (
         <SafeAreaView style={{marginLeft:30, marginRight:30}}>
           
             <View style={{alignItems: 'center',}}>
-              <Image source={{uri:photoUrl}} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'#BBBFBF', borderWidth:1, backgroundColor:'white'}}></Image>
-              <Text style={{color: '#43A1FF',}} onPress={_pickImage}>Choose a profile picture</Text>
+              <Image source={{uri:photoUrl}} style={{height:135, width:135, borderRadius:100, margin:15, borderColor:'#BBBFBF', borderWidth:1, backgroundColor:'white'}}></Image>
+              <Text style={{color: '#43A1FF',marginBottom:5}} onPress={_pickImage}>Choose a profile picture</Text>
             </View>
           <View style={{width: "100%", flexDirection: "row",justifyContent:"flex-start"}}>
             <View style={{width: "50%", paddingRight:5}}>
@@ -98,7 +98,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(input) => setfirstName(input)}
                 value={firstNameinput}
-                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8,}}/>
+                style={styles.textInput}/>
             </View>
             <View style={{width: "50%", paddingLeft:5}}>
               <Text style={{color:'gray'}}>Last Name</Text>
@@ -107,7 +107,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(input) => setlastName(input)}
                 value={lastNameinput}
-                style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8,}}/>
+                style={styles.textInput}/>
             </View>
           </View>
           <Text style={{color:'gray'}}>Description</Text>
@@ -116,7 +116,7 @@ return (
             numberOfLines={4}
             onChangeText={(input) => setdescriptions(input)}
             value={descriptionsinput}
-            style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginBottom:30}}/>
+            style={styles.textInput}/>
           <Text style={styles.messageError}>{messageError}</Text>
           <Button title="Register" onPress={createProfile}></Button>
         </SafeAreaView>
