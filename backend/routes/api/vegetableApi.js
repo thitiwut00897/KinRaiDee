@@ -64,7 +64,6 @@ router.post('/search', async (req,res,next) =>{
                 vegetableName.push(vegetable)
             }
         });
-        console.log(vegetableName)
         res.status(200).json(vegetableName)
 
     } catch (err) {
