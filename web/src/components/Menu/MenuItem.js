@@ -48,10 +48,12 @@ const MenuGrid = styled(Grid)`
 `;
 
 const MenuItem = (props) => {
-  const { menu, onReject, onHandleClick } = props;
+  const { menu, onReject, onHandleClick, canReject } = props;
   return (
     <MenuGrid>
-      <CloseIcon className="close" onClick={() => onReject(menu._id)} />
+      {canReject && (
+        <CloseIcon className="close" onClick={() => onReject(menu._id)} />
+      )}
       <img
         className="MenuImage"
         src={menu.picture}

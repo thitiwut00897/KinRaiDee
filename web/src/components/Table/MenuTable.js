@@ -46,13 +46,13 @@ const HeaderGrid = styled(Grid)`
 const Header = styled(TableRow)`
   border-bottom: 2px solid #000000;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+  vertical-align: baseline;
 `;
 
 const ImageTable = styled(Grid)`
   width: 106px;
   height: 90px;
   border-radius: 10px;
-  margin: 0 auto;
 `;
 
 const MenuTable = (props) => {
@@ -77,22 +77,12 @@ const MenuTable = (props) => {
     refresh();
   };
 
-  // const searchMenu = (event) => {
-  //   search(event.target.value, menus);
-  // };
-
   return (
     <MenuTableGrid>
       <HeaderGrid>
         <HeaderText variant="h5" component="div">
           Add Recommend
         </HeaderText>
-        {/* <TextField
-          id="outlined-search"
-          label="Search menu"
-          type="search"
-          onChange={searchMenu}
-        /> */}
       </HeaderGrid>
       <MainTable component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -127,13 +117,16 @@ const MenuTable = (props) => {
                 key={menu._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell align="center">
+                <TableCell align="center" 
+                  style={{
+                    verticalAlign: "baseline"
+                  }}>
                   {menu.firstName}&nbsp; &nbsp;{menu.lastName}
                 </TableCell>
-                <TableCell align="center">{menu.date}</TableCell>
-                <TableCell align="center">{menu.recipeName}</TableCell>
-                <TableCell align="left">{menu.ingredients}</TableCell>
-                <TableCell align="left">{menu.directions}</TableCell>
+                <TableCell align="center" style={{verticalAlign: "baseline"}}>{menu.date}</TableCell>
+                <TableCell align="center" style={{verticalAlign: "baseline"}}>{menu.recipeName}</TableCell>
+                <TableCell align="left" style={{verticalAlign: "baseline"}}>{menu.ingredients}</TableCell>
+                <TableCell align="left" style={{verticalAlign: "baseline"}}>{menu.directions}</TableCell>
                 <TableCell align="center">
                   {renderImage(menu.picture)}
                 </TableCell>

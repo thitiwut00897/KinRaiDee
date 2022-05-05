@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import customTheme from "./theme";
 
 import "./_app.styles.scss";
@@ -11,21 +11,29 @@ import UserManagement from "./containers/management/userManagement";
 import VegetableManagement from "./containers/management/vegetableManagement";
 import VegetableDetail from "./containers/vegetable/vegetableDetail";
 import recipeDetail from "./containers/recipe/recipeDetail";
+import createHistory from "history/createBrowserHistory";
+
+const history = createHistory();
 
 const App = () => {
   return (
     <ThemeProvider theme={customTheme}>
-      <Router basename="/">
+      <BrowserRouter history={history}>
         <Appbar />
         <Switch>
           <Route exact path="/" component={Recommend} />
           <Route path="/login" component={Login} />
           <Route path="/users" component={UserManagement} />
           <Route exact path="/vegetable" component={VegetableManagement} />
-          <Route path="/vegetable/:vegetableId" component={VegetableDetail} />
+          <Route
+            exact
+            path="/vegetable/:vegetableId"
+            component={VegetableDetail}
+          />
           <Route path="/recipe/:recipeId" component={recipeDetail} />
+          <Route path="/vegetable/recipe/:recipeId" component={recipeDetail} />
         </Switch>
-      </Router>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };

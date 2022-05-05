@@ -12,7 +12,7 @@ const MenuTabBox = styled(Grid)`
 `;
 
 const MenuTab = (props) => {
-  const { menus } = props;
+  const { menus, canReject } = props;
   const history = useHistory();
   const [value, setValue] = React.useState(0);
   const { refresh } = useMenu();
@@ -32,7 +32,7 @@ const MenuTab = (props) => {
   };
 
   const handleClick = (recipeId) => {
-    history.push(`recipe/${recipeId}`);
+    history.replace(`recipe/${recipeId}`);
   };
 
   return (
@@ -48,8 +48,10 @@ const MenuTab = (props) => {
         {menus.map((menu) => {
           return (
             <Tab
+              key={menu._id}
               label={
                 <MenuItem
+                  canReject={canReject}
                   menu={menu}
                   onReject={handleReject}
                   onHandleClick={handleClick}

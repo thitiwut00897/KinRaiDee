@@ -29,7 +29,8 @@ const RecipeDetail = () => {
   let { recipeId } = useParams();
   const history = useHistory();
   const onBackPress = () => {
-    history.push('/');
+    history.replace(`/`);
+    // history.goBack();
   }
 
   return (

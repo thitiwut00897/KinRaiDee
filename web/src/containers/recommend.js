@@ -31,7 +31,7 @@ const Recommend = () => {
           <HeaderText variant="h4" component="div">
             Recommend Menu
           </HeaderText>
-          <MenuTab menus={allRecommendMenu} />
+          <MenuTab canReject={true} menus={allRecommendMenu} />
         </React.Fragment>
       )}
       {allRejectMenu.length !== 0 && <MenuTable menus={allRejectMenu} />}

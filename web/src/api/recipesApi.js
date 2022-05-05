@@ -17,11 +17,16 @@ const recipesApi = () => {
     return axiosInstance.put(`recipes/update/${recipeId}`, { ...data });
   };
 
+  const getRecommendMenuByVegetableName = (vegetableName) => {
+    return axiosInstance.post(`recipes/search/${vegetableName}`);
+  }
+
   return {
     getAllMenu,
     getMenuById,
     getAllRecommendMenu,
     updateMenuById,
+    getRecommendMenuByVegetableName
   };
 };
 

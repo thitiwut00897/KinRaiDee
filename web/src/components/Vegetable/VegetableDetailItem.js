@@ -2,7 +2,9 @@ import { Grid, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import MenuTab from "../Menu/MenuTab";
 import useMenu from "../../hooks/useMenu";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import recipesApi from "../../api/recipesApi";
+import { useHistory } from "react-router";
 
 const MainGrid = styled(Grid)`
   width: 100%;
@@ -56,10 +58,18 @@ const RecommendGrid = styled(Grid)``;
 
 const VegetableDetailItem = (props) => {
   const { vegetable } = props;
-  const { allRecommendMenu, getMenu } = useMenu();
+  const [recommendMenu, setRecommendMenu] = useState([]);
 
   useEffect(() => {
-    getMenu();
+    recipesApi()
+      .getRecommendMenuByVegetableName(vegetable.vegetableName)
+      .then((res) => {
+        setRecommendMenu(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setRecommendMenu([]);
+      });
   }, [vegetable]);
 
   const renderImage = (url) => {
@@ -98,10 +108,12 @@ const VegetableDetailItem = (props) => {
         </DetailGrid>
         <ImageGrid>{renderImage(vegetable.picture)}</ImageGrid>
       </BodyGrid>
-      <RecommendGrid>
-        <Typography variant="h5">Recommend Menu</Typography>
-        <MenuTab menus={allRecommendMenu} />
-      </RecommendGrid>
+      {recommendMenu.length !== 0 && (
+        <RecommendGrid>
+          <Typography variant="h5">Recommend Menu</Typography>
+          <MenuTab canReject={false} menus={recommendMenu} />
+        </RecommendGrid>
+      )}
     </MainGrid>
   );
 };
