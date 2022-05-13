@@ -6,6 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import 'firebase/auth';
 import axios from "axios";
 import 'firebase/firestore';
+import color from '../style/color'
 
 const Createrecipe = (props) => {
   const auth = firebase.auth();
@@ -19,7 +20,6 @@ const Createrecipe = (props) => {
   const [messageError, setMessageError] = useState(null)
 
   useEffect(() => {
-    
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
@@ -32,8 +32,6 @@ const Createrecipe = (props) => {
     );
   }, []);
 
-
-
   const _pickImage=async()=>{
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
     if (!pickerResult.cancelled){
@@ -42,10 +40,8 @@ const Createrecipe = (props) => {
         console.log('seccess upload')
       }).catch((e)=>{
           console.log(e)
-      })    
-           
-  }
-    
+      })        
+    } 
   }
 const uploadImageAuth= async(uri, name)=>{
   const response = await fetch(uri);
@@ -55,9 +51,7 @@ const uploadImageAuth= async(uri, name)=>{
     const remoteURL = await snapshot.ref.getDownloadURL();
     setpicture(remoteURL)
     console.log('upload seccess')
-
 }
-
 
   const createRecipe=async()=>{
     const users = firestore.collection('Auth').doc(AuthID);
@@ -73,58 +67,81 @@ const uploadImageAuth= async(uri, name)=>{
     })
   }
 
-return (
-    
-    <View style={styles.container}>
-      <View style={styles.page}>
-      <ScrollView>
-      
-            <SafeAreaView style={{marginLeft:30, marginRight:30, paddingBottom:'30%'}}>
-                <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Create Recipe</Text></View>
-                <View style={{alignItems: 'center',}}>
-                    <Image source={{uri:picture}} style={{height:120, width:120, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
-                    <Text style={{color: '#43A1FF',}} onPress={_pickImage}>Choose a picture of food</Text>
-                </View>
-                <Text>RecipeName</Text>
-                <TextInput
-                    multiline={false}
-                    numberOfLines={1}
-                    onChangeText={(input) => setRecipeName(input)}
-                    value={RecipeName}
-                    // textContentType=""
-                    placeholder="  ข้าวผัด"
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:10, height:43}}/>
-                
-                <Text>Ingredients</Text>
-                
-                <TextInput
-                    multiline={true}
-                    numberOfLines={4}
-                    onChangeText={(input) => setIngredients(input)}
-                    value={Ingredients}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:10, paddingHorizontal: 10}}/>
-                
-                <Text>Directions</Text>
-                <TextInput
-                    multiline={true}
-                    numberOfLines={4}
-                    onChangeText={(input) => setDirections(input)}
-                    value={Directions}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10, marginBottom:0,paddingHorizontal: 10}}/>
-                
-            
-                <Text style={{alignItems:'center', color:'red', fontSize:12}}>{messageError?messageError:null}</Text>
-            <Button title="Confirm" disabled={RecipeName&&Ingredients&&Directions?false:true} onPress={createRecipe}></Button>
-
-            
+  return (
+      <View style={styles.container}>
+        <View style={styles.page}>
+        <ScrollView>
+              <SafeAreaView style={{paddingTop:30, marginBottom:80, paddingHorizontal:'5%'}}>
+                  <View><Text style={Styles.hearderTitle}>Create Recipe</Text></View>
+                  <View style={{alignItems: 'center',}}>
+                      <Image source={{uri:picture}} style={Styles.Image}></Image>
+                      <Text style={{color: color.bluesky,}} onPress={_pickImage}>Choose a picture of food</Text>
+                  </View>
+                  <Text>RecipeName</Text>
+                  <TextInput
+                      multiline={false}
+                      numberOfLines={1}
+                      onChangeText={(input) => setRecipeName(input)}
+                      value={RecipeName}
+                      // textContentType=""
+                      placeholder="  ข้าวผัด"
+                      style={Styles.textinput}/>
+                  
+                  <Text>Ingredients</Text>
+                  
+                  <TextInput
+                      multiline={true}
+                      numberOfLines={4}
+                      onChangeText={(input) => setIngredients(input)}
+                      value={Ingredients}
+                      style={Styles.textinput}/>
+                  
+                  <Text>Directions</Text>
+                  <TextInput
+                      multiline={true}
+                      numberOfLines={4}
+                      onChangeText={(input) => setDirections(input)}
+                      value={Directions}
+                      style={Styles.textinput}/>
+                  
+              
+                  <Text style={Styles.errorMessage}>{messageError?messageError:null}</Text>
+              <Button title="Confirm" disabled={RecipeName&&Ingredients&&Directions?false:true} onPress={createRecipe}></Button>
             </SafeAreaView>
-        
-        
-        </ScrollView> 
+          </ScrollView> 
+        </View>
       </View>
-    </View>
-    
-);
+  );
 };
 
 export default Createrecipe;
+const Styles = StyleSheet.create({
+  hearderTitle:{
+    color:'black', 
+    fontSize:24, 
+    paddingTop:10, 
+    fontWeight: 'bold'
+  },
+  Image:{
+    height:120, 
+    width:120, 
+    borderRadius:60, 
+    margin:10, 
+    borderColor: '#E1E6E6', 
+    borderWidth:1
+  },
+  textinput:{
+    borderColor: color.grayTextinput,
+    borderWidth: 1,
+    borderRadius:8, 
+    marginTop:10, 
+    marginBottom:10, 
+    height:43,
+    paddingHorizontal: 10
+  },
+  errorMessage:{
+    alignItems:'center', 
+    color:'red', 
+    fontSize:12
+  },
+})

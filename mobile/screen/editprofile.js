@@ -5,6 +5,7 @@ import axios from "axios";
 import './global.js';
 import firebase from 'firebase';
 import * as ImagePicker from 'expo-image-picker';
+import color from '../style/color'
 
 const Editprofile = (props) => {
   const auth = firebase.auth();
@@ -80,52 +81,102 @@ const uploadUri=async()=>{
 
 return (
     <View style={styles.container}>
-      
       <View style={styles.page}>
-        <View style={{marginLeft:30, marginRight:30}}>
-            <View><Text style={{color:'black', fontSize:24, paddingTop:10}}>Edit Profile</Text></View>
+        <View style={{paddingTop:30, marginBottom:80, paddingHorizontal:'5%'}}>
+            <Text style={Styles.hearderTitle}>Edit Profile</Text>
             <View style={{alignItems: 'center',}}>
-              {Loading?<ActivityIndicator style={{height:135, width:135, borderRadius:100, margin:20}} size="large" color="#00ff00" />:<Image source={{uri:Photo}} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'gray', borderWidth:1}}></Image>}
-                
-                {/* <Text style={{color: '#43A1FF',}} onPress={_pickImage}>Choose a profile picture</Text> */}
-                {Snapshot?<Button title="Upload picture profile" onPress={uploadUri}></Button>:<Text style={{color: '#43A1FF',marginBottom:5}} onPress={_pickImage}>Choose a profile picture</Text>}
+              {Loading?<ActivityIndicator style={Styles.loaging} size="large" color="#00ff00" />:<Image source={{uri:Photo}} style={Styles.imageProfile}></Image>}
+              {Snapshot?<Button title="Upload picture profile" onPress={uploadUri}></Button>:<Text style={Styles.textChoosePicturn} onPress={_pickImage}>Choose a profile picture</Text>}
             </View>
-          <View style={{width: "100%", flexDirection: "row",justifyContent:"flex-start"}}>
-            <View style={{width: "50%", paddingRight:5}}>
-              <Text style={{color:'gray'}}>First Name</Text>
+          <View style={Styles.firstlastWrapper}>
+            <View style={Styles.boxFirstlastName}>
+              <Text style={Styles.titleText}>First Name</Text>
               <TextInput
                 multiline={false}
                 numberOfLines={1}
                 onChangeText={(input) => setFirstName(input)}
                 value={FirstName}
-                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, paddingHorizontal: 10}}/>
+                style={Styles.textInputhalf}/>
             </View>
-            <View style={{width: "50%", paddingLeft:5}}>
-              <Text style={{color:'gray'}}>Last Name</Text>
+            <View style={Styles.boxFirstlastName}>
+              <Text style={Styles.titleText}>Last Name</Text>
               <TextInput
                 multiline={false}
                 numberOfLines={1}
                 onChangeText={(input) => setLastName(input)}
                 value={LastName}
-                style={{borderColor: 'gray',borderWidth: 1,borderRadius:8,paddingHorizontal: 10}}/>
+                style={Styles.textInputhalf}/>
             </View>
           </View>
-          <Text style={{color:'gray'}}>Description</Text>
+          <Text style={Styles.titleText}>Description</Text>
           <TextInput
             multiline={true}
             numberOfLines={4}
             onChangeText={(input) => setDescription(input)}
             value={Description}
-            style={{borderColor: 'gray',borderWidth: 1,borderRadius:8, marginBottom:30, paddingHorizontal: 10}}/>
+            style={Styles.textinputfull}/>
           <Button title="Confirm" onPress={editUser}></Button>
         </View>
-        
-        
-    
       </View>
-    
     </View>
 );
 };
 
 export default Editprofile;
+
+
+const Styles = StyleSheet.create({
+  hearderTitle:{
+    color:'black', 
+    fontSize:26, 
+    fontWeight: 'bold',
+    marginBottom:0, 
+    marginLeft:5
+  },
+  imageProfile:{
+    height:135, 
+    width:135, 
+    borderRadius:100, 
+    margin:20, 
+    borderColor:'gray', 
+    borderWidth:1
+  },
+  textInputhalf:{
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius:8, 
+    paddingHorizontal: 10
+  },
+  textinputfull:{
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius:8, 
+    marginBottom:30, 
+    paddingHorizontal: 10
+  },
+  firstlastWrapper:{
+    width: "100%", 
+    flexDirection: "row",
+    justifyContent:"flex-start"
+  },
+  boxFirstlastName:{
+    width: "50%", 
+    paddingRight:5
+  },
+  Loading:{
+    height:135, 
+    width:135, 
+    borderRadius:100, 
+    margin:20
+  },
+  titleText:{
+    color:'black',
+    fontSize:14,
+    marginBottom:5,
+    marginTop:5
+  },
+  textChoosePicturn:{
+    color: color.bluesky,
+    marginBottom:5
+  }
+})

@@ -4,6 +4,7 @@ import Navigationbar from './navigation/nav';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Remote debugger']);
 import firebase from 'firebase'
+LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
 
 import firebaseConfig from './screen/firebase/firebase';
 

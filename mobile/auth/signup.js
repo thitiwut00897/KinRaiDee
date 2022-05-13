@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput, Button, ScrollView, SafeAreaV
 import styles from "../style/styles";
 import firebase from 'firebase';
 import 'firebase/firestore';
+import color from '../style/color'
 
 const Signup = (props) => {
   const [Email, setEmail] = useState(null)
@@ -44,11 +45,11 @@ const Signup = (props) => {
 
 return (
     <View style={styles.container}>
-      <View><Text style={{color:'white', paddingLeft:'10%', fontSize:26}}>Register</Text></View>
+      <View><Text style={Styles.hearderTitle}>Register</Text></View>
       <View style={styles.page}>
       <ScrollView>
         
-      <SafeAreaView style={{marginLeft:30, marginRight:30, paddingBottom:'20%'}}>
+      <SafeAreaView style={{paddingTop:30, marginBottom:80, paddingHorizontal:'5%'}}>
             
   
             <TextInput
@@ -58,7 +59,7 @@ return (
               value={Email}
               textContentType="emailAddress"
               placeholder="  example@email.com"
-              style={styles.textInput}/>
+              style={Styles.TextInput}/>
             
             
             <TextInput
@@ -68,7 +69,7 @@ return (
                 value={Password}
                 secureTextEntry={true}
                 placeholder="  password"
-                style={styles.textInput}/>
+                style={Styles.TextInput}/>
 
 
           <Text style={styles.messageError}>{messageError?messageError:null}</Text>
@@ -84,3 +85,18 @@ return (
 };
 
 export default Signup;
+const Styles = StyleSheet.create({
+  hearderTitle:{
+    color:'white', 
+    paddingLeft:'10%', 
+    fontSize:26
+  },
+  TextInput:{
+    borderColor: color.grayTextinput,
+    borderWidth: 1,
+    borderRadius:8, 
+    marginTop:10,
+    height:43,
+    paddingHorizontal: 10
+  },
+})

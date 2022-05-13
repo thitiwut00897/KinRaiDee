@@ -30,23 +30,22 @@ return (
   <View style={styles.container}>
   <View style={styles.page}>
   <ScrollView>
-    <SafeAreaView style={{marginLeft:30, marginRight:30, paddingTop:10, flex:1}}>
+    <SafeAreaView style={{paddingTop:30, marginBottom:80, paddingHorizontal:'5%'}}>
       
-        <View><Text style={{color:'black', fontSize:24, fontWeight: 'bold'}}>{DetailVagetable.vegetableName}</Text></View>
+        <View><Text style={Styles.vagetableTitle}>{DetailVagetable.vegetableName}</Text></View>
         <View style={{alignItems: 'center',}}>
-            <Image source={{uri : DetailVagetable.picture}} style={{height:135, width:135, borderRadius:100, margin:20, borderColor:'gray', borderWidth:1}}></Image>
+            <Image source={{uri : DetailVagetable.picture}} style={Styles.vagetableImage}></Image>
         </View>
-        <Text>Botanical(พฤภษศาสตร์): {DetailVagetable.botanicalName} </Text>
-        <Text>Common Name(ชื่อทั่วไป): {DetailVagetable.commonName} </Text>
-        <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:10, marginBottom:10}}></View>
-        <Text style={{fontWeight: 'bold'}}>Descriptions</Text>
+        <Text style={Styles.vagetableText}>Botanical(พฤภษศาสตร์): {DetailVagetable.botanicalName} </Text>
+        <Text style={Styles.vagetableText}>Common Name(ชื่อทั่วไป): {DetailVagetable.commonName} </Text>
+        <View style={Styles.line}></View>
+        <Text style={Styles.vagetableHearderText}>Descriptions</Text>
         
         
-        <Text>{DetailVagetable.description}</Text>
-        <Text></Text> 
+        <Text style={Styles.vagetableText}>{DetailVagetable.description}</Text>
 
 
-        <Text style={{fontWeight:'bold', marginTop:5, marginBottom:5}}>Recommend</Text>
+        <Text style={Styles.vagetableHearderText}>Recommend</Text>
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
@@ -81,3 +80,25 @@ return (
 );
 };
 export default VagetableDetail;
+
+const Styles = StyleSheet.create({
+  vagetableTitle:{
+    color:'black', fontSize:24, fontWeight: 'bold'
+  },
+  vagetableImage:{
+    height:135, width:135, borderRadius:100, margin:20, borderColor:'gray', borderWidth:1
+  },
+  vagetableHearderText:{
+    fontWeight: 'bold',
+    fontSize:20,
+    marginTop:10,
+    marginBottom:10
+  },
+  vagetableText:{
+    fontSize:14,
+  },
+  line:{
+    height:10, borderTopWidth:1, borderColor:'gray', marginTop:10
+  }
+
+})

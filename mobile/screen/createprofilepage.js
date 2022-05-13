@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import axios from "axios";
 import firebase from 'firebase';
 import 'firebase/firestore';
+import color from '../style/color'
 
 
 const Createprofile = (props) => {
@@ -81,14 +82,14 @@ const createUserDocument = async (userid)=>{
 
 return (
     <View style={styles.container}>
-      <View><Text style={{color:'white', paddingLeft:'10%', fontSize:26, fontWeight: 'bold'}}>Register</Text></View>
+      <View><Text style={Styles.hearderTitle}>Register</Text></View>
       <View style={styles.page}>
       <ScrollView>
-        <SafeAreaView style={{marginLeft:30, marginRight:30}}>
+        <SafeAreaView style={{paddingTop:30, marginBottom:80, paddingHorizontal:'5%'}}>
           
             <View style={{alignItems: 'center',}}>
-              <Image source={{uri:photoUrl}} style={{height:135, width:135, borderRadius:100, margin:15, borderColor:'#BBBFBF', borderWidth:1, backgroundColor:'white'}}></Image>
-              <Text style={{color: '#43A1FF',marginBottom:5}} onPress={_pickImage}>Choose a profile picture</Text>
+              <Image source={{uri:photoUrl}} style={Styles.imageProfile}></Image>
+              <Text style={Styles.chooseProfile} onPress={_pickImage}>Choose a profile picture</Text>
             </View>
           <View style={{width: "100%", flexDirection: "row",justifyContent:"flex-start"}}>
             <View style={{width: "50%", paddingRight:5}}>
@@ -98,7 +99,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(input) => setfirstName(input)}
                 value={firstNameinput}
-                style={styles.textInput}/>
+                style={Styles.TextInput}/>
             </View>
             <View style={{width: "50%", paddingLeft:5}}>
               <Text style={{color:'gray'}}>Last Name</Text>
@@ -107,7 +108,7 @@ return (
                 numberOfLines={1}
                 onChangeText={(input) => setlastName(input)}
                 value={lastNameinput}
-                style={styles.textInput}/>
+                style={Styles.TextInput}/>
             </View>
           </View>
           <Text style={{color:'gray'}}>Description</Text>
@@ -116,7 +117,7 @@ return (
             numberOfLines={4}
             onChangeText={(input) => setdescriptions(input)}
             value={descriptionsinput}
-            style={styles.textInput}/>
+            style={Styles.TextInput}/>
           <Text style={styles.messageError}>{messageError}</Text>
           <Button title="Register" onPress={createProfile}></Button>
         </SafeAreaView>
@@ -130,3 +131,24 @@ return (
 };
 
 export default Createprofile;
+const Styles = StyleSheet.create({
+  hearderTitle:{
+    color:'white', 
+    paddingLeft:'10%', 
+    fontSize:26
+  },
+  TextInput:{
+    borderColor: color.grayTextinput,
+    borderWidth: 1,
+    borderRadius:8, 
+    marginTop:10,
+    height:43,
+    paddingHorizontal: 10
+  },
+  imageProfile:{
+    height:135, width:135, borderRadius:100, margin:15, borderColor:'#BBBFBF', borderWidth:1, backgroundColor:'white'
+  },
+  chooseProfile:{
+    color: color.bluesky,marginBottom:5
+  }
+})

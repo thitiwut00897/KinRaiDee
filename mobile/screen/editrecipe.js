@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollV
 import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
+import color from '../style/color'
 
 const Editrecipe = (props) => {
   const [RecipeName, setRecipeName] = useState('')
@@ -60,56 +61,84 @@ const Editrecipe = (props) => {
 return (
     
     <View style={styles.container}>
-    <View style={styles.page}>
-    <ScrollView>
-      
-            <SafeAreaView style={{marginLeft:30, marginRight:30}}>
-                <View><Text style={{color:'black', fontSize:24, paddingTop:10, fontWeight: 'bold'}}>Edit Recipe</Text></View>
-                
-                <View style={{alignItems: 'center',}}>
-                    <Image source={{uri:Picture}} style={{height:110, width:110, borderRadius:60, margin:10, borderColor: '#E1E6E6', borderWidth:1}}></Image>
-                </View>
-                <Text style={styles.headderText}>RecipeName</Text>
-                <TextInput
-                    multiline={false}
-                    numberOfLines={1}
-                    onChangeText={(input) => setRecipeName(input)}
-                    value={RecipeName}
-                    style={styles.textInput}/>
-                
-                <Text style={styles.headderText}>Ingredients</Text>
-                
-                <TextInput
-                    multiline={true}
-                    numberOfLines={4}
-                    onChangeText={(input) => setIngredients(input)}
-                    value={Ingredients}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:0,paddingHorizontal: 10}}/>
-                
-                <Text style={styles.headderText}>Directions</Text>
-                <TextInput
-                    multiline={true}
-                    numberOfLines={4}
-                    onChangeText={(input) => setDirections(input)}
-                    value={Directions}
-                    style={{borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:0, marginBottom:20,paddingHorizontal: 10}}/>
+        <View style={styles.page}>
+            <ScrollView>
+                <SafeAreaView style={{paddingTop:30, marginBottom:80, paddingHorizontal:'5%'}}>
+                    <View><Text style={Styles.title}>Edit Recipe</Text></View>
                     
-                <Text style={styles.messageError}>{messageError}</Text>
-                <Button title={"Confirm"} onPress={editDetailrecipe}></Button>
-                <View style={{borderTopWidth:1,marginTop:20, marginBottom:20, borderColor:'#CCCFCF'}}></View>
-                <Button title={"Delete"} color="#FF8B69" onPress={()=> AlertDeleteBox()}></Button>
-                
-
-                
-            
-            </SafeAreaView>
-            
-        
-        </ScrollView>
-      </View>
+                    <View style={{alignItems: 'center',}}>
+                        <Image source={{uri:Picture}} style={Styles.image}></Image>
+                    </View>
+                    <Text style={Styles.headderText}>RecipeName</Text>
+                    <TextInput
+                        multiline={false}
+                        numberOfLines={1}
+                        onChangeText={(input) => setRecipeName(input)}
+                        value={RecipeName}
+                        style={Styles.textInput}/>
+                    
+                    <Text style={Styles.headderText}>Ingredients</Text>
+                    
+                    <TextInput
+                        multiline={true}
+                        numberOfLines={4}
+                        onChangeText={(input) => setIngredients(input)}
+                        value={Ingredients}
+                        style={Styles.textInput}/>
+                    
+                    <Text style={Styles.headderText}>Directions</Text>
+                    <TextInput
+                        multiline={true}
+                        numberOfLines={4}
+                        onChangeText={(input) => setDirections(input)}
+                        value={Directions}
+                        style={Styles.textInput}/>
+                        
+                    <Text style={styles.messageError}>{messageError}</Text>
+                    <Button title={"Confirm"} onPress={editDetailrecipe}></Button>
+                    <View style={Styles.line}></View>
+                    <Button title={"Delete"} color="#FF8B69" onPress={()=> AlertDeleteBox()}></Button>
+                </SafeAreaView>
+            </ScrollView>
+        </View>
     </View>
     
 );
 };
 
 export default Editrecipe;
+const Styles = StyleSheet.create({
+title:{
+    color:'black', 
+    fontSize:24, 
+    paddingTop:10, 
+    fontWeight: 'bold'
+},
+image:{
+    height:110, 
+    width:110, 
+    borderRadius:60, 
+    margin:10, 
+    borderColor: '#E1E6E6', 
+    borderWidth:1
+},
+headderText:{
+    fontWeight: 'bold', 
+    marginTop:5, 
+    marginBottom:5,
+    fontSize:15
+},
+textInput:{
+    borderColor: color.grayTextinput,
+    borderWidth: 1,borderRadius:8, 
+    marginTop:10, 
+    marginBottom:10,
+    paddingHorizontal: 10
+},
+line:{
+    borderTopWidth:1,
+    marginTop:20, 
+    marginBottom:20, 
+    borderColor:color.grayTextinput
+}
+})

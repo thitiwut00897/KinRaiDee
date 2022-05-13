@@ -1,4 +1,5 @@
 import { StyleSheet} from "react-native";
+import color from './color'
 
 
 export default StyleSheet.create({
@@ -6,17 +7,17 @@ export default StyleSheet.create({
       flex:1,
       display:'flex',
       flexDirection:'column',
-      backgroundColor: '#57CC99',
+      backgroundColor: color.green,
       justifyContent: 'center',
     },
     page:{
       top:0,
       flex:1,
+      // paddingHorizontal:'5%',
       paddingBottom:30,
       borderTopRightRadius:35,
       borderTopLeftRadius:35,
-      // backgroundColor: '#F2F5F5',
-      backgroundColor: '#FEFEFE',
+      backgroundColor: color.whitebackground,
       marginBottom:0,
       width:'auto',
 
@@ -78,13 +79,7 @@ export default StyleSheet.create({
     color:'red', 
     fontSize:12
   },
-  textInput: {
-
-    borderColor: '#CCCFCF',borderWidth: 1,borderRadius:8, marginTop:10,height:43, paddingHorizontal: 10
-    
-  },
-  headderText:{
-    fontWeight: 'bold', marginTop:5, marginBottom:5
-  }
+  
+  
 
   });

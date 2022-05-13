@@ -6,6 +6,7 @@ import './global.js';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import firebase from 'firebase';
 import 'firebase/firestore';
+import color from '../style/color'
 
 const Reviewrecipe = (props) => {
   const auth = firebase.auth();
@@ -30,13 +31,6 @@ const Reviewrecipe = (props) => {
   useEffect(() => {
     getDetailRecipe();
     getComment();
-    // (async () => {
-    //   const users = firestore.collection('users').doc(auth.currentUser?.uid);
-    //   const doc = await users.get();
-    //   setFirstName(doc.data().firstName)
-    //   setLastName(doc.data().lastName)
-    //   setUserPhoto(doc.data().photo)
-    // })();
     var date = new Date().getDate(); //Current Date
     var month = new Date().getMonth() + 1; //Current Month
     var year = new Date().getFullYear(); //Current Year
@@ -64,9 +58,6 @@ const Reviewrecipe = (props) => {
     }).catch((err)=>{
       console.log(err);
     })
-    
-
-
   }
 
   const postComment=async()=>{
@@ -99,66 +90,65 @@ return (
     <View style={styles.container}>
       <View style={styles.page}>
         <ScrollView>
-            <SafeAreaView style={{marginLeft:30, marginRight:30}}>
-                
-                <View style={{flexDirection:'row', paddingTop:30}}>
-                    <View style={{width:'90%', flexDirection:'row'}}>
-                        <View><Image source={{uri : photoProfile}} style={{height:30, width:30, borderRadius:15}}></Image></View>
-                            <View>
-                                <Text style={{fontSize:9}}>{ownRecipe}</Text>
-                                <Text style={{color:'gray',fontSize:9}}>{date}</Text>
-                            </View>
+            <SafeAreaView style={{paddingTop:30, marginBottom:0, paddingHorizontal:'5%'}}>
+                <View style={Styles.profileWrapper}>
+                    <View style={Styles.profileWrapperLeft}>
+                        <Image source={{uri : photoProfile}} style={Styles.profileImage}></Image>
+                        <View>
+                            <Text style={{fontSize:9}}>{ownRecipe}</Text>
+                            <Text style={{color:'gray',fontSize:9}}>{date}</Text>
+                        </View>
                     </View>
-                        <SafeAreaView style={{flexDirection:'row-reverse'}}>
-                            <Image source={require('../assets/bookmark.png')} style={{height:30, width:30, tintColor:true?'#F06C6A':'gray'}}/>
-                        </SafeAreaView>
+                    <SafeAreaView style={Styles.profileWrapperRight}>
+                        <Image source={require('../assets/bookmark.png')} style={{height:30, width:30, tintColor:true?'#F06C6A':'gray'}}/>
+                    </SafeAreaView>
                 </View>
 
                 
                 <View style={{alignItems: 'center',}}>
-                    <Image source={{uri : picRecipe}} style={{height:140, width:140, borderRadius:70, margin:10, borderColor:'gray', borderWidth:1, backgroundColor:'white'}}></Image>
+                    <Image source={{uri : picRecipe}} style={Styles.imageRecipe}></Image>
                 </View>
-                <Text style={{ fontWeight: 'bold', marginBottom:5, fontSize:14}}>{recipeName}</Text>
-                <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:5, marginBottom:5}}></View>
-                <Text style={styles.headderText}>Ingredients</Text>
+                <Text style={Styles.headderText}>{recipeName}</Text>
+                <View style={Styles.line}></View>
+                <Text style={Styles.headderText}>Ingredients</Text>
                 
-                <Text>{ingredients}</Text>
+                <Text style={Styles.detailText}>{ingredients}</Text>
                 
-                <Text style={styles.headderText}>Directions</Text>
+                <Text style={Styles.headderText}>Directions</Text>
                 
-                <Text>{directions}</Text>
+                <Text style={Styles.detailText}>{directions}</Text>
 
-                <View style={{height:10, borderTopWidth:1, borderColor:'gray', marginTop:10, marginBottom:10}}></View>
+                <View style={Styles.line}></View>
             
 
             {/* --------------------------------comment------------------------------------ */}
-                  <View style={{borderTopWidth:1}}></View>
-                  <View><Text style={{marginTop:10, marginBottom:10, fontWeight:'bold', fontSize:20}}>comment</Text></View>
+                  <View><Text style={Styles.headderText}>Comment</Text></View>
               {getAllComment.map((items) =>
-                  <View key={items._id} style={{flexDirection:'row', marginBottom:10}}>
-                    <View style={{flexDirection:'row', margin:5}}>
-                      <Image source={{uri:items.photo}} style={{height:30, width:30, borderRadius:50, borderColor: '#E5E7E9', borderWidth:1}}/>
+                  <View key={items._id} style={Styles.commentWrapper}>
+                    <View style={Styles.commentWrapperLeft}>
+                      <Image source={{uri:items.photo}} style={Styles.commentImageProfile}/>
                     </View>
-                    <View style={{borderRadius:10, backgroundColor:'#E5E7E9', padding:10, width:'90%'}}>
-                      <Text style={{fontWeight:'bold', fontSize:13}}>{items.firstName} {items.lastName} <Text style={{fontSize:8,fontWeight:'normal'}}>{items.date}</Text></Text>
-                      <Text style={{fontSize:13}}>{items.comment}</Text>
+                    <View style={Styles.commentWrapperRight}>
+                      <Text style={[Styles.commentText, {fontWeight:'bold'}]}>{items.firstName} {items.lastName} <Text style={{fontSize:8,fontWeight:'normal'}}>{items.date}</Text></Text>
+                      <Text style={Styles.commentText}>{items.comment}</Text>
                     </View>
                   </View>
               )}
 
-                  
-                  <View style={{flexDirection:'row', marginTop:20}}>
-                    <View style={{width:'90%'}}>
+                  <View style={Styles.postCommentWrapper}>
+                    <View style={Styles.postCommentWrapperLeft}>
                       <TextInput
                         multiline={true}
                         numberOfLines={1}
                         onChangeText={(input) => setCommentinput(input)}
                         value={Commentinput}
                         placeholder="Write a comment"
-                        style={{borderColor: '#E1E6E6',borderWidth: 1,borderRadius:8, padding:5}}/>
+                        style={Styles.textInputComment}/>
                     </View>
-                    <View><TouchableOpacity style={{padding:10,borderRadius:8}} disabled={Commentinput == ''?true:false} onPress={postComment}><Text style={{color:Commentinput==''?'#AFE6F5':'#5BD4F5'}}>Post</Text></TouchableOpacity></View>
+                    <View style={Styles.postCommentWrapperRight}>
+                      <TouchableOpacity style={{padding:10,borderRadius:8}} disabled={Commentinput == ''?true:false} onPress={postComment}><Text style={{color:Commentinput==''?'#AFE6F5':'#5BD4F5'}}>Post</Text></TouchableOpacity>
                     </View>
+                  </View>
                   
           </SafeAreaView>
         </ScrollView>
@@ -169,3 +159,86 @@ return (
 };
 
 export default Reviewrecipe;
+const Styles = StyleSheet.create({
+profileWrapper:{
+  flexDirection:'row', 
+  paddingTop:10
+},
+profileWrapperLeft:{
+  width:'90%', 
+  flexDirection:'row'
+},
+profileWrapperRight:{
+  flexDirection:'row-reverse'
+},
+profileImage:{
+  height:30, 
+  width:30, 
+  borderRadius:15
+},
+imageRecipe:{
+  height:140, 
+  width:140, 
+  borderRadius:70, 
+  margin:10, 
+  borderColor:'gray', 
+  borderWidth:1, 
+  backgroundColor:'white'
+},
+headderText:{
+  fontWeight: 'bold', 
+  marginBottom:5, 
+  fontSize:18, 
+  marginTop:10
+},
+detailText:{
+  fontSize:12,
+},
+line:{
+  height:10, 
+  borderTopWidth:1, 
+  borderColor:'gray', 
+  marginTop:10, 
+  marginBottom:0
+},
+commentWrapper:{
+  flexDirection:'row', 
+  marginBottom:10
+},
+commentWrapperLeft:{
+  flexDirection:'row', 
+  margin:5
+},
+commentWrapperRight:{
+  borderRadius:10, 
+  backgroundColor:color.gray, 
+  padding:10, 
+  width:'90%'
+},
+commentText:{
+  fontSize:13
+},
+commentImageProfile:{
+  height:30, 
+  width:30, 
+  borderRadius:50, 
+  borderColor: '#E5E7E9', 
+  borderWidth:1
+},
+postCommentWrapper:{
+  flexDirection:'row', 
+  marginTop:20
+},
+postCommentWrapperLeft:{
+  width:'90%'
+},
+postCommentWrapperRight:{
+  
+},
+textInputComment:{
+  borderColor: color.grayTextinput,
+  borderWidth: 1,
+  borderRadius:8, 
+  padding:5
+}
+})
