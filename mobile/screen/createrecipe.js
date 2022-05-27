@@ -83,7 +83,6 @@ const uploadImageAuth= async(uri, name)=>{
                       numberOfLines={1}
                       onChangeText={(input) => setRecipeName(input)}
                       value={RecipeName}
-                      // textContentType=""
                       placeholder="  ข้าวผัด"
                       style={Styles.textinput}/>
                   
@@ -132,11 +131,9 @@ const Styles = StyleSheet.create({
   },
   textinput:{
     borderColor: color.grayTextinput,
-    borderWidth: 1,
-    borderRadius:8, 
+    borderWidth: 1,borderRadius:8, 
     marginTop:10, 
-    marginBottom:10, 
-    height:43,
+    marginBottom:10,
     paddingHorizontal: 10
   },
   errorMessage:{

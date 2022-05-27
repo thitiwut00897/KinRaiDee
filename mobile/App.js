@@ -5,6 +5,7 @@ import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Remote debugger']);
 import firebase from 'firebase'
 LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
+LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 
 import firebaseConfig from './screen/firebase/firebase';
 

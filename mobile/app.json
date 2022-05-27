@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/earth.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.it61070088.KinRaiDee"

@@ -84,7 +84,7 @@ const Styles = StyleSheet.create({
   },
   historyWrapper:{
     flexDirection:'row', 
-    justifyContent:'space-around', 
+    justifyContent:'flex-start', 
     flexWrap: 'wrap'
   },
   cardWrapper:{
@@ -93,7 +93,7 @@ const Styles = StyleSheet.create({
     borderRadius:10, 
     backgroundColor:'#F1F1F1', 
     padding:5, 
-    marginRight:5, 
+    marginRight:10, 
     marginBottom:5
   },
   cardImageVagetable:{

@@ -77,7 +77,7 @@ const Profile = (props) => {
               text: "yes",
               onPress:()=>{
                 auth.signOut().then(()=>{
-                  props.navigation.popToTop()
+                  props.navigation.navigate('Login')
                 }).catch((error)=>{
                   console.log(error)
                 })

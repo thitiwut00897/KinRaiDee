@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView} from "react-native";
+import { View, Text, StyleSheet, Image, TextInput, Button, SafeAreaView, ScrollView, Share} from "react-native";
 import styles from "../style/styles";
 import axios from "axios";
 import './global.js';
@@ -77,12 +77,34 @@ const Reviewrecipe = (props) => {
       console.log(err);
     })
   }
-/// รอเปลี่ยน api 
+
   const getComment=()=>{
     axios.get(`${url}/api/userComments/recipes/${props.navigation.getParam('idrecipe')}`).then((response) => {
       setGetAllComment(response.data)
     })
   }
+
+
+    const onShare = async () => {
+      
+      try {
+        const result = await Share.share({
+          title:'มาลองชิมสูตรอาหารนี้สิ   '+recipeName+'   สามารถโหลด KinRaiDee เพื่อดูรายละเอียดเพิ่มเติมได้ >.<',
+          url: picRecipe,
+        });
+        if (result.action === Share.sharedAction) {
+          if (result.activityType) {
+            // shared with activity type of result.activityType
+          } else {
+            // shared
+          }
+        } else if (result.action === Share.dismissedAction) {
+          // dismissed
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    };
 
   
 return (
@@ -117,7 +139,10 @@ return (
                 <Text style={Styles.headderText}>Directions</Text>
                 
                 <Text style={Styles.detailText}>{directions}</Text>
-
+                <View style={Styles.Share}>
+                  <Button title="Share" onPress={onShare}></Button>
+                </View>
+              
                 <View style={Styles.line}></View>
             
 
@@ -240,5 +265,8 @@ textInputComment:{
   borderWidth: 1,
   borderRadius:8, 
   padding:5
-}
+},
+Share:{
+  marginTop:15
+},
 })

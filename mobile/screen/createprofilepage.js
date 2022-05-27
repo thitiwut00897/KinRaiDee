@@ -39,14 +39,10 @@ const uploadImageAuth= async(uri, name)=>{
     const blob = await response.blob();
     var ref = await firebase.storage().ref().child(`Auth/${AuthID}`+ name);
     const snapshot = await ref.put(blob, { contentType: "image/png" });
-
-    // Create a download URL
     const remoteURL = await snapshot.ref.getDownloadURL();
     setPhotoUrl(remoteURL)
     console.log('upload seccess')
-    
-    // Return the URL
-    // return remoteURL;
+  
 }
 
 const createUserDocument = async (userid)=>{

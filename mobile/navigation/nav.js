@@ -64,11 +64,9 @@ import pop from "../screen/popup";
                         return(
                                 <View style={{width:80, height:80,
                                 borderTopLeftRadius:40,borderTopRightRadius:40,
-                                // backgroundColor: '#57CC99',
                                 backgroundColor:"white",
                                 marginBottom:30, alignItems: 'center',
                                 justifyContent: 'center',
-                                // borderWidth:1,
                                 borderBottomLeftwidht:0,borderBottomRightwidht:0,
                                 }}>
                                 
@@ -141,7 +139,7 @@ import pop from "../screen/popup";
                 title: '',
                 headerStyle:{
                     backgroundColor:'#57CC99',
-                    elevation:0, //border headerBar
+                    elevation:0,
                     borderBottomWidth:0
                 },
                 
@@ -154,11 +152,9 @@ import pop from "../screen/popup";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0, //border headerBar
+                        elevation:0,
                         borderBottomWidth:0
                     },
-                    
-                    // headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=> Login}>Login</Text>);},
                     
                 },},
             Createprofile:{screen:Createprofile,
@@ -167,12 +163,9 @@ import pop from "../screen/popup";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0, //border headerBar
+                        elevation:0,
                         borderBottomWidth:0
-                    },
-                    
-                    // headerRight:()=>{return(<Text style={{color:'white', right:10}} onPress={()=>''}>Login</Text>);},
-                    
+                    },       
                 },},
             Createrecipe:{screen:Createrecipe,
                 navigationOptions: {
@@ -180,7 +173,7 @@ import pop from "../screen/popup";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0, //border headerBar
+                        elevation:0,
                         borderBottomWidth:0
                     },
                 },}, 
@@ -190,7 +183,7 @@ import pop from "../screen/popup";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0, //border headerBar
+                        elevation:0,
                         borderBottomWidth:0
                     },
                 },}, 
@@ -200,7 +193,7 @@ import pop from "../screen/popup";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0, //border headerBar
+                        elevation:0,
                         borderBottomWidth:0
                     },
                 },},
@@ -210,7 +203,7 @@ import pop from "../screen/popup";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0, //border headerBar
+                        elevation:0,
                         borderBottomWidth:0
                     },
                 },},
@@ -220,7 +213,7 @@ import pop from "../screen/popup";
                     title: '',
                     headerStyle:{
                         backgroundColor:'#57CC99',
-                        elevation:0, //border headerBar
+                        elevation:0,
                         borderBottomWidth:0
                     },
                 },},    
@@ -229,20 +222,12 @@ import pop from "../screen/popup";
                     headerShown: true,
                     title: <TitleNameHeader/>,
                     headerStyle:{
-                        backgroundColor:'#57CC99',
-                        // backgroundColor:'#97DBAE',
-                        
-                        elevation:0, //border headerBar
+                        backgroundColor:'#57CC99',     
+                        elevation:0,
                         borderBottomWidth:0
                         
                     },
-                    headerLeft:()=>{},//<Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30, right:10}}></Image>
-                    headerRight:()=>
-                    {
-                        // return(
-                        // <Image source={require('../assets/profilefacebook.jpg')} style={{height:40, width:40, borderRadius:30,marginRight:20, marginTop:10}}></Image>
-                        // );
-                    }
+                    headerLeft:()=>{},
                     
                 },},
         }
