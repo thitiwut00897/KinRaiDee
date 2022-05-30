@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Image, StyleSheet, Text, TouchableOpacity, Button, Picker } from 'react-native';
+import React from "react";
+import { View, Image, StyleSheet, Text} from 'react-native';
 import { createBottomTabNavigator} from "react-navigation-tabs";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
@@ -17,7 +17,7 @@ import Reivewrecipe from "../screen/reviewrecipe";
 import Detailvagetable from "../screen/detailvagetable";
 import Styles from "../style/styles";
 import Imagepickup from "../screen/imagepickup";
-import pop from "../screen/popup";
+
 
 
 
